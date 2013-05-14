@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://code.google.com/p/moq/wiki/QuickStart -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 
+ <meta name="ROBOTS" content="NOARCHIVE">
+ 
+ <link rel="icon" type="image/vnd.microsoft.icon" href="https://ssl.gstatic.com/codesite/ph/images/phosting.ico">
+ 
+ 
+ <link rel="canonical" href="http://code.google.com/p/moq/wiki/QuickStart">
+ 
+ <script src="./Quickstart moq_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Quickstart moq_files/plusone.js" gapi_processed="true"></script><script type="text/javascript">
+ 
+ (function(){(function(){function b(a){this.t={};this.tick=function(a,b,c){b=void 0!=c?c:(new Date).getTime();this.t[a]=b};this.tick("start",null,a)}var a=new b;window.jstiming={Timer:b,load:a};try{a=null,window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT)),null==a&&window.gtbExternal&&(a=window.gtbExternal.pageT()),null==a&&window.external&&(a=window.external.pageT),a&&(window.jstiming.pt=a)}catch(d){}})();})();
+
+ 
+ 
+ 
+ 
+ var codesite_token = null;
+ 
+ 
+ var CS_env = {"loggedInUserEmail":null,"projectHomeUrl":"/p/moq","projectName":"moq","relativeBaseUrl":"","assetVersionPath":"https://ssl.gstatic.com/codesite/ph/10948521920255093670","token":null,"profileUrl":null,"domainName":null,"assetHostPath":"https://ssl.gstatic.com/codesite/ph"};
+ var _gaq = _gaq || [];
+ _gaq.push(
+ ['siteTracker._setAccount', 'UA-18071-1'],
+ ['siteTracker._trackPageview']);
+ 
+ _gaq.push(
+ ['projectTracker._setAccount', 'UA-3240245-1'],
+ ['projectTracker._trackPageview']);
+ 
+ (function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+ })();
+ 
+ </script><script type="text/javascript" async="" src="./Quickstart moq_files/ga.js"></script>
+ 
+ 
+ <title>QuickStart - 
+ moq -
+ 
+ 
+ The simplest mocking library for .NET and Silverlight - Google Project Hosting
+ </title>
+ <link type="text/css" rel="stylesheet" href="./Quickstart moq_files/core.css">
+ 
+ <link type="text/css" rel="stylesheet" href="./Quickstart moq_files/ph_detail.css">
+ 
+ 
+ 
+ <link type="application/atom+xml" rel="alternate" href="https://code.google.com/feeds/p/moq/svnchanges/basic?path=/wiki/QuickStart.wiki">
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="https://ssl.gstatic.com/codesite/ph/10948521920255093670/css/d_ie.css" >
+<![endif]-->
+ <style type="text/css">
+ .menuIcon.off { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -42px }
+ .menuIcon.on { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -28px }
+ .menuIcon.down { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 0; }
+ 
+ 
+ #maincol {
+ padding-top: 0;
+ padding-bottom: 0;
+ }
+
+ 
+ </style>
+</head>
+<body class="t6">
+<script type="text/javascript">
+ window.___gcfg = {lang: 'en'};
+ (function() 
+ {var po = document.createElement("script");
+ po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
+ var s = document.getElementsByTagName("script")[0];
+ s.parentNode.insertBefore(po, s);
+ })();
+</script>
+<div class="headbg">
+
+ <div id="gaia">
+ 
+
+ <span>
+ 
+ 
+ <a href="https://code.google.com/p/moq/wiki/QuickStart#" id="projects-dropdown" onclick="return false;"><u>My favorites</u> <small>▼</small></a>
+ | <a href="https://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=https%3A%2F%2Fcode.google.com%2Fp%2Fmoq%2Fwiki%2FQuickStart&followup=https%3A%2F%2Fcode.google.com%2Fp%2Fmoq%2Fwiki%2FQuickStart" onclick="_CS_click(&#39;/gb/ph/signin&#39;);"><u>Sign in</u></a>
+ 
+ </span>
+
+ </div>
+
+ <div class="gbh" style="left: 0pt;"></div>
+ <div class="gbh" style="right: 0pt;"></div>
+ 
+ 
+ <div style="height: 1px"></div>
+<!--[if lte IE 7]>
+<div style="text-align:center;">
+Your version of Internet Explorer is not supported. Try a browser that
+contributes to open source, such as <a href="http://www.firefox.com">Firefox</a>,
+<a href="http://www.google.com/chrome">Google Chrome</a>, or
+<a href="http://code.google.com/chrome/chromeframe/">Google Chrome Frame</a>.
+</div>
+<![endif]-->
+
+
+
+ <table style="padding:0px; margin: 0px 0px 10px 0px; width:100%" cellpadding="0" cellspacing="0" itemscope="" itemtype="http://schema.org/CreativeWork">
+ <tbody><tr style="height: 58px;">
+ 
+ 
+ 
+ <td id="plogo">
+ <link itemprop="url" href="https://code.google.com/p/moq">
+ <a href="https://code.google.com/p/moq/">
+ 
+ 
+ <img src="./Quickstart moq_files/logo" alt="Logo" itemprop="image">
+ 
+ </a>
+ </td>
+ 
+ <td style="padding-left: 0.5em">
+ 
+ <div id="pname">
+ <a href="https://code.google.com/p/moq/"><span itemprop="name">moq</span></a>
+ </div>
+ 
+ <div id="psum">
+ <a id="project_summary_link" href="https://code.google.com/p/moq/"><span itemprop="description">The simplest mocking library for .NET and Silverlight</span></a>
+ 
+ </div>
+ 
+ 
+ </td>
+ <td style="white-space:nowrap;text-align:right; vertical-align:bottom;">
+ 
+ <form action="https://code.google.com/hosting/search">
+ <input size="30" name="q" value="" type="text">
+ 
+ <input type="submit" name="projectsearch" value="Search projects">
+ </form>
+ 
+ </td></tr>
+ </tbody></table>
+
+</div>
+
+ 
+<div id="mt" class="gtb"> 
+ <a href="https://code.google.com/p/moq/" class="tab ">Project&nbsp;Home</a>
+ 
+ 
+ 
+ 
+ <a href="https://code.google.com/p/moq/downloads/list" class="tab ">Downloads</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="https://code.google.com/p/moq/w/list" class="tab active">Wiki</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="https://code.google.com/p/moq/issues/list" class="tab ">Issues</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="https://code.google.com/p/moq/source/checkout" class="tab ">Source</a>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="gtbc"></div>
+</div>
+<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+ <tbody><tr>
+ 
+ 
+ 
+ <td class="subt">
+ <div class="issueDetail">
+<div class="isf">
+ 
+ <span class="inIssueList"> 
+ <span>Search</span>
+ <form action="https://code.google.com/p/moq/w/list" method="GET" style="display:inline">
+ <select id="can" name="can">
+ <option disabled="disabled">Search within:</option>
+ 
+ <option value="1">&nbsp;All wiki pages</option>
+ <option value="3">&nbsp;Featured pages</option>
+ <option value="2" selected="selected">&nbsp;Current pages</option>
+ 
+ 
+ <option value="4">&nbsp;Deprecated pages</option>
+ 
+ </select>
+ <span>for</span>
+ <span id="qq"><input type="text" size="38" id="searchq" name="q" value="" autocomplete="off"></span>
+ 
+ 
+ 
+ <input type="submit" value="Search">
+ </form>
+ </span>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</div>
+</div>
+
+ </td>
+ 
+ 
+ 
+ 
+ 
+ 
+ <td align="right" valign="top" class="bevel-right"></td>
+ </tr>
+</tbody></table>
+
+
+<script type="text/javascript">
+ var cancelBubble = false;
+ function _go(url) { document.location = url; }
+</script>
+<div id="maincol">
+
+ 
+
+
+
+
+
+
+
+ <style type="text/css">
+ .delcom { background: #e8e8e8 }
+ .commentcontent {
+ margin: 2em;
+ padding: 0px 10px;
+ width: 66em;
+ }
+ .artifactcomment {
+ border-top: 3px solid #c3d9ff;
+ }
+ #commentform {
+ border-top: 3px solid #c3d9ff;
+ }
+ </style>
+
+<div id="wikipage">
+<table>
+ <tbody><tr>
+ 
+ 
+ <td style="vertical-align:top; padding-left:5px">
+ 
+ <div id="wikiheader">
+ 
+ <span style="font-size:120%;font-weight:bold">QuickStart</span>
+ &nbsp;
+ <div> 
+ 
+ 
+ <br>
+ 
+ <a class="label" style="padding-top: 2px" href="https://code.google.com/p/moq/w/list?q=label:Featured" title="Listed on project home page">Featured</a>
+ 
+ 
+ 
+ <div id="wikiauthor" style="float:right">
+ Updated <span title="Thu Apr 19 13:20:08 2012">
+ Apr 19, 2012</span>
+ 
+ by 
+
+ <a class="userlink" href="https://code.google.com/u/108204478668806573447/">dan...@cazzulino.com</a>
+ 
+ </div>
+ </div>
+ </div>
+ 
+ <div id="wikicontent">
+ <div class="vt" id="wikimaincol">
+ <h1><a name="Introduction_to_Moq"></a>Introduction to Moq<a href="https://code.google.com/p/moq/wiki/QuickStart#Introduction_to_Moq" class="section_anchor"></a></h1><p>Moq is intended to be simple to use, strong typed (no magic strings!, and therefore full compiler-verified and refactoring-friendly) and minimalistic (while still fully functional!). </p><h2><a name="Methods"></a>Methods<a href="https://code.google.com/p/moq/wiki/QuickStart#Methods" class="section_anchor"></a></h2><pre class="prettyprint"><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;();</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">DoSomething</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">)).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// out arguments</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> outString </span><span class="pun">=</span><span class="pln"> </span><span class="str">"ack"</span><span class="pun">;</span><span class="pln"><br></span><span class="com">// TryParse will return true, and the out argument will return "ack", lazy evaluated</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">TryParse</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">out</span><span class="pln"> outString</span><span class="pun">)).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// ref arguments</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> instance </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Bar</span><span class="pun">();</span><span class="pln"><br></span><span class="com">// Only matches if the ref argument to the invocation is the same instance</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Submit</span><span class="pun">(</span><span class="kwd">ref</span><span class="pln"> instance</span><span class="pun">)).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// access invocation arguments when returning a value</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">x </span><span class="pun">=&gt;</span><span class="pln"> x</span><span class="pun">.</span><span class="typ">DoSomething</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;string&gt;</span><span class="pun">()))</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">((</span><span class="kwd">string</span><span class="pln"> s</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> s</span><span class="pun">.</span><span class="typ">ToLower</span><span class="pun">());</span><span class="pln"><br></span><span class="com">// Multiple parameters overloads available</span><span class="pln"><br><br><br></span><span class="com">// throwing when invoked</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">DoSomething</span><span class="pun">(</span><span class="str">"reset"</span><span class="pun">)).</span><span class="typ">Throws</span><span class="pun">&lt;</span><span class="typ">InvalidOperationException</span><span class="pun">&gt;();</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">DoSomething</span><span class="pun">(</span><span class="str">""</span><span class="pun">)).</span><span class="typ">Throws</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArgumentException</span><span class="pun">(</span><span class="str">"command"</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// lazy evaluating return value</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">GetCount</span><span class="pun">()).</span><span class="typ">Returns</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> count</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// returning different values on each invocation</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;();</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> calls </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">GetCountThing</span><span class="pun">())</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> calls</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Callback</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> calls</span><span class="pun">++);</span><span class="pln"><br></span><span class="com">// returns 0 on first invocation, 1 on the next, and so on</span><span class="pln"><br></span><span class="typ">Console</span><span class="pun">.</span><span class="typ">WriteLine</span><span class="pun">(</span><span class="pln">mock</span><span class="pun">.</span><span class="typ">Object</span><span class="pun">.</span><span class="typ">GetCountThing</span><span class="pun">());</span></pre><h2><a name="Matching_Arguments"></a>Matching Arguments<a href="https://code.google.com/p/moq/wiki/QuickStart#Matching_Arguments" class="section_anchor"></a></h2><pre class="prettyprint"><span class="com">// any value</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">DoSomething</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;string&gt;</span><span class="pun">())).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// matching Func&lt;int&gt;, lazy evaluated</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">Is</span><span class="str">&lt;int&gt;</span><span class="pun">(</span><span class="pln">i </span><span class="pun">=&gt;</span><span class="pln"> i </span><span class="pun">%</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pun">))).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln"> <br><br><br></span><span class="com">// matching ranges</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsInRange</span><span class="str">&lt;int&gt;</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Range</span><span class="pun">.</span><span class="typ">Inclusive</span><span class="pun">))).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln"> <br><br><br></span><span class="com">// matching regex</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">x </span><span class="pun">=&gt;</span><span class="pln"> x</span><span class="pun">.</span><span class="typ">DoSomething</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsRegex</span><span class="pun">(</span><span class="str">"[a-d]+"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">RegexOptions</span><span class="pun">.</span><span class="typ">IgnoreCase</span><span class="pun">))).</span><span class="typ">Returns</span><span class="pun">(</span><span class="str">"foo"</span><span class="pun">);</span></pre><h2><a name="Properties"></a>Properties<a href="https://code.google.com/p/moq/wiki/QuickStart#Properties" class="section_anchor"></a></h2><pre class="prettyprint"><span class="pln">mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pun">).</span><span class="typ">Returns</span><span class="pun">(</span><span class="str">"bar"</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// auto-mocking hierarchies (a.k.a. recursive mocks)</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Bar</span><span class="pun">.</span><span class="typ">Baz</span><span class="pun">.</span><span class="typ">Name</span><span class="pun">).</span><span class="typ">Returns</span><span class="pun">(</span><span class="str">"baz"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// expects an invocation to set the value to "foo"</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">SetupSet</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"foo"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// or verify the setter directly</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">VerifySet</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"foo"</span><span class="pun">);</span></pre><ul><li>Setup a property so that it will automatically start tracking its value (also known as Stub): </li><pre class="prettyprint"><span class="com">// start "tracking" sets/gets to this property</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">SetupProperty</span><span class="pun">(</span><span class="pln">f </span><span class="pun">=&gt;</span><span class="pln"> f</span><span class="pun">.</span><span class="typ">Name</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// alternatively, provide a default value for the stubbed property</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">SetupProperty</span><span class="pun">(</span><span class="pln">f </span><span class="pun">=&gt;</span><span class="pln"> f</span><span class="pun">.</span><span class="typ">Name</span><span class="pun">,</span><span class="pln"> </span><span class="str">"foo"</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// Now you can do:</span><span class="pln"><br><br></span><span class="typ">IFoo</span><span class="pln"> foo </span><span class="pun">=</span><span class="pln"> mock</span><span class="pun">.</span><span class="typ">Object</span><span class="pun">;</span><span class="pln"><br></span><span class="com">// Initial value was stored</span><span class="pln"><br></span><span class="typ">Assert</span><span class="pun">.</span><span class="typ">Equal</span><span class="pun">(</span><span class="str">"foo"</span><span class="pun">,</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// New value set which changes the initial value</span><span class="pln"><br>foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"bar"</span><span class="pun">;</span><span class="pln"><br></span><span class="typ">Assert</span><span class="pun">.</span><span class="typ">Equal</span><span class="pun">(</span><span class="str">"bar"</span><span class="pun">,</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pun">);</span></pre></ul><ul><li>Stub all properties on a mock (not available on Silverlight): </li><pre class="prettyprint"><span class="pln">mock</span><span class="pun">.</span><span class="typ">SetupAllProperties</span><span class="pun">();</span></pre></ul><h2><a name="Events"></a>Events<a href="https://code.google.com/p/moq/wiki/QuickStart#Events" class="section_anchor"></a></h2><pre class="prettyprint"><span class="com">// Raising an event on the mock</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Raise</span><span class="pun">(</span><span class="pln">m </span><span class="pun">=&gt;</span><span class="pln"> m</span><span class="pun">.</span><span class="typ">FooEvent</span><span class="pln"> </span><span class="pun">+=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FooEventArgs</span><span class="pun">(</span><span class="pln">fooValue</span><span class="pun">));</span><span class="pln"><br><br></span><span class="com">// Raising an event on a descendant down the hierarchy</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Raise</span><span class="pun">(</span><span class="pln">m </span><span class="pun">=&gt;</span><span class="pln"> m</span><span class="pun">.</span><span class="typ">Child</span><span class="pun">.</span><span class="typ">First</span><span class="pun">.</span><span class="typ">FooEvent</span><span class="pln"> </span><span class="pun">+=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FooEventArgs</span><span class="pun">(</span><span class="pln">fooValue</span><span class="pun">));</span><span class="pln"><br><br></span><span class="com">// Causing an event to raise automatically when Submit is invoked</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Submit</span><span class="pun">()).</span><span class="typ">Raises</span><span class="pun">(</span><span class="pln">f </span><span class="pun">=&gt;</span><span class="pln"> f</span><span class="pun">.</span><span class="typ">Sent</span><span class="pln"> </span><span class="pun">+=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="typ">EventArgs</span><span class="pun">.</span><span class="typ">Empty</span><span class="pun">);</span><span class="pln"><br></span><span class="com">// The raised event would trigger behavior on the object under test, which </span><span class="pln"><br></span><span class="com">// you would make assertions about later (how its state changed as a consequence, typically)</span><span class="pln"><br><br></span><span class="com">// Raising a custom event which does not adhere to the EventHandler pattern</span><span class="pln"><br></span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">delegate</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">MyEventHandler</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">bool</span><span class="pln"> b</span><span class="pun">);</span><span class="pln"><br></span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">IFoo</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">event</span><span class="pln"> </span><span class="typ">MyEventHandler</span><span class="pln"> </span><span class="typ">MyEvent</span><span class="pun">;</span><span class="pln"> <br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;();</span><span class="pln"><br></span><span class="pun">...</span><span class="pln"><br></span><span class="com">// Raise passing the custom arguments expected by the event delegate</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Raise</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">MyEvent</span><span class="pln"> </span><span class="pun">+=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> </span><span class="lit">25</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></pre><h2><a name="Callbacks"></a>Callbacks<a href="https://code.google.com/p/moq/wiki/QuickStart#Callbacks" class="section_anchor"></a></h2><pre class="prettyprint"><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;();</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">))</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Callback</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> calls</span><span class="pun">++);</span><span class="pln"><br><br><br></span><span class="com">// access invocation arguments</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;string&gt;</span><span class="pun">()))</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Callback</span><span class="pun">((</span><span class="kwd">string</span><span class="pln"> s</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> calls</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="pln">s</span><span class="pun">));</span><span class="pln"><br><br></span><span class="com">// alternate equivalent generic method syntax</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;string&gt;</span><span class="pun">()))</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Callback</span><span class="str">&lt;string&gt;</span><span class="pun">(</span><span class="pln">s </span><span class="pun">=&gt;</span><span class="pln"> calls</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="pln">s</span><span class="pun">));</span><span class="pln"><br><br></span><span class="com">// access arguments for methods with multiple parameters</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;int&gt;</span><span class="pun">(),</span><span class="pln"> </span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;string&gt;</span><span class="pun">()))</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Callback</span><span class="pun">&lt;</span><span class="kwd">int</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">string</span><span class="pun">&gt;((</span><span class="pln">i</span><span class="pun">,</span><span class="pln"> s</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> calls</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="pln">s</span><span class="pun">));</span><span class="pln"><br><br></span><span class="com">// callbacks can be specified before and after invocation</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">))</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Callback</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="typ">Console</span><span class="pun">.</span><span class="typ">WriteLine</span><span class="pun">(</span><span class="str">"Before returns"</span><span class="pun">))</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Callback</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="typ">Console</span><span class="pun">.</span><span class="typ">WriteLine</span><span class="pun">(</span><span class="str">"After returns"</span><span class="pun">));</span></pre><h2><a name="Verification"></a>Verification<a href="https://code.google.com/p/moq/wiki/QuickStart#Verification" class="section_anchor"></a></h2><pre class="prettyprint"><span class="pln">mock</span><span class="pun">.</span><span class="typ">Verify</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">));</span><span class="pln"><br><br></span><span class="com">// Verify with custom error message for failure</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Verify</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">),</span><span class="pln"> </span><span class="str">"When doing operation X, the service should be pinged always"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// Method should never be called</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Verify</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">),</span><span class="pln"> </span><span class="typ">Times</span><span class="pun">.</span><span class="typ">Never</span><span class="pun">());</span><span class="pln"><br><br></span><span class="com">// Called at least once</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Verify</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">),</span><span class="pln"> </span><span class="typ">Times</span><span class="pun">.</span><span class="typ">AtLeastOnce</span><span class="pun">());</span><span class="pln"><br><br>mock</span><span class="pun">.</span><span class="typ">VerifyGet</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// Verify setter invocation, regardless of value.</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">VerifySet</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// Verify setter called with specific value</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">VerifySet</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Name</span><span class="pln"> </span><span class="pun">=</span><span class="str">"foo"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// Verify setter with an argument matcher</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">VerifySet</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Value</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsInRange</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Range</span><span class="pun">.</span><span class="typ">Inclusive</span><span class="pun">));</span></pre><h2><a name="Customizing_Mock_Behavior"></a>Customizing Mock Behavior<a href="https://code.google.com/p/moq/wiki/QuickStart#Customizing_Mock_Behavior" class="section_anchor"></a></h2><ul><li>Make mock behave like a "true Mock", raising exceptions for anything that doesn't have a corresponding expectation: in Moq slang a "Strict" mock; default behavior is "Loose" mock, which never throws and returns default values or empty arrays, enumerables, etc. if no expectation is set for a member </li><pre class="prettyprint"><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;(</span><span class="typ">MockBehavior</span><span class="pun">.</span><span class="typ">Strict</span><span class="pun">);</span></pre></ul><ul><li>Invoke base class implementation if no expectation overrides the member (a.k.a. "Partial Mocks" in Rhino Mocks): default is false. (<strong>this is required if you are mocking Web/Html controls in System.Web!</strong>) </li><pre class="prettyprint"><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="typ">CallBase</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">};</span></pre></ul><ul><li>Make an automatic recursive mock: a mock that will return a new mock for every member that doesn't have an expectation and whose return value can be mocked (i.e. it is not a value type) </li><pre class="prettyprint"><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="typ">DefaultValue</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DefaultValue</span><span class="pun">.</span><span class="typ">Mock</span><span class="pln"> </span><span class="pun">};</span><span class="pln"><br></span><span class="com">// default is DefaultValue.Empty</span><span class="pln"><br><br></span><span class="com">// this property access would return a new mock of IBar as it's "mock-able"</span><span class="pln"><br></span><span class="typ">IBar</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> mock</span><span class="pun">.</span><span class="typ">Object</span><span class="pun">.</span><span class="typ">Bar</span><span class="pun">;</span><span class="pln"><br><br></span><span class="com">// the returned mock is reused, so further accesses to the property return </span><span class="pln"><br></span><span class="com">// the same mock instance. this allows us to also use this instance to </span><span class="pln"><br></span><span class="com">// set further expectations on it if we want</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> barMock </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">.</span><span class="typ">Get</span><span class="pun">(</span><span class="pln">value</span><span class="pun">);</span><span class="pln"><br>barMock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">b </span><span class="pun">=&gt;</span><span class="pln"> b</span><span class="pun">.</span><span class="typ">Submit</span><span class="pun">()).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span></pre></ul><ul><li>Centralizing mock instance creation and management: you can create and verify all mocks in a single place by using a MockFactory, which allows setting the MockBehavior, its CallBase and DefaultValue consistently </li><pre class="prettyprint"><span class="kwd">var</span><span class="pln"> factory </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">MockFactory</span><span class="pun">(</span><span class="typ">MockBehavior</span><span class="pun">.</span><span class="typ">Strict</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="typ">DefaultValue</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DefaultValue</span><span class="pun">.</span><span class="typ">Mock</span><span class="pln"> </span><span class="pun">};</span><span class="pln"><br><br></span><span class="com">// Create a mock using the factory settings</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> fooMock </span><span class="pun">=</span><span class="pln"> factory</span><span class="pun">.</span><span class="typ">Create</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;();</span><span class="pln"><br><br></span><span class="com">// Create a mock overriding the factory settings</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> barMock </span><span class="pun">=</span><span class="pln"> factory</span><span class="pun">.</span><span class="typ">Create</span><span class="pun">&lt;</span><span class="typ">IBar</span><span class="pun">&gt;(</span><span class="typ">MockBehavior</span><span class="pun">.</span><span class="typ">Loose</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// Verify all verifiable expectations on all mocks created through the factory</span><span class="pln"><br>factory</span><span class="pun">.</span><span class="typ">Verify</span><span class="pun">();</span></pre></ul><h2><a name="Miscellaneous"></a>Miscellaneous<a href="https://code.google.com/p/moq/wiki/QuickStart#Miscellaneous" class="section_anchor"></a></h2><ul><li>Setting expectations for protected members (you can't get intellisense for these, so you access them using the member name as a string): </li><pre class="prettyprint"><span class="com">// at the top of the test fixture</span><span class="pln"><br></span><span class="kwd">using</span><span class="pln"> </span><span class="typ">Moq</span><span class="pun">.</span><span class="typ">Protected</span><span class="pun">()</span><span class="pln"><br><br></span><span class="com">// in the test</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">CommandBase</span><span class="pun">&gt;();</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Protected</span><span class="pun">()</span><span class="pln"><br>&nbsp; &nbsp; &nbsp;</span><span class="pun">.</span><span class="typ">Setup</span><span class="str">&lt;int&gt;</span><span class="pun">(</span><span class="str">"Execute"</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp;</span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="lit">5</span><span class="pun">);</span><span class="pln"><br><br></span><span class="com">// if you need argument matching, you MUST use ItExpr rather than It</span><span class="pln"><br></span><span class="com">// planning on improving this for vNext</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Protected</span><span class="pun">()</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Setup</span><span class="str">&lt;string&gt;</span><span class="pun">(</span><span class="str">"Execute"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">ItExpr</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;string&gt;</span><span class="pun">())</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span></pre></ul><h2><a name="Advanced_Features"></a>Advanced Features<a href="https://code.google.com/p/moq/wiki/QuickStart#Advanced_Features" class="section_anchor"></a></h2><pre class="prettyprint"><span class="com">// get mock from a mocked instance</span><span class="pln"><br></span><span class="typ">IFoo</span><span class="pln"> foo </span><span class="pun">=</span><span class="pln"> </span><span class="com">// get mock instance somehow</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> fooMock </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">.</span><span class="typ">Get</span><span class="pun">(</span><span class="pln">foo</span><span class="pun">);</span><span class="pln"><br>fooMock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">f </span><span class="pun">=&gt;</span><span class="pln"> f</span><span class="pun">.</span><span class="typ">Submit</span><span class="pun">()).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln"><br><br><br></span><span class="com">// implementing multiple interfaces in mock</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> foo </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;();</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> disposableFoo </span><span class="pun">=</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">As</span><span class="pun">&lt;</span><span class="typ">IDisposable</span><span class="pun">&gt;();</span><span class="pln"><br></span><span class="com">// now the IFoo mock also implements IDisposable :)</span><span class="pln"><br>disposableFoo</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">df </span><span class="pun">=&gt;</span><span class="pln"> df</span><span class="pun">.</span><span class="typ">Dispose</span><span class="pun">());</span><span class="pln"><br><br><br></span><span class="com">// custom matchers</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Submit</span><span class="pun">(</span><span class="typ">IsLarge</span><span class="pun">())).</span><span class="typ">Throws</span><span class="pun">&lt;</span><span class="typ">ArgumentException</span><span class="pun">&gt;();</span><span class="pln"><br></span><span class="pun">...</span><span class="pln"><br></span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"> </span><span class="typ">IsLarge</span><span class="pun">()</span><span class="pln"> <br></span><span class="pun">{</span><span class="pln"> <br>&nbsp; </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Match</span><span class="pun">.</span><span class="typ">Create</span><span class="str">&lt;string&gt;</span><span class="pun">(</span><span class="pln">s </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="pun">!</span><span class="typ">String</span><span class="pun">.</span><span class="typ">IsNullOrEmpty</span><span class="pun">(</span><span class="pln">s</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> s</span><span class="pun">.</span><span class="typ">Length</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">100</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span></pre><ul><li>Mocking internal types of another project: add the following assembly attribute (typically to the AssemblyInfo.cs) to the project containing the internal types: </li><pre class="prettyprint"><span class="com">// This assembly is the default dynamic assembly generated Castle DynamicProxy, </span><span class="pln"><br></span><span class="com">// used by Moq. Paste in a single line.</span><span class="pln"><br></span><span class="pun">[</span><span class="pln">assembly</span><span class="pun">:</span><span class="typ">InternalsVisibleTo</span><span class="pun">(</span><span class="str">"DynamicProxyGenAssembly2,PublicKey=0024000004800000940000000602000000240000525341310004000001000100c547cac37abd99c8db225ef2f6c8a3602f3b3606cc9891605d02baa56104f4cfc0734aa39b93bf7852f7d9266654753cc297e7d2edfe0bac1cdcf9f717241550e0a7b191195b7667bb4f64bcb8e2121380fd1d9d46ad2d92d2d15605093924cceaf74c4861eff62abf69b9291ed0a340e113be11e6a7d3113e92484cf7045cc7"</span><span class="pun">)]</span></pre></ul><h1><a name="Read_more"></a>Read more<a href="https://code.google.com/p/moq/wiki/QuickStart#Read_more" class="section_anchor"></a></h1><ul><li><a href="http://stephenwalther.com/blog/archive/2008/06/12/tdd-introduction-to-moq.aspx" rel="nofollow">TDD : Introduction to Moq</a> </li><li><a href="http://www.codethinked.com/post/2009/03/08/Beginning-Mocking-With-Moq-3-Part-1.aspx" rel="nofollow">Beginning Mocking With Moq 3 – Part 1</a> </li><li><a href="http://www.codethinked.com/post/2009/03/10/Beginning-Mocking-With-Moq-3-Part-2.aspx" rel="nofollow">Beginning Mocking With Moq 3 - Part 2</a> </li><li><a href="http://www.codethinked.com/post/2009/03/13/Beginning-Mocking-With-Moq-3-Part-3.aspx" rel="nofollow">Beginning Mocking With Moq 3 - Part 3</a> </li><li><a href="http://www.codethinked.com/post/2009/03/31/Beginning-Mocking-With-Moq-3-Part-4.aspx" rel="nofollow">Beginning Mocking With Moq 3 - Part 4</a> </li><li><a href="http://translate.google.com.ar/translate?u=http%3A%2F%2Fwww.gmbsg.com%2Fworks%2Findex.php%3Ftitle%3DUnit_Testing_Revisited_-_Die_Unit_Test_Evolution_mit_C-Sharp_3.0&sl=de&tl=en&hl=es&ie=UTF-8" rel="nofollow">Unit Testing Revisited - The evolution unit test with C-Sharp 3.0</a> (Google-translated) </li><li><a href="http://www.nixusg.com/post/2008/08/10/The-Automated-Testing-Continuum-Part-3-(Moq).aspx" rel="nofollow">The automated testing continuum</a> </li><li><a href="http://www.emadibrahim.com/2008/04/04/unit-test-linq-to-sql-in-aspnet-mvc-with-moq/" rel="nofollow">Unit Test Linq to Sql in ASP.Net MVC with Moq</a> </li><li><a href="http://www.bestechvideos.com/2008/06/08/dimecasts-net-introduction-to-mocking-with-moq?query=moq+screencast" rel="nofollow">Introduction to Mocking with Moq (Video)</a> </li><li><a href="http://geekswithblogs.net/liammclennan/archive/2008/05/09/122007.aspx" rel="nofollow">Comparing Moq to Rhino Mocks</a> </li><li><a href="http://www.hanselman.com/blog/MoqLinqLambdasAndPredicatesAppliedToMockObjects.aspx" rel="nofollow">Moq: Linq, Lambdas and Predicates applied to Mock Objects</a> </li><li>[<a href="http://www.goneeded.com/javas/articles/20080324/a1811942466.html" rel="nofollow">http://www.goneeded.com/javas/articles/20080324/a1811942466.html</a>  </li><li><a href="http://weblogs.manas.com.ar/bcardiff/2009/02/reimproved-argument-matchers-in-moq/" rel="nofollow">Improved argument matchers in Moq</a> </li><li><a href="http://www.madprops.org/blog/moq-triqs-successive-expectations/" rel="nofollow">Moq Triqs - Successive Expectations</a> </li><li><a href="http://blog.decayingcode.com/2009/02/part-2-basic-of-mocking-with-moq.html" rel="nofollow">Basic Mocking with Moq</a> </li></ul><hr><p><strong>Note</strong>: when you need to pass the mock for consumption, you must use the <tt>mock.Object</tt> accessor as a consequence of a C# compiler restriction (vote to get it removed <a href="https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=318122" rel="nofollow">at Microsoft Connect</a>) </p><p>Head on to the <a href="http://api.moq.me/" rel="nofollow">API documentation</a>, <a href="http://moq.me/get" rel="nofollow">download it</a> and have fun! Engage in the <a href="http://groups.google.com/group/moqdisc" rel="nofollow">discussion group</a> to give us feedback, share your experiences or wishes for vNext! </p>
+ </div>
+ </div>
+ </td></tr><tr>
+</tr></tbody></table>
+ </div>
+
+
+ 
+ <div id="wikicommentcol">
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<div class="collapse">
+
+
+ 
+
+
+<div id="commentlist">
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/103926045718302336217/">david.ka...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Mon Apr  6 12:57:51 2009">Apr 6, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>Is there a way to view the old 2.6 <a href="./Quickstart moq_files/Quickstart moq.htm">QuickStart</a>? We haven't quite ported over and it's a nice reference. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/106764200649442849600/">jcss...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Thu Apr  9 14:27:05 2009">Apr 9, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>It looks like you can see the old wiki pages in svn, <a href="http://code.google.com/p/moq/source/browse/wiki/QuickStart.wiki?r=477" rel="nofollow">http://code.google.com/p/moq/source/browse/wiki/QuickStart.wiki?r=477</a> </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/111190993587955940831/">danny.er...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Thu Apr 23 03:43:09 2009">Apr 23, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>Hi, I'm newbie using VSE2008 that doesn't come with any unit test. </p><p>I've downloaded the Moq, so whats next? where to put the dll? how to create a unit test? </p><p>Appreciate if any one can help. </p><p>Thanks a lot. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/113995136229669657168/">benoit...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Thu May  7 11:58:35 2009">May 7, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>@danny.erunner Moq is a mocking framework which is only a part of unit testing. I'd suggest you take a look at NUnit or MbUnit<a href="https://code.google.com/p/moq/w/edit/MbUnit">?</a> for unit tests </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/100639983757021495440/">fosta...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Mon Jun 29 06:07:19 2009">Jun 29, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>There are a few old/unanswered discussions going around regarding how to mock a reference parameter. The quickstart guide provides us with a way of mocking a reference parameter which has a particular value but it is still unclear regarding whether it is possible how to (a) mock 'any' reference parameter and (b) change the value of that reference parameter in callback. Would it be possible to get some clarification on whether moq is capable of this, and if so, how? </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/105275013136585264487/">m...@danielsadventure.info</a>,
+ 
+ </span>
+ <span class="date" title="Wed Jul 15 11:18:52 2009">Jul 15, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>Suppose I want to do a unit test on classA.method1(int x, int y, int z) </p><p>classA.method1, in turn, calls classB.method2(int x, int y, int z, ref string msg) </p><p>It seems that it is impossible to mock classB.method2 because "msg", the argument to method2 is called inside method1, but it says in the documentation that to match my mock setup, msg must be the same instance as the string in my setup! </p><p>What can I do? </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/112121867220393507302/">ryan.mcd...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Fri Jul 17 10:06:41 2009">Jul 17, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>"I've downloaded the Moq, so whats next? where to put the dll?" </p><p>Good question. Is the install REALLY so simple that it's not worth mentioning?  I'm coming from the linux world, so I'm used to readme files, installation instructions, man pages, etc.  The post above proves I'm not the only one with this sentiment - why not put up a couple of sentences explaining how to install moq (I'd suggest the top of the quickstart page).  Thanks. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/106714122599365371656/">nathap...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Thu Aug 27 16:00:30 2009">Aug 27, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>Ryan, </p><p>Just add reference to moq.dll to your project in Visual Studio and you are good to go! </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/112933492153697697970/">randol...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Mon Sep 21 12:45:20 2009">Sep 21, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>@ryan.mcdonald82: </p><p>To expand on @nathapolw's post: </p><p>You can simply download the zip file and extract it to a known location, then add a file reference to the moq.dll (using the "Browse" tab that appears in the Visual Studio "Add Reference..." command.  </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/110166263231006515682/">darcy.pa...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Nov  3 07:52:21 2009">Nov 3, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>I had some trouble understanding callbacks for multi-argument methods; here's what worked for me.  If it's correct, could you consider adding it? </p><pre class="prettyprint"><span class="com">// access invocation arguments</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;int&gt;</span><span class="pun">(),</span><span class="pln"> </span><span class="typ">It</span><span class="pun">.</span><span class="typ">IsAny</span><span class="str">&lt;string&gt;</span><span class="pun">()))</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Callback</span><span class="pun">&lt;</span><span class="kwd">int</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">string</span><span class="pun">&gt;((</span><span class="kwd">int</span><span class="pln"> i</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"> s</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> calls</span><span class="pun">.</span><span class="typ">Add</span><span class="pun">(</span><span class="pln">s</span><span class="pun">));</span></pre>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/117207025165972294707/">bharathr...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Nov 24 03:37:52 2009">Nov 24, 2009</span>
+ <div>
+<div class="commentcontent">
+<p>Can anyone explain to me how to verify the mocks created using mock factory explicitly?? mockfactory.verify() wont do. I want to be able to verify the mocks explicitly.Please send in your comments. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/106404434903083281125/">aboimpi...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Fri Jan 15 06:17:06 2010">Jan 15, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>Hello,  </p><p>I want to mock a System.Web.UI.Page. I have a method that receive the Page and according with some parameters like Page.Request.CurrentExecutionFilePath<a href="https://code.google.com/p/moq/w/edit/CurrentExecutionFilePath">?</a>. </p><p>How can I mock the Page?  </p><p>I created a Page object but I cannot use this.  </p><p>Can Moq help me? </p><p>Regards Paulo Aboim Pinto Odivelas - Portugal </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/103926045718302336217/">david.ka...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Jan 19 07:59:10 2010">Jan 19, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>I'm assuming that this <a href="./Quickstart moq_files/Quickstart moq.htm">QuickStart</a> is for 3.1 and not the 4.0 beta, but it would be nice to have a version posted to avoid confusion. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/106508340920786167121/">yura...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Wed Feb  3 01:31:10 2010">Feb 3, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>CallBack<a href="https://code.google.com/p/moq/w/edit/CallBack">?</a>: // access invocation arguments when returning a value // Multiple parameters overloads available </p><p>Is there any way to have more than 4 arguments? (in other words, is there a way to use the CallBack<a href="https://code.google.com/p/moq/w/edit/CallBack">?</a> with custom delegate instead of System.Action&lt;&gt;?) </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ 
+ <span class="userlink">jeanpier...@gmail.com</span>,
+ 
+ </span>
+ <span class="date" title="Sun Feb 14 08:56:17 2010">Feb 14, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>// Causing an event to raise automatically when Submit is invoked mock.Setup(foo =&gt; foo.Submit()).Raises(f =&gt; f.Sent += null, EventArgs<a href="https://code.google.com/p/moq/w/edit/EventArgs">?</a>.Empty); </p><p>doesn't work (no intellisense on .Raises) </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ 
+ <span class="userlink">jeanpier...@gmail.com</span>,
+ 
+ </span>
+ <span class="date" title="Sun Feb 14 09:02:19 2010">Feb 14, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>In answer to how to raise an event automatically when a method is called... </p><p>See <a href="http://groups.google.com/group/moqdisc/browse_thread/thread/e9777d3ad69a8e5a/71d0aeff091ca17e?lnk=gst&q=event#71d0aeff091ca17e" rel="nofollow">http://groups.google.com/group/moqdisc/browse_thread/thread/e9777d3ad69a8e5a/71d0aeff091ca17e?lnk=gst&amp;q=event#71d0aeff091ca17e</a> </p><p>The answer is to use Callback, as follows: </p><p>mockFoo.Setup(foo =&gt; foo.Execute()).Callback(()=&gt; mockFoo.Raise(mf =&gt; mf.FooEvent<a href="https://code.google.com/p/moq/w/edit/FooEvent">?</a> += null, EventArgs<a href="https://code.google.com/p/moq/w/edit/EventArgs">?</a>.Empty)); </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/omaralzabir@gmail.com/">omaralzabir@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Sat Mar  6 21:39:35 2010">Mar 6, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>I would recommend a quick tips on using Moq with Conditional Compilers Directives to do both Unit and integration test from same code. <a href="http://is.gd/9rXNv" rel="nofollow">http://is.gd/9rXNv</a> </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/117900410840148759193/">jason.le...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Fri Mar 19 10:13:18 2010">Mar 19, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>@yurachi, </p><p>I ran into the same problem today.  I solved it by downloading the source code and adding additional callbacks.  You will also need to write some additional Action generics as the .Net 3.5 versions only go up to 4.  I believe the .Net 4 versions are much wider, and I would bet Moq will adapt to that change with .Net 4 goes GA. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/107956982421943118304/">kristoph...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Fri Jun 11 06:53:56 2010">Jun 11, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>FWIW, coming in with little knowledge of Moq, I found the very first lines confusing: </p><pre class="prettyprint"><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;();</span><span class="pln"> mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">Execute</span><span class="pun">(</span><span class="str">"ping"</span><span class="pun">)).</span><span class="typ">Returns</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span></pre><p>I found this confusing because I thought that maybe <tt>IFoo</tt> had a method called "ping", which was going to be executed/mocked by Moq. I thought <tt>Execute()</tt> might be a Moq thing, similar to the "Expect" or "Allow" methods of other mocking frameworks. </p><p>To make it less confusing for dummies like me, I'd recommend providing some sort of declaration for <tt>IFoo</tt> (so it's clear what its methods are), and ensuring that example string arguments don't look like method names. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by  project member 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/kzu.net/">kzu.net</a>,
+ 
+ </span>
+ <span class="date" title="Thu Jun 24 19:37:34 2010">Jun 24, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>Replaced the Executes with DoSomething<a href="https://code.google.com/p/moq/w/edit/DoSomething">?</a>. Should I use Bar() instead? </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/107956982421943118304/">kristoph...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Thu Jul  8 05:03:03 2010">Jul 8, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>I'd prefer Bar(), but no big deal. I'd also change "ping" to "some string" or something else that is obviously not a method name.  </p><p>Thanks! </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/101395923352630028019/">adigital...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Jul 27 07:15:02 2010">Jul 27, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>Is it possible to reset the count of times a method was executed on a mock? </p><p>Following an arrange, act, assert pattern, sometimes the arrange results in calls to the mock, as well as the act. My assert of Times needs to take into account both calls, so I need to state that there are two calls. This ends up passing when there is one in arrange and one in act. </p><p>This seems messy, and isn't really what is intended. There might be two calls during arrange, none in act, and the test would still pass. </p><p>Is this a situation Moq can handle? </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/107182198193804637996/">fda...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Aug 10 06:40:21 2010">Aug 10, 2010</span>
+ <div>
+<div class="commentcontent">
+<p><a href="http://www.dimecasts.net/Casts/CastDetails/8" rel="nofollow">http://www.dimecasts.net/Casts/CastDetails/8</a> </p><p>Direct link to the screencast listed for "Introduction to Mocking with Moq (Video)" </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/leonidch@gmail.com/">leonidch@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Sun Aug 22 06:32:07 2010">Aug 22, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>I have a class and a method m1 that calls another method m2 of the same class. I need to know how many times m1 calls m2. But Moq shows as if it doesn't call at all. this test passes: mock.verify(p=&gt;p.m1(), Times.Once(), errorMessage); mock.verify (p=&gt;p.m2(), Times.Never(), errMsg2); However mock.Verify (p=&gt;p.m2(), Times.Once(), err) passes too. thanks in advance  </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/leonidch@gmail.com/">leonidch@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Sun Aug 22 06:42:27 2010">Aug 22, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>more practical version of my previous question - if a method m2 calls method m1 of another class from different assembly i get the same problem. this test passes: actual = mock2.object.m2(mock1.object); mock2.Verify (x=&gt;x.m2(mock1.object), Times.Once(), errMsg2); mock1.Verify (x=&gt;x.m1(), times.Never(), errMsg1). what am i missing?  </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/103137696534877630712/">sol...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Wed Sep 22 06:18:22 2010">Sep 22, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>Hi! please, tell me, how I may to use mocks in async invokation? In fact, I must ask for the behavior of the method to call and order, which takes the answer. Am I right? </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/114767816076366341503/">Normand....@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Wed Dec  8 07:08:08 2010">Dec 8, 2010</span>
+ <div>
+<div class="commentcontent">
+<p>I am using moq.protected to mock a method a protected virtual method of a class. When my test executes, the mock "dont work", the mocked method is called for real. When I do a VerifyAll<a href="https://code.google.com/p/moq/w/edit/VerifyAll">?</a> on my mock, I got a "The following setups were not matched: ......" </p><p>Here is my code: </p><hr>var myMoq = new Mock&lt;MyClass&gt;(MockBehavior<a href="https://code.google.com/p/moq/w/edit/MockBehavior">?</a>.Default, new object<a href=""></a> { null, null }); <p></p><p>User user = UnitTestHelper<a href="https://code.google.com/p/moq/w/edit/UnitTestHelper">?</a>.GetUserTest1<a href="https://code.google.com/p/moq/w/edit/GetUserTest1">?</a>(); bridgeMoq.Protected().Setup&lt;User&gt;("GetUserByName<a href="https://code.google.com/p/moq/w/edit/GetUserByName">?</a>", ItExpr<a href="https://code.google.com/p/moq/w/edit/ItExpr">?</a>.IsAny<a href="https://code.google.com/p/moq/w/edit/IsAny">?</a>&lt;string&gt;()).Returns(user); </p><p>MyClass_Accessor<a href="https://code.google.com/p/moq/w/edit/MyClass_Accessor">?</a> target = new MyClass_Accessor<a href="https://code.google.com/p/moq/w/edit/MyClass_Accessor">?</a> (null, null); target.MethodXThatCallsGetUserByNameFunction() </p><p>... ... </p><hr><p></p><p>I want to unit test a private method of a class (MethodXThatCallsGetUserByNameFunction). This method calls other method of that class(GetUserByName<a href="https://code.google.com/p/moq/w/edit/GetUserByName">?</a>) that I want to mock, to isolate the test of this specific function(MethodXThatCallsGetUserByNameFunction). </p><p>Any idea why the function GetUserByName<a href="https://code.google.com/p/moq/w/edit/GetUserByName">?</a> is called "for real" during my unit test, and why the mock does not works, returning my User object specified in the Setup? </p><p>Thanks </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/107640319233096524114/">somaylov...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Wed Jan  5 03:25:33 2011">Jan 5, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>We can use other function at place mock is it possible rply@Pankajkumarkharwar@gmail.com </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/103826425305910840719/">mauro.ma...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Feb 22 01:26:11 2011">Feb 22, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>Is is possible to Moq Sharepoint sealed classes? I cant find any information on this anywhere - all I find is "use TypeMock<a href="https://code.google.com/p/moq/w/edit/TypeMock">?</a> Isolator" which isnt allowed on my project. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/116303668417371499957/">Andrew.L...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Fri Mar  4 07:55:02 2011">Mar 4, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>Is there a version of moq that works with the latests version of Castle.Core 2.5.2? </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/109709413859565795182/">mphillip...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Apr 12 10:44:38 2011">Apr 12, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>is moq being maintained anymore? I am very disappointed if this is the case. As per the message above it has a dependency on Castle.Core 2.5.0 and has not been updated to use the latest version of Castle Core which is causing me issues - any way this can be resolved? I have been championing Moq for a while for its ease of use and syntax - can someone please advise so I can either dump it and find something else or continue using it with the knowledge it is going to be updated - I look forward to any comments ;-) </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/101113350286870042015/">remi.des...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Fri Apr 29 05:24:01 2011">Apr 29, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>@mphillip - given that a new download was put up on April 12, I would venture a guess that it is still being maintained. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ 
+ <span class="userlink">j...@jonathan.net</span>,
+ 
+ </span>
+ <span class="date" title="Tue May 24 15:41:22 2011">May 24, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>Check out this 12-part comparison of Moq, Rhino and NSubstitute (<strong>NEW</strong>): </p><p><a href="http://www.richard-banks.org/2010/07/mocking-comparison-part-1-basics.html" rel="nofollow">http://www.richard-banks.org/2010/07/mocking-comparison-part-1-basics.html</a> </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/101641698341632587190/">russell....@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Wed Jun 29 15:40:40 2011">Jun 29, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>Hi all, new blog post on Moq's argument matchers over at: </p><p><a href="http://www.russellallen.info/post/Unit-Testing-Good-Patterns-3-Know-Your-Moq-Argument-Matchers!.aspx" rel="nofollow">http://www.russellallen.info/post/Unit-Testing-Good-Patterns-3-Know-Your-Moq-Argument-Matchers!.aspx</a> </p><p>"This post is going to be a fairly in depth run through of the core two It methods - It.IsAny<a href="https://code.google.com/p/moq/w/edit/IsAny">?</a>&lt;T&gt; and It.Is&lt;T&gt;(a =&gt; a....) - followed by a quick skim through the less used It.IsInRange<a href="https://code.google.com/p/moq/w/edit/IsInRange">?</a> and It.IsRegex<a href="https://code.google.com/p/moq/w/edit/IsRegex">?</a> methods." </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/114183739739491018179/">pankajgu...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Nov  1 23:36:55 2011">Nov 1, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>Hi, how to use if condition using moq,actually I want to do some operation if it returns true. my code is:- </p><blockquote>If lcolObjectsMeClass.Verify(Function(fw) fw.CheckClass<a href="https://code.google.com/p/moq/w/edit/CheckClass">?</a>(It.Is<a href="https://code.google.com/p/moq/w/edit/Is">?</a>(Of String)(Function(s) s.Contains(lstrString))), Times.Exactly(1)) Then 
+</blockquote><p></p><blockquote>End If 
+</blockquote><p>but the above is giving error "Expression doesnot Produce a value" </p><p>And can we use for or foreach loop using moq?? </p><p>Thanks </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/105127494562374028358/">rschmau...@hotmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Thu Nov 10 07:22:57 2011">Nov 10, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>Hi, it seems to be, that the Raises(...) Method is not provided by the ISetup interface, so the following code snippet from the docuementation does not work. </p><p>mock.Setup(foo =&gt; foo.Submit()).Raises(f =&gt; f.Sent += null, EventArgs<a href="https://code.google.com/p/moq/w/edit/EventArgs">?</a>.Empty); </p><p>Do I forget something or what's wrong? Thanks in advance </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/110061931949658155684/">camron.b...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Mon Nov 21 14:38:04 2011">Nov 21, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>I have made a video on how to test using Moq along with dependency injection and Unity </p><p><a href="http://www.youtube.com/watch?v=UiOC1jsQI1o" rel="nofollow">http://www.youtube.com/watch?v=UiOC1jsQI1o</a> </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/107205169118186862354/">rennes....@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Mon Nov 28 04:57:00 2011">Nov 28, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>How to configure .Setup for this method? </p><p>"IEnumerable&lt;TEntity&gt; GetPaged<a href="https://code.google.com/p/moq/w/edit/GetPaged">?</a>&lt;KProperty&gt;(int pageIndex, int pageCount, Expression&lt;Func&lt;TEntity, KProperty&gt;&gt; orderByExpression, bool ascending);" </p><p>Thanks... </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/103902189108210179119/">patri...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Wed Dec 14 08:32:37 2011">Dec 14, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>An alternative way of returning different values on each invocation is to use <tt>SetupSequence</tt>. This allows one more explicit control over the setup if you expect a predetermined number of calls to the setup method. </p><pre class="prettyprint"><span class="com">// returning different values on each invocation (alternative)</span><span class="pln"><br></span><span class="kwd">var</span><span class="pln"> mock </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mock</span><span class="pun">&lt;</span><span class="typ">IFoo</span><span class="pun">&gt;();</span><span class="pln"><br>mock</span><span class="pun">.</span><span class="typ">SetupSequence</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">GetCountThing</span><span class="pun">())</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">.</span><span class="typ">Returns</span><span class="pun">(</span><span class="lit">0</span><span class="pun">).</span><span class="typ">Returns</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="pln"><br></span><span class="com">// returns 0 on first invocation, 1 on the second (strict blows up after that; non-strict returns default(T))</span><span class="pln"><br></span><span class="typ">Console</span><span class="pun">.</span><span class="typ">WriteLine</span><span class="pun">(</span><span class="pln">mock</span><span class="pun">.</span><span class="typ">Object</span><span class="pun">.</span><span class="typ">GetCountThing</span><span class="pun">());</span></pre>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/107362502620872273167/">rally2...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Dec 27 08:20:33 2011">Dec 27, 2011</span>
+ <div>
+<div class="commentcontent">
+<p>I don't see a way to publicly update this Wiki page, but I was going to add a like to the "Read More" section. I made a project on GitHub<a href="https://code.google.com/p/moq/w/edit/GitHub">?</a> for interactively learning Moq, named the Mock Koans (in the spirit of RubyKoans<a href="https://code.google.com/p/moq/w/edit/RubyKoans">?</a>). </p><p><a href="https://github.com/rally25rs/MoqKoans" rel="nofollow">https://github.com/rally25rs/MoqKoans</a> </p><p>If someone administrative could add it to the "Read More" section, I would appreciate it! </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/104719632894689130396/">fabiocar...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Sun Jan 15 13:22:20 2012">Jan 15, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>the link "The automated testing continuum" is dead.  </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ 
+ <span class="userlink">t.koehn....@gmail.com</span>,
+ 
+ </span>
+ <span class="date" title="Tue Feb  7 06:00:31 2012">Feb 7, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>most "Read more" urls are broken </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/103965778927893549090/">nelso...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Fri Mar 23 12:11:30 2012">Mar 23, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>Regarding "InternalsVisibleTo<a href="https://code.google.com/p/moq/w/edit/InternalsVisibleTo">?</a>" (Advanced Features): </p><p>From <a href="http://groups.google.com/group/moqdisc/browse_thread/thread/d40c0ab145f77be9?pli=1:" rel="nofollow">http://groups.google.com/group/moqdisc/browse_thread/thread/d40c0ab145f77be9?pli=1:</a> </p><p>Latest DynamicProxy<a href="https://code.google.com/p/moq/w/edit/DynamicProxy">?</a> (2.5.1) has a constant defined for that, so that you don't have to copy/paste the ridiculously long string and write this instead: </p><pre class="prettyprint"><span class="kwd">using</span><span class="pln"> </span><span class="typ">Castle</span><span class="pun">.</span><span class="typ">Core</span><span class="pun">.</span><span class="typ">Internal</span><span class="pun">;</span><span class="pln"><br><br></span><span class="pun">[</span><span class="pln">assembly</span><span class="pun">:</span><span class="pln"> </span><span class="typ">InternalsVisibleTo</span><span class="pun">(</span><span class="typ">InternalsVisible</span><span class="pun">.</span><span class="typ">ToDynamicProxyGenAssembly2</span><span class="pun">)]</span><span class="pln"><br></span><span class="pun">[</span><span class="pln">assembly</span><span class="pun">:</span><span class="pln"> </span><span class="typ">InternalsVisibleTo</span><span class="pun">(</span><span class="typ">InternalsVisible</span><span class="pun">.</span><span class="typ">ToCastleCore</span><span class="pun">)]</span></pre><p>Thanks to Krzysztof Koźmic </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/106003753516079943451/">afranz...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Mar 27 08:33:48 2012">Mar 27, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>It seems to me that the comment about ref is incorrect, in that Moq does not check that instances are the same see the comments at the end of this discussion: (<a href="http://groups.google.com/group/moqdisc/browse_thread/thread/3230a3ae52efcc6d" rel="nofollow">http://groups.google.com/group/moqdisc/browse_thread/thread/3230a3ae52efcc6d</a>). </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/113790293063746979345/">matt.he...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Thu May 10 05:44:43 2012">May 10, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>I am using VB and have a ByRef<a href="https://code.google.com/p/moq/w/edit/ByRef">?</a> parameter in a protected function.  When I mock the call in a test, it does not recognize it.  Does anyone know how to mock a referenced parameter in a protected method? Method Signature: Protected Overridable Function AuthenticateApiCaller<a href="https://code.google.com/p/moq/w/edit/AuthenticateApiCaller">?</a>(ByVal<a href="https://code.google.com/p/moq/w/edit/ByVal">?</a> oStandardApiRequest As StandardApiRequest<a href="https://code.google.com/p/moq/w/edit/StandardApiRequest">?</a>, ByRef<a href="https://code.google.com/p/moq/w/edit/ByRef">?</a> oResultType As StatsTracker<a href="https://code.google.com/p/moq/w/edit/StatsTracker">?</a>.eApiResultType) As Boolean Moq Setup: target.Protected().Setup(Of Boolean)("AuthenticateApiCaller<a href="https://code.google.com/p/moq/w/edit/AuthenticateApiCaller">?</a>", ItExpr<a href="https://code.google.com/p/moq/w/edit/ItExpr">?</a>.IsAny<a href="https://code.google.com/p/moq/w/edit/IsAny">?</a>(Of StandardApiRequest<a href="https://code.google.com/p/moq/w/edit/StandardApiRequest">?</a>), ItExpr<a href="https://code.google.com/p/moq/w/edit/ItExpr">?</a>.IsAny<a href="https://code.google.com/p/moq/w/edit/IsAny">?</a>(Of StatsTracker<a href="https://code.google.com/p/moq/w/edit/StatsTracker">?</a>.eApiResultType)).Returns(True) </p><p>Thanks. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/115276428692481991426/">Ger...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Sat Jul 28 06:25:11 2012">Jul 28, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>The "throwing when invoked" example is missing a closing parenthesis: </p><pre class="prettyprint"><span class="pln">mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">DoSomething</span><span class="pun">(</span><span class="str">""</span><span class="pun">)).</span><span class="typ">Throws</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArgumentException</span><span class="pun">(</span><span class="str">"command"</span><span class="pun">);</span></pre><p>should be: </p><pre class="prettyprint"><span class="pln">mock</span><span class="pun">.</span><span class="typ">Setup</span><span class="pun">(</span><span class="pln">foo </span><span class="pun">=&gt;</span><span class="pln"> foo</span><span class="pun">.</span><span class="typ">DoSomething</span><span class="pun">(</span><span class="str">""</span><span class="pun">)).</span><span class="typ">Throws</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArgumentException</span><span class="pun">(</span><span class="str">"command"</span><span class="pun">));</span></pre>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/100516048220151032510/">gkberkhe...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Thu Oct 18 12:39:31 2012">Oct 18, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>I have a callback issue.  The methiod I'm mocking has this signature: </p><p>void DoSomething<a href="https://code.google.com/p/moq/w/edit/DoSomething">?</a>(object target, EventHandler<a href="https://code.google.com/p/moq/w/edit/EventHandler">?</a>&lt;AsynCompletedEventArgs&gt; callback) </p><p>I can set uhe expectations for the first parameter, but I'm having a devil of a time specifying the second parameter.  In one test, I need to verify that a non-null handler was passed in.  In a second test, I will need to execute the handler in irder to test it. </p><p>Thanks </p><p>OnOperationFinished<a href="https://code.google.com/p/moq/w/edit/OnOperationFinished">?</a>(object sender, AsyncCompletedEventArgs<a href="https://code.google.com/p/moq/w/edit/AsyncCompletedEventArgs">?</a> args); </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/108470520676259460866/">Lanpen...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Tue Nov 20 06:40:07 2012">Nov 20, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>I'm wondering can I use moq in the design phrase rather than the test part </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ 
+ <span class="userlink">mayumisa...@gmail.com</span>,
+ 
+ </span>
+ <span class="date" title="Wed Nov 28 12:07:52 2012">Nov 28, 2012</span>
+ <div>
+<div class="commentcontent">
+<p>The "Return" method don't be anymore? </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/101606714289661888029/">ptrelf...@googlemail.com</a>,
+ 
+ </span>
+ <span class="date" title="Sun Jan 27 08:27:56 2013">Jan 27, 2013</span>
+ <div>
+<div class="commentcontent">
+<p>F# 3 has LINQ expression support which means Moq works in F# pretty much as it does in C#. See Moq with F# 3: <a href="http://trelford.com/blog/post/Moq.aspx" rel="nofollow">http://trelford.com/blog/post/Moq.aspx</a>  </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ 
+ <span class="userlink">horwood....@gmail.com</span>,
+ 
+ </span>
+ <span class="date" title="Fri Feb 22 08:30:18 2013">Feb 22, 2013</span>
+ <div>
+<div class="commentcontent">
+<p>This 'Quick Start' seems to be a reference. </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/114006856947537360647/">ipods...@126.com</a>,
+ 
+ </span>
+ <span class="date" title="Mon Apr 22 08:24:43 2013">Apr 22, 2013</span>
+ <div>
+<div class="commentcontent">
+<p>Introduction to Moq </p><p>Source(s): <a href="http://downloadranking.com/support.php" rel="nofollow">http://downloadranking.com/support.php</a> </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/114096822356475618448/">peter.ho...@gmail.com</a>,
+ 
+ </span>
+ <span class="date" title="Mon May 13 04:51:37 2013">Today (14 hours ago)</span>
+ <div>
+<div class="commentcontent">
+<p>Several links under "Read More" seems to be broken :-/  For instance: "Introduction to Mocking with Moq (Video)" </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+</div>
+</div>
+
+ 
+
+
+ <script type="text/javascript">
+ function delComment(sequence_num, create_time, delete_mode) {
+ var f = document.forms["delcom"];
+ f.sequence_num.value = sequence_num;
+ f.create_time.value = create_time;
+ f.mode.value = delete_mode;
+ f.submit();
+ return false;
+ }
+ </script>
+
+
+ </div>
+ 
+ 
+ 
+ 
+ <br>
+ <div class="artifactcomment">
+ <span class="indicator">►</span> <a href="https://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=https%3A%2F%2Fcode.google.com%2Fp%2Fmoq%2Fwiki%2FQuickStart&followup=https%3A%2F%2Fcode.google.com%2Fp%2Fmoq%2Fwiki%2FQuickStart">Sign in</a> to add a comment
+ </div>
+ 
+ 
+ 
+ 
+ <form name="delcom" action="https://code.google.com/p/moq/w/delComment.do" method="POST">
+ <input type="hidden" name="sequence_num" value="">
+ <input type="hidden" name="create_time" value="">
+ <input type="hidden" name="mode" value="">
+ <input type="hidden" name="pagename" value="QuickStart">
+ <input type="hidden" name="token" value="">
+ </form>
+
+
+ <script src="./Quickstart moq_files/prettify.js"></script>
+ <script type="text/javascript">
+ prettyPrint();
+ </script>
+
+<script type="text/javascript" src="./Quickstart moq_files/dit_scripts.js"></script>
+
+
+
+  
+ 
+ 
+ <script type="text/javascript" src="./Quickstart moq_files/ph_core.js"></script>
+ 
+ <script type="text/javascript" src="./Quickstart moq_files/ph_dwiki.js"></script>
+ 
+ 
+ 
+ 
+</div> 
+
+<div id="footer" dir="ltr">
+ <div class="text">
+ <a href="https://code.google.com/projecthosting/terms.html">Terms</a> -
+ <a href="http://www.google.com/privacy.html">Privacy</a> -
+ <a href="https://code.google.com/p/support/">Project Hosting Help</a>
+ </div>
+</div>
+ <div class="hostedBy" style="margin-top: -20px;">
+ <span style="vertical-align: top;">Powered by <a href="http://code.google.com/projecthosting/">Google Project Hosting</a></span>
+ </div>
+
+ 
+ 
+
+
+ 
+ 
+ <script type="text/javascript">_CS_reportToCsi();</script>
+ 
+ 
+
+
+
+<div class="menuDiv instance0" id="menuDiv-projects-dropdown" style="position: absolute; top: 19px; left: 979px; display: none;"><div class="menuCategory default" style="display: none;"></div><div class="menuCategory controls first" style=""><a class="menuItem" style="display: block;" href="http://www.google.com/accounts/ServiceLogin?service=code&ltmpl=phosting&continue=https%3A%2F%2Fcode.google.com%2Fp%2Fmoq%2Fwiki%2FQuickStart&amp;followup=https%3A%2F%2Fcode.google.com%2Fp%2Fmoq%2Fwiki%2FQuickStart">Sign in to see your favorites</a><hr class="menuSeparator"><a class="menuItem" style="display: block;" href="https://code.google.com/hosting/">Find open source projects...</a><a class="menuItem" style="display: block;" href="https://code.google.com/hosting/createProject">Create a project...</a></div></div></body></html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject -->
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths no-csspositionsticky filereader eventsource xhr2"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dependency Injection With Ninject · ninject/ninject Wiki · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://github.com/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://github.com/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144.png">
+    <link rel="logo" type="image/svg" href="http://github-media-downloads.s3.amazonaws.com/github-logo.svg">
+    <link rel="xhr-socket" href="https://github.com/_sockets">
+
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_wiki" data-pjax-transient="">
+    
+
+    
+    
+    <link rel="icon" type="image/x-icon" href="https://github.com/favicon.ico">
+
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="0cxE1LnqkpbBEGNo63m5wraCrweuF72QppEj44SewR0=" name="csrf-token">
+
+    <link href="./Quickstart Ninject_files/github-fdebe8d3f60746fb87c763a59741ff520ae3d8e8.css" media="all" rel="stylesheet" type="text/css">
+    <link href="./Quickstart Ninject_files/github2-d530e63e2c132c7f0e6ac7228e7e1ab9ef2a8d94.css" media="all" rel="stylesheet" type="text/css">
+    
+
+
+      <script type="text/javascript" async="" id="gauges-tracker" data-site-id="4f5634b5613f5d0429000010" src="./Quickstart Ninject_files/track.js"></script><script src="./Quickstart Ninject_files/frameworks-92d138f450f2960501e28397a2f63b0f100590f0.js" type="text/javascript"></script>
+      <script src="./Quickstart Ninject_files/github-4037f12703c2d563310be4fcd52a229189468cce.js" type="text/javascript"></script><script type="text/javascript" async="" src="./Quickstart Ninject_files/ga.js"></script>
+      
+      <meta http-equiv="x-pjax-version" content="80973bfd2a5cb09c53d745b26b5b1dc0">
+
+        <script src="./Quickstart Ninject_files/wiki-3a54d8181aabeedaf82e23ce5ff084f85a323b9d.js" type="text/javascript"></script>
+    <meta property="og:title" content="ninject">
+    <meta property="og:type" content="githubog:gitrepository">
+    <meta property="og:url" content="https://github.com/ninject/ninject">
+    <meta property="og:image" content="https://secure.gravatar.com/avatar/b46527233865dd59f195fe0c2115a6e0?s=420&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png">
+    <meta property="og:site_name" content="GitHub">
+    <meta property="og:description" content="ninject - the ninja of .net dependency injectors">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:site" content="@GitHub">
+    <meta property="twitter:title" content="ninject/ninject">
+
+    <meta name="description" content="ninject - the ninja of .net dependency injectors">
+
+
+    
+  <link href="https://github.com/ninject/ninject/commits/master.atom" rel="alternate" title="Recent Commits to ninject:master" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_out  windows vis-public env-production  " style="">
+    <div id="wrapper">
+
+      
+
+      
+      
+      
+
+      
+      <div class="header header-logged-out">
+  <div class="container clearfix">
+
+    <a class="header-logo-wordmark" href="https://github.com/">Github</a>
+
+    <div class="header-actions">
+      <a class="button primary" href="https://github.com/signup">Sign up</a>
+      <a class="button" href="https://github.com/login?return_to=%2Fninject%2Fninject%2Fwiki%2FDependency-Injection-With-Ninject">Sign in</a>
+    </div>
+
+    <div class="command-bar js-command-bar  in-repository">
+
+
+      <ul class="top-nav">
+          <li class="explore"><a href="https://github.com/explore">Explore</a></li>
+        <li class="features"><a href="https://github.com/features">Features</a></li>
+          <li class="blog"><a href="https://github.com/blog">Blog</a></li>
+      </ul>
+        <form accept-charset="UTF-8" action="https://github.com/search" class="command-bar-form" id="top_search_form" method="get">
+  <a href="https://github.com/search/advanced" class="advanced-search-icon tooltipped downwards command-bar-search" id="advanced_search" original-title="Advanced search"><span class="mini-icon mini-icon-advanced-search "></span></a>
+
+  <input type="text" data-hotkey="/ s" name="q" id="js-command-bar-field" placeholder="Search or type a command" tabindex="1" autocapitalize="off" data-repo="ninject/ninject" data-branch="master" data-sha="fae166295aeb829cb420def20199f43fdde649f5">
+
+    <input type="hidden" name="nwo" value="ninject/ninject">
+
+    <div class="select-menu js-menu-container js-select-menu search-context-select-menu">
+      <span class="minibutton select-menu-button js-menu-target">
+        <span class="js-select-button">This repository</span>
+      </span>
+
+      <div class="select-menu-modal-holder js-menu-content js-navigation-container">
+        <div class="select-menu-modal">
+
+          <div class="select-menu-item js-navigation-item selected">
+            <span class="select-menu-item-icon mini-icon mini-icon-confirm"></span>
+            <input type="radio" class="js-search-this-repository" name="search_target" value="repository" checked="checked">
+            <div class="select-menu-item-text js-select-button-text">This repository</div>
+          </div> <!-- /.select-menu-item -->
+
+          <div class="select-menu-item js-navigation-item">
+            <span class="select-menu-item-icon mini-icon mini-icon-confirm"></span>
+            <input type="radio" name="search_target" value="global">
+            <div class="select-menu-item-text js-select-button-text">All repositories</div>
+          </div> <!-- /.select-menu-item -->
+
+        </div>
+      </div>
+    </div>
+
+  <span class="mini-icon help tooltipped downwards" original-title="Show command bar help">
+    <span class="mini-icon mini-icon-help"></span>
+  </span>
+
+    <input type="hidden" name="type" value="Code">
+
+  <input type="hidden" name="ref" value="cmdform">
+
+  <div class="divider-vertical"></div>
+
+</form>
+    </div>
+
+  </div>
+</div>
+
+
+      
+
+      
+
+
+            <div class="site hfeed" itemscope="" itemtype="http://schema.org/WebPage">
+      <div class="hentry">
+        
+        <div class="pagehead repohead instapaper_ignore readability-menu ">
+          <div class="container">
+            <div class="title-actions-bar">
+              
+
+<ul class="pagehead-actions">
+
+
+
+    <li>
+      <a href="https://github.com/login?return_to=%2Fninject%2Fninject" class="minibutton js-toggler-target star-button entice tooltipped upwards" rel="nofollow" original-title="You must be signed in to use this feature">
+        <span class="mini-icon mini-icon-star"></span>Star
+      </a>
+      <a class="social-count js-social-count" href="https://github.com/ninject/ninject/stargazers">
+        818
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/login?return_to=%2Fninject%2Fninject" class="minibutton js-toggler-target fork-button entice tooltipped upwards" rel="nofollow" original-title="You must be signed in to fork a repository">
+        <span class="mini-icon mini-icon-fork"></span>Fork
+      </a>
+      <a href="https://github.com/ninject/ninject/network" class="social-count">
+        192
+      </a>
+    </li>
+</ul>
+
+              <h1 itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+                <span class="repo-label"><span>public</span></span>
+                <span class="mega-icon mega-icon-public-repo"></span>
+                <span class="author vcard">
+                  <a href="https://github.com/ninject" class="url fn" itemprop="url" rel="author">
+                  <span itemprop="title">ninject</span>
+                  </a></span> /
+                <strong><a href="https://github.com/ninject/ninject" class="js-current-repository">ninject</a></strong>
+              </h1>
+            </div>
+
+            
+  <ul class="tabs">
+    <li class="pulse-nav"><a href="https://github.com/ninject/ninject/pulse" class="js-selected-navigation-item " data-selected-links="pulse /ninject/ninject/pulse" rel="nofollow"><span class="mini-icon mini-icon-pulse"></span></a></li>
+    <li><a href="https://github.com/ninject/ninject" class="js-selected-navigation-item " data-selected-links="repo_source repo_downloads repo_commits repo_tags repo_branches /ninject/ninject">Code</a></li>
+    <li><a href="https://github.com/ninject/ninject/network" class="js-selected-navigation-item " data-selected-links="repo_network /ninject/ninject/network">Network</a></li>
+    <li><a href="https://github.com/ninject/ninject/pulls" class="js-selected-navigation-item " data-selected-links="repo_pulls /ninject/ninject/pulls">Pull Requests <span class="counter">4</span></a></li>
+
+      <li><a href="https://github.com/ninject/ninject/issues" class="js-selected-navigation-item " data-selected-links="repo_issues /ninject/ninject/issues">Issues <span class="counter">16</span></a></li>
+
+      <li><a href="https://github.com/ninject/ninject/wiki" class="js-selected-navigation-item selected" data-selected-links="repo_wiki /ninject/ninject/wiki">Wiki</a></li>
+
+
+    <li><a href="https://github.com/ninject/ninject/graphs" class="js-selected-navigation-item " data-selected-links="repo_graphs repo_contributors /ninject/ninject/graphs">Graphs</a></li>
+
+
+  </ul>
+  
+  
+  
+  <div class="tabnav">
+  <ul class="tabnav-tabs">
+    <li><a href="https://github.com/ninject/ninject/wiki" class="js-selected-navigation-item tabnav-tab" data-selected-links=" /ninject/ninject/wiki">Home</a></li>
+    <li><a href="https://github.com/ninject/ninject/wiki/_pages" class="js-selected-navigation-item tabnav-tab" data-selected-links=" /ninject/ninject/wiki/_pages">Pages</a></li>
+    <li><a href="https://github.com/ninject/ninject/wiki/_history" class="js-selected-navigation-item tabnav-tab" data-selected-links=" /ninject/ninject/wiki/_history">Wiki History</a></li>
+    <li><a href="https://github.com/ninject/ninject/wiki/_access" class="js-selected-navigation-item tabnav-tab" data-selected-links=" /ninject/ninject/wiki/_access">Git Access</a></li>
+  </ul>
+</div>
+
+
+
+            
+          </div>
+        </div><!-- /.repohead -->
+
+        <div id="js-repo-pjax-container" class="container context-loader-container" data-pjax-container="">
+          
+
+
+<div id="wiki-wrapper" class="page">
+<div id="head">
+  <ul class="wiki-actions readability-extra">
+    <li class="gollum-minibutton"><a href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject/_history" class="minibutton bigger action-page-history">
+       Page History
+     </a></li>
+  </ul>
+  <h1 class="instapaper_title">Dependency Injection With Ninject</h1>
+</div>
+<div id="wiki-content">
+  <div class="wrap">
+  <div id="wiki-body" class="gollum-textile-content instapaper_body">
+    <div class="markdown-body">
+      <p>Back to: <a class="internal present" href="https://github.com/ninject/ninject/wiki/Dependency-Injection-By-Hand">Dependency Injection By Hand</a></p>
+<p>Rather than spending time doing the “busy work” of creating and connecting your objects <a href="https://github.com/ninject/ninject/wiki/Dependency-Injection-By-Hand">by hand</a> (and reworking lots of such boilerplate for a few minutes or hours whenever you change interdependencies between your components), you just get Ninject to figure it out for you.</p>
+<h2>
+<a name="how-ninject-constructs-your-types-for-you" class="anchor" href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#how-ninject-constructs-your-types-for-you"><span class="mini-icon mini-icon-link"></span></a>How Ninject constructs your types for you</h2>
+<p>Ninject doesn’t do anything crazy like rewriting all your asssemblies and replacing all instances of <code class="syntax brush-csharp">new</code> with a redirection to it – it simply gets asked (generally implicitly via one of the <a href="http://ninject.org/extensions">extensions</a>, e.g., <a href="http://github.com/ninject/ninject.web.mvc">Ninject.Web.Mvc</a> ) to resolve a service. How does it do this? By calling one of the constructors on your type, just like you would if you were doing <a href="https://github.com/ninject/ninject/wiki/Dependency-Injection-By-Hand">Dependency Injection By Hand</a>. (<a href="https://github.com/ninject/ninject/wiki/How-Injection-Works">It doesn’t use Reflection though</a> – it uses .<span class="caps">NET</span> <a href="http://www.infoq.com/articles/expression-compiler">expression compilation/<span class="caps">LCG</span></a> to make it <em>almost</em> as fast as coding it by hand.)</p>
+<p>When asked to instantiate an object, Ninject will look at the type’s available public constructors and pick the one with the most parameters it knows how to resolve — or the parameterless one if there aren’t any suitable ones (there’s an attribute that can be used to override this – see <a href="https://github.com/ninject/ninject/wiki/Injection-Patterns">Constructor injection</a> for the nitty gritty).</p>
+<p>What this means is that in the vast majority of cases you need to do little if anything to the <em>service classes</em> you want to resolve and have dependencies injected into in order for Ninject to be able to instantiate your objects; you normally don’t change your classes or have any need to reference Ninject assembies, classes, attributes or namespaces.</p>
+<h2>
+<a name="how-ninject-decides-what-types-to-use-for-type-and-interfaceabstract-dependencies--type-bindings" class="anchor" href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#how-ninject-decides-what-types-to-use-for-type-and-interfaceabstract-dependencies--type-bindings"><span class="mini-icon mini-icon-link"></span></a>How Ninject decides what types to use for type and interface/abstract dependencies — <em>type bindings</em>
+</h2>
+<p>The most common thing you need to do is when the parameter being injected is specified as an interface – in that case we need to let Ninject know which concrete type to use to satisfy the interface. So if we have a service class as follows:-</p>
+<pre class="syntax brush-csharp">class Samurai 
+{
+    readonly IWeapon weapon;
+    public Samurai(IWeapon weapon) 
+    {
+        this.weapon = weapon;
+    }
+
+    public void Attack(string target) 
+    {
+        this.weapon.Hit(target);
+    }
+}
+</pre>
+<p>and we want to grab one like this:-</p>
+<pre class="syntax brush-csharp">IKernel kernel = new StandardKernel();
+var samurai = kernel.Get&lt;Samurai&gt;();
+</pre>
+<p>In the above case, Ninject will select the single constructor defined as the one to use. Next, it tries to resolve a value for each of the constructor’s arguments. But wait a second… <code class="syntax brush-csharp">IWeapon</code> is an interface. You can’t create an instance of an interface itself, so how does Ninject know what implementation of <code class="syntax brush-csharp">IWeapon</code> to inject?</p>
+<p>This is accomplished through <em>type bindings</em>. A type binding (or just a binding) is a mapping between a service type (generally an interface or abstract class), and an implementation type to be used to satisfy such a service requirement (or instructions for how to decide which one via <code class="syntax brush-csharp">ToMethod</code> as we’ll see later). Bindings are typically expressed via Ninject’s fluent interface. For example, to arm our <code class="syntax brush-csharp">Samurai</code> with a <code class="syntax brush-csharp">Sword</code>, we could declare the following binding:</p>
+<pre class="syntax brush-csharp">Bind&lt;IWeapon&gt;().To&lt;Sword&gt;();
+</pre>
+<p>This binding means that whenever Ninject encounters a dependency on <code class="syntax brush-csharp">IWeapon</code>, it will resolve an instance of <code class="syntax brush-csharp">Sword</code> and inject it. This dependency resolution process is a recursive one; that is, if <code class="syntax brush-csharp">Sword</code> has any dependencies of its own, they will also be resolved before the constructor of <code class="syntax brush-csharp">Samurai</code> is called. (Also, if the dependencies of <code class="syntax brush-csharp">Sword</code> have dependencies of their own, they will be resolved in turn, and so on.) In this way, Ninject can wire up an entire graph of objects for you, with minimal work on your end. You just need to set up the path, and Ninject will follow it.</p>
+<p>The concept of type bindings is common in dependency injection containers / frameworks. However, some existing frameworks rely primarily on <span class="caps">XML</span> mapping files to set up the bindings between types. Through its fluent interface, Ninject allows you to take advantage of the features of your language (like type-safety) and your <span class="caps">IDE</span> (like IntelliSense and code completion).</p>
+<h2>
+<a name="advanced-type-bindings" class="anchor" href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#advanced-type-bindings"><span class="mini-icon mini-icon-link"></span></a>Advanced type bindings</h2>
+<p><i>If you’re just trying to get the hang of dependency injection, we suggest <a href="http://github.com/ninject/ninject/wiki/Injection-Patterns">skipping straight to the next section on Injection Patterns</a> and coming back here later – this covers advanced aspects and capabilities of the Ninject type binding mechanism. It’s only important to understand this if you’re going to have extremely complex scenarios or you’re trying to compare DI containers having learned another one first.</i></p>
+<h3>
+<a name="using-the-overloads-with-type-parameters-instead-of-the-generic-methods" class="anchor" href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#using-the-overloads-with-type-parameters-instead-of-the-generic-methods"><span class="mini-icon mini-icon-link"></span></a>Using the overloads with <code class="syntax brush-csharp">Type</code> parameters instead of the generic methods</h3>
+<p>If you prefer, there are equivalent overloads of the <code class="syntax brush-csharp">Bind&lt;T&gt;()</code> and <code class="syntax brush-csharp">To&lt;T&gt;()</code> methods that are not generic methods, which can be useful for automating bulk binding of items you are discovering or scanning from other sources, e.g., one could do the binding above as follows instead:-</p>
+<pre class="syntax brush-csharp">Bind(typeof(IWeapon)).To(typeof(Sword));
+</pre>
+<h3>
+<a name="skipping-the-type-binding-bit--implicit-self-binding-of-concrete-types" class="anchor" href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#skipping-the-type-binding-bit--implicit-self-binding-of-concrete-types"><span class="mini-icon mini-icon-link"></span></a>Skipping the type binding bit — <strong>Implicit self-binding</strong> of concrete types</h3>
+<p><span class="caps">TDD</span> and interface-based programming styles often mean you’re generally most commonly depending on interfaces. However, if the type you’re resolving is a concrete type (like <code class="syntax brush-csharp">Samurai</code> above), Ninject will automatically create a default association via a mechanism called <em>implicit self binding</em>. It’s as if there’s a registration like this:</p>
+<pre class="syntax brush-csharp">Bind&lt;Samurai&gt;().To&lt;Samurai&gt;();
+</pre>
+<p>for every concrete type you ever try to resolve. Bear in mind that only concrete types can be self-bound; abstract types and interfaces won’t work (though there are a variety of <a href="http://ninject.org/extensions">Ninject extensions</a> available that e.g., allow one to plug in <a href="http://msdn.microsoft.com/en-us/magazine/dd419655.aspx">Convention over Configuration</a> based policies). Or… as with most things in Ninject, you can plug in your own strategy if you have specific requirements (but that customizability isn’t in your face until you need it).</p>
+<p>Implicit self-bindings are generated in the default <a href="http://github.com/ninject/ninject/wiki/Object-Scopes">Object Scope</a> (we’ll discuss that shortly). If necessary, you can override that by adding a binding of your own of the form:</p>
+<pre class="syntax brush-csharp">Bind&lt;Samurai&gt;().ToSelf(); // TODO add your rule overrides at the end, e.g. .InSingletonScope();
+</pre>
+<h3>
+<a name="registering-more-than-one-type-binding-for-a-service--contextual-binding" class="anchor" href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#registering-more-than-one-type-binding-for-a-service--contextual-binding"><span class="mini-icon mini-icon-link"></span></a>Registering more than one type binding for a service — <em>contextual binding</em>
+</h3>
+<p>You can also have multiple bindings for a given service type, controlled by conditions that examine the context in which the instance is being resolved. This is the contextual binding system mentioned earlier, and is the key to unlocking the full power of Ninject. Don’t worry, <a href="https://github.com/ninject/ninject/wiki/Contextual-Binding">it’s discussed in excruciating detail later</a>. :-)</p>
+<h3>
+<a name="registering-more-than-one-type-binding-for-a-service--plugin-models" class="anchor" href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#registering-more-than-one-type-binding-for-a-service--plugin-models"><span class="mini-icon mini-icon-link"></span></a>Registering more than one type binding for a service — plugin models</h3>
+<p>In some cases, you want your service to get a list of <strong>n</strong> related dependencies rather than just one. This is accomplished by performing <strong>0..n</strong> type bindings and then having your service type take a parameter of type <code class="syntax brush-csharp">T[]</code>, <code class="syntax brush-csharp">List&lt;T&gt;</code> or <code class="syntax brush-csharp">IEnumerable&lt;T&gt;</code>. See <a class="internal present" href="https://github.com/ninject/ninject/wiki/Multi-injection">Multi Injection</a> for details.</p>
+<p>Continue reading: <a class="internal present" href="https://github.com/ninject/ninject/wiki/Injection-Patterns">Injection Patterns</a></p>
+    </div>
+  </div>
+  <div id="wiki-footer">
+    <div id="gollum-footer-content" class="gollum-markdown-content">
+      <p>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2 License</a> - Copyright by Ninject Project Contributors</p>
+    </div>
+  </div>
+  </div>
+
+</div>
+<div id="gollum-footer">
+  <p id="last-edit">
+    Last edited by holmstrom, <time class="js-relative-date" datetime="2012-08-13T04:40:00-07:00" title="2012-08-13 04:40:00">9 months ago</time>
+  </p>
+</div>
+</div>
+
+
+        </div>
+      </div>
+      <div class="modal-backdrop"></div>
+    </div>
+
+      <div id="footer-push"></div><!-- hack for sticky footer -->
+    </div><!-- end of wrapper - hack for sticky footer -->
+
+      <!-- footer -->
+      <div id="footer">
+  <div class="container clearfix">
+
+      <dl class="footer_nav">
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/about">About us</a></dd>
+        <dd><a href="https://github.com/blog">Blog</a></dd>
+        <dd><a href="https://github.com/contact">Contact &amp; support</a></dd>
+        <dd><a href="http://enterprise.github.com/">GitHub Enterprise</a></dd>
+        <dd><a href="http://status.github.com/">Site status</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Applications</dt>
+        <dd><a href="http://mac.github.com/">GitHub for Mac</a></dd>
+        <dd><a href="http://windows.github.com/">GitHub for Windows</a></dd>
+        <dd><a href="http://eclipse.github.com/">GitHub for Eclipse</a></dd>
+        <dd><a href="http://mobile.github.com/">GitHub mobile apps</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Services</dt>
+        <dd><a href="http://get.gaug.es/">Gauges: Web analytics</a></dd>
+        <dd><a href="http://speakerdeck.com/">Speaker Deck: Presentations</a></dd>
+        <dd><a href="https://gist.github.com/">Gist: Code snippets</a></dd>
+        <dd><a href="http://jobs.github.com/">Job board</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>Documentation</dt>
+        <dd><a href="http://help.github.com/">GitHub Help</a></dd>
+        <dd><a href="http://developer.github.com/">Developer API</a></dd>
+        <dd><a href="http://github.github.com/github-flavored-markdown/">GitHub Flavored Markdown</a></dd>
+        <dd><a href="http://pages.github.com/">GitHub Pages</a></dd>
+      </dl>
+
+      <dl class="footer_nav">
+        <dt>More</dt>
+        <dd><a href="http://training.github.com/">Training</a></dd>
+        <dd><a href="https://github.com/edu">Students &amp; teachers</a></dd>
+        <dd><a href="http://shop.github.com/">The Shop</a></dd>
+        <dd><a href="https://github.com/plans">Plans &amp; pricing</a></dd>
+        <dd><a href="http://octodex.github.com/">The Octodex</a></dd>
+      </dl>
+
+      <hr class="footer-divider">
+
+
+    <p class="right">© 2013 <span title="0.10072s from fe16.rs.github.com">GitHub</span>, Inc. All rights reserved.</p>
+    <a class="left" href="https://github.com/">
+      <span class="mega-icon mega-icon-invertocat"></span>
+    </a>
+    <ul id="legal">
+        <li><a href="https://github.com/site/terms">Terms of Service</a></li>
+        <li><a href="https://github.com/site/privacy">Privacy</a></li>
+        <li><a href="https://github.com/security">Security</a></li>
+    </ul>
+
+  </div><!-- /.container -->
+
+</div><!-- /.#footer -->
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-fullscreen-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="js-fullscreen-contents" placeholder="" data-suggester="fullscreen_suggester"></textarea>
+          <div class="suggester-container">
+              <div class="suggester fullscreen-suggester js-navigation-container" id="fullscreen_suggester" data-url="/ninject/ninject/suggestions/commit">
+              </div>
+          </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#" class="exit-fullscreen js-exit-fullscreen tooltipped leftwards" original-title="Exit Zen Mode">
+      <span class="mega-icon mega-icon-normalscreen"></span>
+    </a>
+    <a href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#" class="theme-switcher js-theme-switcher tooltipped leftwards" original-title="Switch themes">
+      <span class="mini-icon mini-icon-brightness"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="mini-icon mini-icon-exclamation"></span>
+      Something went wrong with that request. Please try again.
+      <a href="https://github.com/ninject/ninject/wiki/Dependency-Injection-With-Ninject#" class="mini-icon mini-icon-remove-close ajax-error-dismiss"></a>
+    </div>
+
+    
+    
+    <span id="server_response_time" data-time="0.10111" data-host="fe16"></span>
+    
+  
+
+
+</body></html>

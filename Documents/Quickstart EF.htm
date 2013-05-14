@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!-- saved from url=(0074)http://www.andrewrowland.com/article/display/entity-framework-quick-start/ -->
+<html class=" js no-flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./Quickstart EF_files/count.json"></script><script async="" src="./Quickstart EF_files/restserver.php"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> 
+	<title>Entity Framework quick start | Andrew Rowland</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="stylesheet" type="text/css" media="all" href="./Quickstart EF_files/style.css">
+	<link rel="pingback" href="http://www.andrewrowland.com/xmlrpc.php">
+	<link rel="alternate" type="application/rss+xml" title="Andrew Rowland » Feed" href="http://www.andrewrowland.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Andrew Rowland » Comments Feed" href="http://www.andrewrowland.com/comments/feed/">
+
+			<script type="text/javascript" async="" src="./Quickstart EF_files/shareaholic-analytics.js"></script><script type="text/javascript" async="" src="./Quickstart EF_files/ga.js"></script><script type="text/javascript" async="" src="./Quickstart EF_files/ga.js"></script><script type="text/javascript">//<![CDATA[
+			// Google Analytics for WordPress by Yoast v4.2.8 | http://yoast.com/wordpress/google-analytics/
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-5791482-1']);
+							_gaq.push(['_trackPageview']);
+			(function () {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+			//]]></script>
+			<link rel="alternate" type="application/rss+xml" title="Andrew Rowland » Entity Framework quick start Comments Feed" href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/feed/">
+<link rel="stylesheet" id="wp-pagenavi-css" href="./Quickstart EF_files/pagenavi-css.css" type="text/css" media="all">
+<script type="text/javascript" src="./Quickstart EF_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Quickstart EF_files/modernizr.min.js"></script>
+<script type="text/javascript" src="./Quickstart EF_files/jquery.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var SHRSB_Globals = {"src":"http:\/\/www.andrewrowland.com\/wp-content\/plugins\/sexybookmarks\/spritegen_default","perfoption":"1","twitter_template":"%24%7Btitle%7D+-+%24%7Bshort_link%7D","locale":"0","shortener":"google","shortener_key":"","pubGaSocial":"0","pubGaKey":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Quickstart EF_files/jquery.shareaholic-publishers-sb.min.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.andrewrowland.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.andrewrowland.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Wolf CMS: Related pages plugin" href="http://www.andrewrowland.com/article/display/wolf-cms-related-pages-plugin/">
+<link rel="next" title="TypeScript Sublime Text integration" href="http://www.andrewrowland.com/article/display/typescript-sublime-text-integration/">
+<meta name="generator" content="WordPress 3.5.1">
+<link rel="shortlink" href="http://www.andrewrowland.com/?p=159">
+
+<!-- All in One SEO Pack 1.6.15.3 by Michael Torbert of Semper Fi Web Design[522,574] -->
+<meta name="description" content="Quick start tutorial to generate a database from a simple model.">
+<meta name="keywords" content="c#, .net, microsoft, tutorial, ef4.1, entity framework, orm">
+<link rel="canonical" href="./Quickstart EF_files/Quickstart EF.htm">
+<!-- /all in one seo pack -->
+
+<!-- Shareaholic Content Tags -->
+
+<meta property="shareaholic:site_name" content="Andrew Rowland">
+
+<!-- / Shareaholic Content Tags -->
+
+
+
+<!-- Shareaholic - Open Graph Tags -->
+
+	<!-- Shareaholic Notice: There is neither a featured nor gallery image set -->
+
+<!-- / Shareaholic - Open Graph Tags -->
+
+	<style>
+	/* Link color */
+	.post-meta a, .post-content a, .widget a { color: #333333; }
+	</style>
+	<script type="text/javascript" src="./Quickstart EF_files/tw-sack.min.js"></script>
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url('http://www.andrewrowland.com/wp-content/themes/gridiculous/images/solid.png'); background-repeat: repeat; background-position: top left; background-attachment: fixed; }
+</style>
+	<link type="text/css" rel="stylesheet" href="./Quickstart EF_files/shCore.css">
+	<link type="text/css" rel="stylesheet" href="./Quickstart EF_files/shThemeDefault.css">
+<link rel="stylesheet" media="screen" id="shareaholic-publisher-css" href="http://www.andrewrowland.com/wp-content/plugins/sexybookmarks/spritegen_default/sprite.css"><style type="text/css">.shareaholic-arrow-down{ position: absolute !important; left:45% !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 6px solid #000000 !important; }.shareaholic-tip-text{font-size:12px !important; line-height:120% !important; background: #000000 !important; color: #ffffff !important; padding: 5px !important; border-radius: 5px !important; -webkit-border-radius:5px; !important; -moz-border-radius:5px; !important}</style></head>
+
+<body class="single single-post postid-159 single-format-standard custom-background">
+
+	<div id="page" class="grid w960">
+	
+		<header id="header" class="row" role="banner">
+
+			<div class="c12">
+				<hgroup>
+					<h1 id="site-title"><a href="http://www.andrewrowland.com/" title="Andrew Rowland" rel="home">Andrew Rowland</a></h1>
+					<h2 id="site-description">I only want to help you</h2>				</hgroup>
+				
+									<img id="header-img" src="./Quickstart EF_files/553783_10151096044342028_419891485_n.jpg" width="920" height="207" alt="">
+									
+				<nav id="site-navigation" role="navigation" style="">
+					<h3 class="assistive-text">Main menu</h3>
+					<div class="menu"></div>
+				</nav><!-- #site-navigation -->
+
+				<div id="drop-down-search" style="display: none;">
+					<form role="search" method="get" id="searchform" class="slide" action="http://www.andrewrowland.com/">
+    <label class="assistive-text" for="site-search">Search for:</label>
+    <input type="search" placeholder="Search…" value="" name="s" id="site-search">
+    </form>				</div>	
+
+				<nav id="mobile-menu">
+					<a href="http://www.andrewrowland.com/" class="circle home"></a>
+					<a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#" class="circle menu" data-div="#site-navigation" data-speed="500"></a>
+					<a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#" class="circle search" data-div="#drop-down-search" data-speed="fast"></a>
+				</nav>
+
+			</div><!-- .c12 -->
+
+		</header><!-- #header .row -->
+		
+				
+		<div id="main" class="row">
+	<div id="primary" class="c12 centered">
+
+		
+				<article id="post-159" class="post-159 post type-post status-publish format-standard hentry category-dotnet">
+		
+		<header>
+						<hgroup>
+								<h3 class="post-category"><a href="http://www.andrewrowland.com/article/display/category/dotnet/" title="View all posts in .Net" rel="category tag">.Net</a></h3>
+								<h1 class="post-title">
+											Entity Framework quick start									</h1>
+
+								<h2 class="post-meta">
+					by <a href="http://www.andrewrowland.com/article/display/author/admin/" title="Posts by Andy R" rel="author">Andy R</a>&nbsp;•&nbsp;<a class="date-anchor" href="./Quickstart EF_files/Quickstart EF.htm">September 13, 2011</a>&nbsp;•&nbsp;<a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#respond" title="Comment on Entity Framework quick start">0 Comments</a>				</h2>
+							</hgroup>
+					</header>
+		
+	    <div class="post-content">
+	    <!-- Start Shareaholic LikeButtonSetTop Automatic --><!-- End Shareaholic LikeButtonSetTop Automatic --><p>Microsoft’s Entity Framework has been around a while, but with it’s latest incarnation it is really shaping up nicely.  I’ve been enjoying the ‘code first’ approach in version 4.1 of the framework.  This allows you start your application design from POCOs, allowing the framework to infer the database design for you.  For example, take the following Member entity model:</p>
+<div class="syntaxhighlighter " id="highlighter_319602" style=""><div class="bar"><div class="toolbar"><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#viewSource" title="view source" style="width: 16px; height: 16px;" class="item viewSource">view source</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#printSource" title="print" style="width: 16px; height: 16px;" class="item printSource">print</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#about" title="?" style="width: 16px; height: 16px;" class="item about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">1.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">class</code> <code class="plain">Member</code></span></span></div><div class="line alt2"><code class="number">2.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">3.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">public</code> <code class="keyword">int</code> <code class="plain">Id { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></span></span></div><div class="line alt2"><code class="number">4.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">public</code> <code class="keyword">string</code> <code class="plain">FirstName { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></span></span></div><div class="line alt1"><code class="number">5.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">public</code> <code class="keyword">string</code> <code class="plain">LastName { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></span></span></div><div class="line alt2"><code class="number">6.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div>
+<p><span id="more-159"></span><br>
+The following class derives from the DbContext base class, and exposes our Member model:</p>
+<div class="syntaxhighlighter " id="highlighter_579607" style=""><div class="bar"><div class="toolbar"><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#viewSource" title="view source" style="width: 16px; height: 16px;" class="item viewSource">view source</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#printSource" title="print" style="width: 16px; height: 16px;" class="item printSource">print</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#about" title="?" style="width: 16px; height: 16px;" class="item about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">01.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">class</code> <code class="plain">EFDbContext : DbContext</code></span></span></div><div class="line alt2"><code class="number">02.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">03.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">public</code> <code class="plain">DbSet&lt;Member&gt; Members { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></span></span></div><div class="line alt2"><code class="number">04.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt1"><code class="number">05.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">public</code> <code class="plain">EFDbContext()</code></span></span></div><div class="line alt2"><code class="number">06.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">07.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">Database.SetInitializer&lt;EFDbContext&gt;(</code><code class="keyword">new</code> <code class="plain">DbContextInitializer());</code></span></span></div><div class="line alt2"><code class="number">08.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">09.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div>
+<p>Note the <strong>SetInitializer</strong> call in the constructor.  This allows us to seed the database with some data, using the following class:</p>
+<div class="syntaxhighlighter " id="highlighter_212248" style=""><div class="bar"><div class="toolbar"><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#viewSource" title="view source" style="width: 16px; height: 16px;" class="item viewSource">view source</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#printSource" title="print" style="width: 16px; height: 16px;" class="item printSource">print</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#about" title="?" style="width: 16px; height: 16px;" class="item about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">01.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">class</code> <code class="plain">DbContextInitializer : DropCreateDatabaseIfModelChanges&lt;EFDbContext&gt;</code></span></span></div><div class="line alt2"><code class="number">02.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">03.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">protected</code> <code class="keyword">override</code> <code class="keyword">void</code> <code class="plain">Seed(EFDbContext Context)</code></span></span></div><div class="line alt2"><code class="number">04.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">05.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">new</code> <code class="plain">List&lt;Member&gt;</code></span></span></div><div class="line alt2"><code class="number">06.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">07.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="keyword">new</code> <code class="plain">Member {</code></span></span></div><div class="line alt2"><code class="number">08.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 144px !important;"><code class="plain">FirstName = </code><code class="string">"Andrew"</code><code class="plain">,</code></span></span></div><div class="line alt1"><code class="number">09.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 144px !important;"><code class="plain">LastName = </code><code class="string">"Rowland"</code></span></span></div><div class="line alt2"><code class="number">10.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="plain">},</code></span></span></div><div class="line alt1"><code class="number">11.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="keyword">new</code> <code class="plain">Member {</code></span></span></div><div class="line alt2"><code class="number">12.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 144px !important;"><code class="plain">FirstName = </code><code class="string">"Roland"</code><code class="plain">,</code></span></span></div><div class="line alt1"><code class="number">13.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 144px !important;"><code class="plain">LastName = </code><code class="string">"Browning"</code></span></span></div><div class="line alt2"><code class="number">14.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="plain">},</code></span></span></div><div class="line alt1"><code class="number">15.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">}.ForEach(m =&gt; Context.Members.Add(m));</code></span></span></div><div class="line alt2"><code class="number">16.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;">&nbsp;</span></span></div><div class="line alt1"><code class="number">17.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">base</code><code class="plain">.Seed(Context);</code></span></span></div><div class="line alt2"><code class="number">18.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">19.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div>
+<p>Now we need a simple repository class, so we can query the database:</p>
+<div class="syntaxhighlighter " id="highlighter_625526" style=""><div class="bar"><div class="toolbar"><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#viewSource" title="view source" style="width: 16px; height: 16px;" class="item viewSource">view source</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#printSource" title="print" style="width: 16px; height: 16px;" class="item printSource">print</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#about" title="?" style="width: 16px; height: 16px;" class="item about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">01.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">class</code> <code class="plain">MemberRepository</code></span></span></div><div class="line alt2"><code class="number">02.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">03.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">private</code> <code class="plain">EFDbContext Context = </code><code class="keyword">new</code> <code class="plain">EFDbContext();</code></span></span></div><div class="line alt2"><code class="number">04.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt1"><code class="number">05.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">public</code> <code class="plain">IQueryable&lt;Member&gt; Members</code></span></span></div><div class="line alt2"><code class="number">06.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">07.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">get</code> <code class="plain">{ </code><code class="keyword">return</code> <code class="plain">Context.Members; }</code></span></span></div><div class="line alt2"><code class="number">08.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">09.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div>
+<p>Standard practice is to use an interface, and obtain this concrete class using an IOC container, but it will do for demonstration purposes.</p>
+<p>Due to lazy loading, nothing would happen until we actually run a query.  So finally, a console application to instantiate the repository, and display the data:</p>
+<div class="syntaxhighlighter " id="highlighter_385410" style=""><div class="bar"><div class="toolbar"><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#viewSource" title="view source" style="width: 16px; height: 16px;" class="item viewSource">view source</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#printSource" title="print" style="width: 16px; height: 16px;" class="item printSource">print</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#about" title="?" style="width: 16px; height: 16px;" class="item about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">01.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">class</code> <code class="plain">ConsoleApplication</code></span></span></div><div class="line alt2"><code class="number">02.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">03.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">static</code> <code class="keyword">void</code> <code class="plain">Main(</code><code class="keyword">string</code><code class="plain">[] args)</code></span></span></div><div class="line alt2"><code class="number">04.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">05.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">MemberRepository Repository = </code><code class="keyword">new</code> <code class="plain">MemberRepository();</code></span></span></div><div class="line alt2"><code class="number">06.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt1"><code class="number">07.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">Repository.Members.ToList().ForEach(m =&gt; Console.WriteLine(String.Format(</code><code class="string">"Member: {0} {1}"</code><code class="plain">, m.FirstName, m.LastName)));</code></span></span></div><div class="line alt2"><code class="number">08.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt1"><code class="number">09.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">Console.ReadKey();</code></span></span></div><div class="line alt2"><code class="number">10.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">11.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div>
+<p>We can place all of the code into one console application.  Install EF4.1, create a console application in Visual Studio 2010, paste in the class below.  You may have to set the startup object in the project properties.</p>
+<div class="syntaxhighlighter " id="highlighter_342005" style=""><div class="bar"><div class="toolbar"><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#viewSource" title="view source" style="width: 16px; height: 16px;" class="item viewSource">view source</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#printSource" title="print" style="width: 16px; height: 16px;" class="item printSource">print</a><a href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#about" title="?" style="width: 16px; height: 16px;" class="item about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">01.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">using</code> <code class="plain">System;</code></span></span></div><div class="line alt2"><code class="number">02.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">using</code> <code class="plain">System.Collections.Generic;</code></span></span></div><div class="line alt1"><code class="number">03.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">using</code> <code class="plain">System.Linq;</code></span></span></div><div class="line alt2"><code class="number">04.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">using</code> <code class="plain">System.Text;</code></span></span></div><div class="line alt1"><code class="number">05.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">using</code> <code class="plain">System.Data.Entity;</code></span></span></div><div class="line alt2"><code class="number">06.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt1"><code class="number">07.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">namespace</code> <code class="plain">EFExample</code></span></span></div><div class="line alt2"><code class="number">08.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">09.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">class</code> <code class="plain">Member</code></span></span></div><div class="line alt2"><code class="number">10.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">11.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">public</code> <code class="keyword">int</code> <code class="plain">Id { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></span></span></div><div class="line alt2"><code class="number">12.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">public</code> <code class="keyword">string</code> <code class="plain">FirstName { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></span></span></div><div class="line alt1"><code class="number">13.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">public</code> <code class="keyword">string</code> <code class="plain">LastName { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></span></span></div><div class="line alt2"><code class="number">14.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">15.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">16.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">class</code> <code class="plain">EFDbContext : DbContext</code></span></span></div><div class="line alt1"><code class="number">17.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">18.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">public</code> <code class="plain">DbSet&lt;Member&gt; Members { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></span></span></div><div class="line alt1"><code class="number">19.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">20.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">public</code> <code class="plain">EFDbContext()</code></span></span></div><div class="line alt1"><code class="number">21.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">22.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="plain">Database.SetInitializer&lt;EFDbContext&gt;(</code><code class="keyword">new</code> <code class="plain">DbContextInitializer());</code></span></span></div><div class="line alt1"><code class="number">23.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">24.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">25.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">26.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">class</code> <code class="plain">DbContextInitializer : DropCreateDatabaseIfModelChanges&lt;EFDbContext&gt;</code></span></span></div><div class="line alt1"><code class="number">27.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">28.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">protected</code> <code class="keyword">override</code> <code class="keyword">void</code> <code class="plain">Seed(EFDbContext Context)</code></span></span></div><div class="line alt1"><code class="number">29.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">30.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="keyword">new</code> <code class="plain">List&lt;Member&gt;</code></span></span></div><div class="line alt1"><code class="number">31.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">32.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 144px !important;"><code class="keyword">new</code> <code class="plain">Member {</code></span></span></div><div class="line alt1"><code class="number">33.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 180px !important;"><code class="plain">FirstName = </code><code class="string">"Andrew"</code><code class="plain">,</code></span></span></div><div class="line alt2"><code class="number">34.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 180px !important;"><code class="plain">LastName = </code><code class="string">"Rowland"</code></span></span></div><div class="line alt1"><code class="number">35.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 144px !important;"><code class="plain">},</code></span></span></div><div class="line alt2"><code class="number">36.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 144px !important;"><code class="keyword">new</code> <code class="plain">Member {</code></span></span></div><div class="line alt1"><code class="number">37.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 180px !important;"><code class="plain">FirstName = </code><code class="string">"Roland"</code><code class="plain">,</code></span></span></div><div class="line alt2"><code class="number">38.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 180px !important;"><code class="plain">LastName = </code><code class="string">"Browning"</code></span></span></div><div class="line alt1"><code class="number">39.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 144px !important;"><code class="plain">},</code></span></span></div><div class="line alt2"><code class="number">40.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="plain">}.ForEach(m =&gt; Context.Members.Add(m));</code></span></span></div><div class="line alt1"><code class="number">41.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">42.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="keyword">base</code><code class="plain">.Seed(Context);</code></span></span></div><div class="line alt1"><code class="number">43.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">44.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">45.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">46.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">class</code> <code class="plain">MemberRepository</code></span></span></div><div class="line alt1"><code class="number">47.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">48.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">private</code> <code class="plain">EFDbContext Context = </code><code class="keyword">new</code> <code class="plain">EFDbContext();</code></span></span></div><div class="line alt1"><code class="number">49.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">50.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">public</code> <code class="plain">IQueryable&lt;Member&gt; Members</code></span></span></div><div class="line alt1"><code class="number">51.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">52.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="keyword">get</code> <code class="plain">{ </code><code class="keyword">return</code> <code class="plain">Context.Members; }</code></span></span></div><div class="line alt1"><code class="number">53.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">54.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">55.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">56.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="keyword">class</code> <code class="plain">ConsoleApplication</code></span></span></div><div class="line alt1"><code class="number">57.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">58.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="keyword">static</code> <code class="keyword">void</code> <code class="plain">Main(</code><code class="keyword">string</code><code class="plain">[] args)</code></span></span></div><div class="line alt1"><code class="number">59.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">60.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="plain">MemberRepository Repository = </code><code class="keyword">new</code> <code class="plain">MemberRepository();</code></span></span></div><div class="line alt1"><code class="number">61.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">62.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="plain">Repository.Members.ToList().ForEach(m =&gt; Console.WriteLine(String.Format(</code><code class="string">"Member: {0} {1}"</code><code class="plain">, m.FirstName, m.LastName)));</code></span></span></div><div class="line alt1"><code class="number">63.</code><span class="content"><span class="block" style="margin-left: 0px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">64.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 108px !important;"><code class="plain">Console.ReadKey();</code></span></span></div><div class="line alt1"><code class="number">65.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 72px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">66.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 36px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">67.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div>
+<p>Run the application, and the magic begins.  If you have an instance of SQL Server Express running, a database with a single Members table will be created, populated with data, and the results displayed.</p>
+<p>Bit of a quick post this one, so feel free to ask a question.  I’m not certain I’ve added enough detail.</p>
+<div class="shr-publisher-159 shareaholic-show-on-load" style="margin-left: 275px; overflow: hidden; height: 52px;"><div class="shr-bookmarks"><ul class="shr-socials"><li class="shr-5 shareaholic" style="margin-left:0px !important;"><a href="http://www.shareaholic.com/api/share/?title=Entity+Framework+quick+start&link=http%3A%2F%2Fwww.andrewrowland.com%2Farticle%2Fdisplay%2Fentity-framework-quick-start%2F&notes=&short_link=&shortener=google&shortener_key=&v=1&apitype=1&apikey=8afa39428933be41f8afdb8ea21a495c&source=Shareaholic-Publishers&template=&service=5&ctype=" rel="nofollow" target="_blank" class="external" orig_title="Post to Facebook">Post to Facebook</a></li><li class="shr-7 shareaholic" style="margin-left:0px !important;"><a rel="nofollow" target="_blank" class="external" orig_title="Post to Twitter">Post to Twitter</a></li><li class="shr-2 shareaholic" style="margin-left:0px !important;"><a href="http://www.shareaholic.com/api/share/?title=Entity+Framework+quick+start&link=http%3A%2F%2Fwww.andrewrowland.com%2Farticle%2Fdisplay%2Fentity-framework-quick-start%2F&notes=&short_link=&shortener=google&shortener_key=&v=1&apitype=1&apikey=8afa39428933be41f8afdb8ea21a495c&source=Shareaholic-Publishers&template=&service=2&ctype=" rel="nofollow" target="_blank" class="external" orig_title="Post to Delicious">Post to Delicious</a></li><li class="shr-201 shareaholic" style="margin-left:0px !important;"><a href="http://www.shareaholic.com/api/share/?title=Entity+Framework+quick+start&link=http%3A%2F%2Fwww.andrewrowland.com%2Farticle%2Fdisplay%2Fentity-framework-quick-start%2F&notes=&short_link=&shortener=google&shortener_key=&v=1&apitype=1&apikey=8afa39428933be41f8afdb8ea21a495c&source=Shareaholic-Publishers&template=&service=201&ctype=" rel="nofollow" target="_blank" class="external" orig_title="Send via E-mail program">Send via E-mail program</a></li><li class="shr-236 shareaholic" style="margin-left:0px !important;"><a href="http://www.shareaholic.com/api/share/?title=Entity+Framework+quick+start&link=http%3A%2F%2Fwww.andrewrowland.com%2Farticle%2Fdisplay%2Fentity-framework-quick-start%2F&notes=&short_link=&shortener=google&shortener_key=&v=1&apitype=1&apikey=8afa39428933be41f8afdb8ea21a495c&source=Shareaholic-Publishers&template=&service=236&ctype=" rel="nofollow" target="_blank" class="external" orig_title="Print with PrintFriendly">Print with PrintFriendly</a></li><li class="shr-88 shareaholic" style="margin-left:0px !important;"><a href="http://www.shareaholic.com/api/share/?title=Entity+Framework+quick+start&link=http%3A%2F%2Fwww.andrewrowland.com%2Farticle%2Fdisplay%2Fentity-framework-quick-start%2F&notes=&short_link=&shortener=google&shortener_key=&v=1&apitype=1&apikey=8afa39428933be41f8afdb8ea21a495c&source=Shareaholic-Publishers&template=&service=88&ctype=" rel="nofollow" target="_blank" class="external" orig_title="Add to LinkedIn">Add to LinkedIn</a></li></ul><style type="text/css">ul.shr-socials li.shareaholic{background-image:url(http://www.andrewrowland.com/wp-content/plugins/sexybookmarks/spritegen_default/sprite.png) !important;}</style></div></div><!-- Start Shareaholic LikeButtonSetBottom Automatic --><!-- End Shareaholic LikeButtonSetBottom Automatic -->	    </div><!-- .post-content --> 
+	    
+	    	    <footer class="article">
+		    		</footer><!-- .article --> 	
+			</article><!-- #post-159 -->
+			<nav id="posts-pagination">
+				<h3 class="assistive-text">Post navigation</h3>
+				<div class="previous fl"><a href="http://www.andrewrowland.com/article/display/wolf-cms-related-pages-plugin/" rel="prev"><span class="meta-nav">←</span> Wolf CMS: Related pages plugin</a></div>
+				<div class="next fr"><a href="http://www.andrewrowland.com/article/display/typescript-sublime-text-integration/" rel="next">TypeScript Sublime Text integration <span class="meta-nav">→</span></a></div>
+			</nav><!-- #posts-pagination -->
+
+				<div id="comments">
+	
+	
+	
+									<div id="respond">
+				<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.andrewrowland.com/article/display/entity-framework-quick-start/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://www.andrewrowland.com/wp-comments-post.php" method="post" id="commentform">
+																			<p class="comment-notes">Your email address will not be published.</p>							<p class="comment-form-author"><input id="author" name="author" type="text" required="" size="30" placeholder="Name *" aria-required="true"></p>
+<p class="comment-form-email"><input id="email" name="email" type="email" required="" size="30" placeholder="Email *" aria-required="true"></p>
+<p class="comment-form-url"><input id="url" name="url" type="url" size="30" placeholder="Website"></p>
+												<p class="comment-form-comment"><textarea id="comment" name="comment" required="" cols="45" rows="8" placeholder="Comment *" aria-required="true"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="159" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="05d29a914c"></p><input type="hidden" id="captchafree" name="captchafree" value="">
+<script type="text/javascript">
+//<![CDATA[
+	function gethash(){
+		document.getElementById('captchafree').form.onsubmit = null;
+		if(document.getElementById('submit')) document.getElementById('submit').value='Please wait...';
+		var mysack = new sack("http://www.andrewrowland.com/wp-content/plugins/wp-captcha-free/captcha-free.php");
+		mysack.execute = 1;
+		mysack.method = 'POST';
+		mysack.onError = function() { alert('Unable to get Captcha-Free Hash!') };
+		mysack.setVar('post_id', 159);
+		mysack.runAJAX();
+		return false;
+	}
+	function gothash(myhash){
+		document.getElementById('captchafree').value = myhash;
+		// Workaround for Wordpress' retarded choice of naming the submit button same as a JS function name >:-(
+		document.getElementById('submit').click();
+	}
+	document.getElementById('captchafree').form.onsubmit = gethash;
+//]]>
+</script>
+<noscript>&lt;p&gt;&lt;strong&gt;Please note:&lt;/strong&gt; JavaScript is required to post comments.&lt;/p&gt;</noscript>
+					</form>
+							</div><!-- #respond -->
+				<script type="text/javascript">
+		jQuery(document).ready(function () {
+			jQuery('#commentform').submit(function () {
+				_gaq.push(
+					['_setAccount', 'UA-5791482-1'],
+					['_trackEvent', 'comment', 'submit']
+				);
+			});
+		});
+	</script>
+				
+</div><!-- #comments -->
+		
+	</div><!-- #primary.c8 -->
+
+			
+	</div> <!-- #main.row -->
+
+</div> <!-- #page.grid -->
+
+<footer id="footer" role="contentinfo">
+
+	<div id="footer-content" class="grid w960">
+
+		<div class="row">
+
+			<p class="c12">
+				<span class="fl">Copyright © 2013 <a href="http://www.andrewrowland.com/">Andrew Rowland</a>. All Rights Reserved.</span>
+				</p><!-- .c12 -->
+
+		</div><!-- .row -->
+
+	</div><!-- #footer-content.grid -->
+
+</footer><!-- #footer -->
+
+<script type="text/javascript">var SHRSB_Settings = {"shr-publisher-159":{"link":"http:\/\/www.andrewrowland.com\/article\/display\/entity-framework-quick-start\/","shortener":"google","title":"Entity Framework quick start","notes":"Microsoft%27s%20Entity%20Framework%20has%20been%20around%20a%20while%2C%20but%20with%20it%27s%20latest%20incarnation%20it%20is%20really%20shaping%20up%20nicely.%20%20I%27ve%20been%20enjoying%20the%20%27code%20first%27%20approach%20in%20version%204.1%20of%20the%20framework.%20%20This%20allows%20you%20start%20your%20application%20design%20from%20POCOs%2C%20allowing%20the%20framework%20to%20infer%20the%20databas","service":"5,7,2,201,236,88","apikey":"8afa39428933be41f8afdb8ea21a495c","expand":true,"src":"http:\/\/www.andrewrowland.com\/wp-content\/plugins\/sexybookmarks\/spritegen_default","localize":true,"share_src":"http:\/\/www.shareaholic.com","rel":"nofollow","target":"_blank","center":true,"twitter_template":"%24%7Btitle%7D+-+%24%7Bshort_link%7D","mode":"inject","designer_toolTips":"1","tip_bg_color":"#000000","tip_text_color":"#ffffff"}};</script><script type="text/javascript" src="./Quickstart EF_files/devicepx-jetpack.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+( function( $ ) {
+	// Responsive videos
+	var all_videos = $( 'iframe[src^="http://player.vimeo.com"], iframe[src^="http://www.youtube.com"], iframe[src^="http://www.dailymotion.com"], object, embed' ),
+    	input = document.createElement( 'input' ),
+    	i;
+	    	
+	all_videos.each(function() {
+		var el = $(this);
+		el
+			.attr( 'data-aspectRatio', el.height() / el.width() )
+			.attr( 'data-oldWidth', el.attr( 'width' ) );
+	} );
+	
+	$(window)
+		.resize( function() {
+			all_videos.each( function() {
+				var el = $(this),
+					newWidth = el.parents( '.post-content' ).width(),
+					oldWidth = el.attr( 'data-oldWidth' );
+	
+				if ( oldWidth > newWidth ) {
+					el
+						.removeAttr( 'height' )
+						.removeAttr( 'width' )
+					    .width( newWidth )
+				    	.height( newWidth * el.attr( 'data-aspectRatio' ) );
+				}
+			} );
+			
+			if ( $(window).width() > 600 ) {
+				$( '#site-navigation' ).show();
+				$( '#drop-down-search' ).hide();
+			}
+		} )
+		.resize()
+	
+	// Placeholder fix for older browsers
+    if ( ( 'placeholder' in input ) == false ) { 
+		$( '[placeholder]' ).focus( function() {
+			i = $( this );
+			if ( i.val() == i.attr( 'placeholder' ) ) {
+				i.val( '' ).removeClass( 'placeholder' );
+				if ( i.hasClass( 'password' ) ) {
+					i.removeClass( 'password' );
+					this.type = 'password';
+				}			
+			}
+		} ).blur( function() {
+			i = $( this );	
+			if ( i.val() == '' || i.val() == i.attr( 'placeholder' ) ) {
+				if ( this.type == 'password' ) {
+					i.addClass( 'password' );
+					this.type = 'text';
+				}
+				i.addClass( 'placeholder' ).val( i.attr( 'placeholder' ) );
+			}
+		} ).blur().parents( 'form' ).submit( function() {
+			$( this ).find( '[placeholder]' ).each( function() {
+				i = $( this );
+				if ( i.val() == i.attr( 'placeholder' ) )
+					i.val( '' );
+			} )
+		} );
+	}
+
+	// Lightbox effect for gallery
+	$( '#primary' ).find( '.gallery-item img' ).click( function() {
+		$( '#lightbox' ).remove();
+	
+		var el = $( this ),
+			full = el.data( 'full-image' ),
+			caption = el.data( 'caption' ),
+			next = el.data( 'next-image' ),
+			prev = el.data( 'prev-image' ),
+			count = $( '.gallery-item img' ).length,
+			prev_text = ( 'img-0' != prev ) ? '<span class="prev-image" data-prev-image="' + prev + '">&larr;</span>' : '';
+			next_text = ( 'img-' + ( count + 1 ) != next ) ? '<span class="next-image" data-next-image="' + next + '">&rarr;</span>' : '';
+
+		$( '#page' ).append( '<div id="lightbox"><div class="lightbox-container">' + prev_text + next_text + '<img src="' + full + '" /><p>' + caption + '</p></div></div>' );
+	} );
+
+	$( '#page' )
+		.on( 'click', '#lightbox', function() {
+			$( this ).fadeOut();
+		} )
+		.on( 'click', '#lightbox .prev-image', function(e) {
+			e.stopPropagation();
+			var prev = $( this ).data( 'prev-image' );
+			
+			$( '.' + prev ).trigger( 'click' );
+		} )
+		.on( 'click', '#lightbox .next-image', function(e) {
+			e.stopPropagation();
+			var next = $( this ).data( 'next-image' );
+			
+			$( '.' + next ).trigger( 'click' );
+		} )
+		.on( 'click', '#lightbox img', function(e) {
+			e.stopPropagation();
+			$( '#lightbox .next-image' ).trigger( 'click' );
+		} );
+
+	// Mobile menu
+	$( '#header' ).on( 'click', '#mobile-menu a', function(e) {
+		var el = $( this ),
+			div = $(this).data("div"),
+			speed = $(this).data("speed");
+	
+		if ( el.hasClass( 'home' ) )
+			return true;
+
+		e.preventDefault();
+		$(div).slideToggle(speed);		
+	} );
+
+} )( jQuery );
+/* ]]> */
+</script>
+	
+<!-- SyntaxHighlighter Stuff -->
+<script type="text/javascript" src="./Quickstart EF_files/shCore.js"></script>
+	<script type="text/javascript" src="./Quickstart EF_files/shBrushCSharp.js"></script>
+	<!-- Reassign aliases -->
+	<script type="text/javascript">
+				SyntaxHighlighter.brushes.CSharp.aliases = ["c#", "c-sharp", "csharp"];
+	</script>
+<script type="text/javascript">
+	SyntaxHighlighter.all();
+</script>
+
+<!-- Gridiculous created by c.bavota - http://themes.bavotasan.com -->
+
+<iframe id="shr_oven" src="./Quickstart EF_files/saved_resource.htm" style="display: none;"></iframe></body></html>
