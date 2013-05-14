@@ -41,6 +41,7 @@
     <Reference Include="nunit.framework">
       <HintPath>..\Libraries\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -56,11 +57,17 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\MainWindowVMTest.cs" />
+    <Compile Include="ViewModels\QuestionVMTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChineseCharacterTrainer.Implementation\ChineseCharacterTrainer.Implementation.csproj">
       <Project>{703aa16a-767c-4726-9253-f2417796b892}</Project>
       <Name>ChineseCharacterTrainer.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChineseCharacterTrainer.Library\ChineseCharacterTrainer.Library.csproj">
+      <Project>{DD65BAB5-F889-4EAD-9EEC-0E360FAD9E18}</Project>
+      <Name>ChineseCharacterTrainer.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

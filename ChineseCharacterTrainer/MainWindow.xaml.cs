@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿using ChineseCharacterTrainer.Implementation.ViewModels;
 
 namespace ChineseCharacterTrainer
 {
@@ -10,6 +10,9 @@ namespace ChineseCharacterTrainer
         public MainWindow()
         {
             InitializeComponent();
+
+            var questionVM = new QuestionVM();
+            DataContext = new MainWindowVM(questionVM);
         }
     }
 }

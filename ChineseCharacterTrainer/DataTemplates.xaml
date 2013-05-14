@@ -1,4 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModels="clr-namespace:ChineseCharacterTrainer.Implementation.ViewModels;assembly=ChineseCharacterTrainer.Implementation"
+                    xmlns:views="clr-namespace:ChineseCharacterTrainer">
     
+    <DataTemplate DataType="{x:Type viewModels:QuestionVM}">
+        <views:QuestionView/>
+    </DataTemplate>
 </ResourceDictionary>

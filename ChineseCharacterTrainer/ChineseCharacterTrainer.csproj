@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="QuestionView.xaml.cs">
+      <DependentUpon>QuestionView.xaml</DependentUpon>
+    </Compile>
     <Page Include="DataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -72,6 +75,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="QuestionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -101,6 +108,10 @@
     <ProjectReference Include="..\ChineseCharacterTrainer.Implementation\ChineseCharacterTrainer.Implementation.csproj">
       <Project>{703aa16a-767c-4726-9253-f2417796b892}</Project>
       <Name>ChineseCharacterTrainer.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChineseCharacterTrainer.Library\ChineseCharacterTrainer.Library.csproj">
+      <Project>{dd65bab5-f889-4ead-9eec-0e360fad9e18}</Project>
+      <Name>ChineseCharacterTrainer.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
