@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 
 namespace ChineseCharacterTrainer.Library
 {
+    [ExcludeFromCodeCoverage]
     public class RelayCommand : ICommand
     {
         readonly Action<object> _execute;

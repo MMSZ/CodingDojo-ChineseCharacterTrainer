@@ -1,9 +1,11 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace ChineseCharacterTrainer.Library
 {
+    [ExcludeFromCodeCoverage]
     public class ViewModel : IViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
