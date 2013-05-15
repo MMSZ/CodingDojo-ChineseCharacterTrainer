@@ -52,6 +52,30 @@ namespace ChineseCharacterTrainer.UnitTest.Converters
             Assert.IsTrue(ValuesAreEqual(ExpectedNegativeValue, (TResult)actual));
         }
 
+        [TestCase("true", "true")]
+        [TestCase("false", "false")]
+        [TestCase("true", null)]
+        [TestCase("true", "")]
+        [TestCase(null, "false")]
+        public void ShouldConvertStringToExpectedPositiveResult(string value, string converterParameter)
+        {
+            var actual = _objectUnderTest.Convert(value, null, converterParameter, null);
+
+            Assert.IsTrue(ValuesAreEqual(ExpectedPositiveValue, (TResult)actual));
+        }
+
+        [TestCase("false", "true")]
+        [TestCase("true", "false")]
+        [TestCase("false", null)]
+        [TestCase("false", "")]
+        [TestCase(null, "true")]
+        public void ShouldConvertStringToExpectedNegativeResult(string value, string converterParameter)
+        {
+            var actual = _objectUnderTest.Convert(value, null, converterParameter, null);
+
+            Assert.IsTrue(ValuesAreEqual(ExpectedNegativeValue, (TResult)actual));
+        }
+
         [Test]
         public void ConvertBackShouldReturnFalse()
         {

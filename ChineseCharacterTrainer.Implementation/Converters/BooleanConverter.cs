@@ -8,11 +8,39 @@ namespace ChineseCharacterTrainer.Implementation.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var boolValue = value != null && (bool)value;
-            var boolParameter = parameter == null || (bool)parameter;
+            var boolValue = GetBooleanValueFromObject(value, false);
+            var boolParameter = GetBooleanValueFromObject(parameter, true);
 
             var result = boolValue == boolParameter ? PositiveResult : NegativeResult;
             return result;
+        }
+
+        private static bool GetBooleanValueFromObject(object value, bool defaultValue)
+        {
+            if (value == null)
+            {
+                return defaultValue;
+            }
+
+            bool boolValue;
+
+            if (value is bool)
+            {
+                boolValue = (bool)value;
+            }
+            else if (value is string)
+            {
+                if (!Boolean.TryParse(value as string, out boolValue))
+                {
+                    boolValue = defaultValue;
+                }
+            }
+            else
+            {
+                boolValue = false;
+            }
+
+            return boolValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

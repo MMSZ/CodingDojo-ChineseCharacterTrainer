@@ -19,13 +19,13 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="{Binding CurrentEntry.ChineseCharacters}" FontSize="72" HorizontalAlignment="Center"
-                   Visibility="{Binding AnswerShown, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=false}"/>
+                   Visibility="{Binding IsInAnswerMode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=true}"/>
         <TextBlock Grid.Row="0" Text="{Binding CurrentEntry.Pinyin}" FontSize="72" HorizontalAlignment="Center"
                    Foreground="{Binding LastAnswerWasCorrect, Converter={StaticResource BooleanToColorConverter}}"
-                   Visibility="{Binding AnswerShown, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=true}"/>
+                   Visibility="{Binding IsInAnswerMode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=false}"/>
         
-        <TextBox x:Name="AnswerTextBox" Grid.Row="1" HorizontalContentAlignment="Center" FontSize="54"
-                 KeyUp="OnKeyUp"/>
+        <TextBox x:Name="AnswerTextBox" Grid.Row="1" HorizontalContentAlignment="Center" FontSize="54" 
+                 KeyUp="OnKeyUp" Text="{Binding Answer, UpdateSourceTrigger=PropertyChanged}"/>
         
     </Grid>
 </UserControl>

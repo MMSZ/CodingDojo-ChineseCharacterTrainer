@@ -11,14 +11,30 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private DictionaryEntry _currentEntry;
         private Queue<DictionaryEntry> _dictionaryEntries;
         private string _answer;
+        private bool _isInAnswerMode;
+        private bool _lastAnswerWasCorrect;
 
         public void Initialize(List<DictionaryEntry> dictionaryEntries)
         {
             _dictionaryEntries = new Queue<DictionaryEntry>(dictionaryEntries);
             CurrentEntry = _dictionaryEntries.Dequeue();
+            Answer = string.Empty;
+            IsInAnswerMode = true;
         }
 
         public ICommand AnswerCommand { get { return _answerCommand ?? (_answerCommand = new RelayCommand(p => AnswerCurrentEntry())); }}
+
+        public bool IsInAnswerMode
+        {
+            get { return _isInAnswerMode; }
+            private set { _isInAnswerMode = value; RaisePropertyChanged(() => IsInAnswerMode);}
+        }
+
+        public bool LastAnswerWasCorrect
+        {
+            get { return _lastAnswerWasCorrect; }
+            private set { _lastAnswerWasCorrect = value; RaisePropertyChanged(() => LastAnswerWasCorrect); }
+        }
 
         public string Answer
         {
@@ -28,8 +44,22 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
         private void AnswerCurrentEntry()
         {
-            CurrentEntry = _dictionaryEntries.Count > 0 ? _dictionaryEntries.Dequeue() : null;
-            Answer = string.Empty;
+            if (CurrentEntry == null)
+            {
+                return;
+            }
+
+            if (IsInAnswerMode)
+            {
+                LastAnswerWasCorrect = Answer == CurrentEntry.Pinyin;
+            }
+            else
+            {
+                CurrentEntry = _dictionaryEntries.Count > 0 ? _dictionaryEntries.Dequeue() : null;
+                Answer = string.Empty;
+            }
+            
+            IsInAnswerMode = !IsInAnswerMode;
         }
 
         public DictionaryEntry CurrentEntry
