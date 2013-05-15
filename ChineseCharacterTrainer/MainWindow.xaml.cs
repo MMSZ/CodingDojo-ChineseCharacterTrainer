@@ -11,8 +11,7 @@ namespace ChineseCharacterTrainer
         {
             InitializeComponent();
 
-            var questionVM = new QuestionVM();
-            DataContext = new MainWindowVM(questionVM);
+            DataContext = ServiceLocatorSingleton.Instance.Get<IMainWindowVM>();
         }
     }
 }

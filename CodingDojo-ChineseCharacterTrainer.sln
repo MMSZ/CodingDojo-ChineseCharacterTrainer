@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChineseCharacterTrainer.Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChineseCharacterTrainer.Implementation", "ChineseCharacterTrainer.Implementation\ChineseCharacterTrainer.Implementation.csproj", "{703AA16A-767C-4726-9253-F2417796B892}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChineseCharacterTrainer.IntegrationTest", "ChineseCharacterTrainer.IntegrationTest\ChineseCharacterTrainer.IntegrationTest.csproj", "{52B4ACFC-D5F7-43EE-A31B-EB5358D94660}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{703AA16A-767C-4726-9253-F2417796B892}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{703AA16A-767C-4726-9253-F2417796B892}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{703AA16A-767C-4726-9253-F2417796B892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52B4ACFC-D5F7-43EE-A31B-EB5358D94660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B4ACFC-D5F7-43EE-A31B-EB5358D94660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B4ACFC-D5F7-43EE-A31B-EB5358D94660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B4ACFC-D5F7-43EE-A31B-EB5358D94660}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

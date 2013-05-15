@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq.Expressions;
+using NUnit.Framework;
 using System.Windows.Data;
 
 namespace ChineseCharacterTrainer.UnitTest.Converters
@@ -74,6 +76,22 @@ namespace ChineseCharacterTrainer.UnitTest.Converters
             var actual = _objectUnderTest.Convert(value, null, converterParameter, null);
 
             Assert.IsTrue(ValuesAreEqual(ExpectedNegativeValue, (TResult)actual));
+        }
+
+        [Test]
+        public void ShouldReturnNegativeForOtherTypesWithTrueParameter()
+        {
+            var actual = _objectUnderTest.Convert(0, null, true, null);
+
+            Assert.IsTrue(ValuesAreEqual(ExpectedNegativeValue, (TResult)actual));
+        }
+
+        [Test]
+        public void ShouldReturnPositiveForOtherTypesWithFalseParameter()
+        {
+            var actual = _objectUnderTest.Convert(0, null, false, null);
+
+            Assert.IsTrue(ValuesAreEqual(ExpectedPositiveValue, (TResult)actual));
         }
 
         [Test]

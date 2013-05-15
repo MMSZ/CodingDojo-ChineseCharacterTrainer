@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainWindowVMTest.cs" />
     <Compile Include="ViewModels\QuestionVMTest.cs" />
+    <Compile Include="ViewModels\SummaryVMTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChineseCharacterTrainer.Implementation\ChineseCharacterTrainer.Implementation.csproj">

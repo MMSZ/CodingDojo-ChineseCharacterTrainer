@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{703AA16A-767C-4726-9253-F2417796B892}</ProjectGuid>
+    <ProjectGuid>{52B4ACFC-D5F7-43EE-A31B-EB5358D94660}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChineseCharacterTrainer.Implementation</RootNamespace>
-    <AssemblyName>ChineseCharacterTrainer.Implementation</AssemblyName>
+    <RootNamespace>ChineseCharacterTrainer.IntegrationTest</RootNamespace>
+    <AssemblyName>ChineseCharacterTrainer.IntegrationTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\Libraries\EntityFramework.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Libraries\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\Libraries\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,29 +40,18 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\BooleanConverter.cs" />
-    <Compile Include="Converters\BooleanToBrushConverter.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Model\DictionaryEntry.cs" />
-    <Compile Include="Model\QuestionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\DateTimeWrapper.cs" />
-    <Compile Include="Utilities\IServiceLocator.cs" />
-    <Compile Include="Utilities\ServiceLocator.cs" />
-    <Compile Include="ViewModels\IMainWindowVM.cs" />
-    <Compile Include="ViewModels\IQuestionVM.cs" />
-    <Compile Include="ViewModels\ISummaryVM.cs" />
-    <Compile Include="ViewModels\MainWindowVM.cs" />
-    <Compile Include="ViewModels\QuestionsFinishedEventArgs.cs" />
-    <Compile Include="ViewModels\QuestionVM.cs" />
-    <Compile Include="ViewModels\SummaryVM.cs" />
+    <Compile Include="ServiceLocatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChineseCharacterTrainer.Implementation\ChineseCharacterTrainer.Implementation.csproj">
+      <Project>{703AA16A-767C-4726-9253-F2417796B892}</Project>
+      <Name>ChineseCharacterTrainer.Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChineseCharacterTrainer.Library\ChineseCharacterTrainer.Library.csproj">
-      <Project>{dd65bab5-f889-4ead-9eec-0e360fad9e18}</Project>
+      <Project>{DD65BAB5-F889-4EAD-9EEC-0E360FAD9E18}</Project>
       <Name>ChineseCharacterTrainer.Library</Name>
     </ProjectReference>
   </ItemGroup>

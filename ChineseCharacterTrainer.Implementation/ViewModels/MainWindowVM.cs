@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using ChineseCharacterTrainer.Implementation.Model;
+using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Library;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
 {
-    public class MainWindowVM : ViewModel
+    public class MainWindowVM : ViewModel, IMainWindowVM
     {
-        private readonly IQuestionVM _questionVM;
+        private readonly IServiceLocator _serviceLocator;
         private IViewModel _content;
 
-        public MainWindowVM(IQuestionVM questionVM)
+        public MainWindowVM(IServiceLocator serviceLocator)
         {
-            _questionVM = questionVM;
+            _serviceLocator = serviceLocator;
 
             var dictionaryEntries = new List<DictionaryEntry>
                 {
@@ -20,9 +21,19 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
                     new DictionaryEntry("车", "che1")
                 };
 
-            _questionVM.Initialize(dictionaryEntries);
+            var questionVM = _serviceLocator.Get<IQuestionVM>();
+            questionVM.Initialize(dictionaryEntries);
+            questionVM.QuestionsFinished += QuestionVMQuestionsFinished;
 
-            Content = _questionVM;
+            Content = questionVM;
+        }
+
+        private void QuestionVMQuestionsFinished(object sender, QuestionsFinishedEventArgs e)
+        {
+            (sender as IQuestionVM).QuestionsFinished -= QuestionVMQuestionsFinished;
+            var summaryVM = _serviceLocator.Get<ISummaryVM>();
+            summaryVM.Initialize(e.QuestionResult);
+            Content = summaryVM;
         }
 
         public IViewModel Content

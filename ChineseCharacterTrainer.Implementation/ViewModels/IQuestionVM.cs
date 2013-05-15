@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Library;
@@ -13,5 +14,6 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         bool LastAnswerWasCorrect { get; }
         string Answer { get; }
         void Initialize(List<DictionaryEntry> dictionaryEntries);
+        event EventHandler<QuestionsFinishedEventArgs> QuestionsFinished;
     }
 }

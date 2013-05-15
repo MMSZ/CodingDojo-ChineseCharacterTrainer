@@ -6,4 +6,9 @@
     <DataTemplate DataType="{x:Type viewModels:QuestionVM}">
         <views:QuestionView/>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:SummaryVM}">
+        <views:SummaryView/>
+    </DataTemplate>
+
 </ResourceDictionary>

@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChineseCharacterTrainer.Implementation.Model;
+using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Implementation.ViewModels;
+using Moq;
 using NUnit.Framework;
 
 namespace ChineseCharacterTrainer.UnitTest.ViewModels
@@ -8,6 +11,11 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
     public class QuestionVMTest
     {
         private QuestionVM _objectUnderTest;
+
+        private Mock<IDateTime> _dateTimeMock;
+
+        private readonly DateTime _startTime = new DateTime(2010, 1, 1);
+        private readonly DateTime _endTime = new DateTime(2010, 1, 2);
 
         private readonly List<DictionaryEntry> _dictionaryEntries = new List<DictionaryEntry>
             {
@@ -18,7 +26,11 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [SetUp]
         public void Initialize()
         {
-            _objectUnderTest = new QuestionVM();
+            _dateTimeMock = new Mock<IDateTime>();
+            _dateTimeMock.Setup(p => p.Now).Returns(_startTime);
+
+            _objectUnderTest = new QuestionVM(_dateTimeMock.Object);
+             
             _objectUnderTest.Initialize(_dictionaryEntries);
         }
 
@@ -26,6 +38,12 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         public void ShouldSetCurrentDictionaryEntryToFirstItemWhenInitializing()
         {
             Assert.AreEqual(_dictionaryEntries[0], _objectUnderTest.CurrentEntry);
+        }
+
+        [Test]
+        public void ShouldGetCurrentTimeWhenInitializing()
+        {
+            _dateTimeMock.Verify(p=>p.Now, Times.Once());
         }
 
         [Test]
@@ -118,10 +136,72 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldNotFailWhenAnsweringAfterDictionaryIsEmpty()
         {
+            AnswerAllQuestions();
+
+            _objectUnderTest.AnswerCommand.Execute(null);
+            _objectUnderTest.AnswerCommand.Execute(null);
+        }
+
+        [Test]
+        public void ShouldRaiseEventWhenNoMoreCharactersAreLeft()
+        {
+            QuestionsFinishedEventArgs eventArgs = null;
+            _objectUnderTest.QuestionsFinished += (sender, args) => { eventArgs = args; };
+
+            AnswerAllQuestions();
+
+            Assert.IsNotNull(eventArgs);
+        }
+
+        [Test]
+        public void ShouldRaiseEventWithNumberOfCorrectQuestions()
+        {
+            QuestionsFinishedEventArgs eventArgs = null;
+            _objectUnderTest.QuestionsFinished += (sender, args) => { eventArgs = args; };
+
+            AnswerAllQuestionsCorrect();
+
+            Assert.AreEqual(2, eventArgs.QuestionResult.NumberOfCorrectAnswers);
+        }
+
+        [Test]
+        public void ShouldRaiseEventWithNumberOfIncorrectQuestions()
+        {
+            QuestionsFinishedEventArgs eventArgs = null;
+
+            _objectUnderTest.QuestionsFinished += (sender, args) => { eventArgs = args; };
+
+            AnswerAllQuestions();
+
+            Assert.AreEqual(2, eventArgs.QuestionResult.NumberOfIncorrectAnswers);
+        }
+
+        [Test]
+        public void ShouldRaiseEventWithDuration()
+        {
+            _dateTimeMock.Setup(p => p.Now).Returns(_endTime);
+            QuestionsFinishedEventArgs eventArgs = null;
+            _objectUnderTest.QuestionsFinished += (sender, args) => { eventArgs = args; };
+
+            AnswerAllQuestions();
+
+            Assert.AreEqual(TimeSpan.FromDays(1), eventArgs.QuestionResult.Duration);
+        }
+
+        private void AnswerAllQuestions()
+        {
             _objectUnderTest.AnswerCommand.Execute(null);
             _objectUnderTest.AnswerCommand.Execute(null);
             _objectUnderTest.AnswerCommand.Execute(null);
             _objectUnderTest.AnswerCommand.Execute(null);
+        }
+
+        private void AnswerAllQuestionsCorrect()
+        {
+            _objectUnderTest.Answer = "ni3";
+            _objectUnderTest.AnswerCommand.Execute(null);
+            _objectUnderTest.AnswerCommand.Execute(null);
+            _objectUnderTest.Answer = "che1";
             _objectUnderTest.AnswerCommand.Execute(null);
             _objectUnderTest.AnswerCommand.Execute(null);
         }

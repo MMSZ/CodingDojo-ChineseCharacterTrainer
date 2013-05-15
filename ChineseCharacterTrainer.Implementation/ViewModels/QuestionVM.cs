@@ -1,18 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using ChineseCharacterTrainer.Implementation.Model;
+using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Library;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
 {
     public class QuestionVM : ViewModel, IQuestionVM
     {
+        private readonly IDateTime _dateTime;
         private ICommand _answerCommand;
         private DictionaryEntry _currentEntry;
         private Queue<DictionaryEntry> _dictionaryEntries;
         private string _answer;
         private bool _isInAnswerMode;
         private bool _lastAnswerWasCorrect;
+        private int _numberOfCorrectQuestions;
+        private int _numberOfIncorrectQuestions;
+        private DateTime _startTime;
+
+        public QuestionVM(IDateTime dateTime)
+        {
+            _dateTime = dateTime;
+        }
 
         public void Initialize(List<DictionaryEntry> dictionaryEntries)
         {
@@ -20,9 +31,23 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             CurrentEntry = _dictionaryEntries.Dequeue();
             Answer = string.Empty;
             IsInAnswerMode = true;
+            _numberOfCorrectQuestions = 0;
+            _numberOfIncorrectQuestions = 0;
+            _startTime = _dateTime.Now;
         }
 
-        public ICommand AnswerCommand { get { return _answerCommand ?? (_answerCommand = new RelayCommand(p => AnswerCurrentEntry())); }}
+        public event EventHandler<QuestionsFinishedEventArgs> QuestionsFinished;
+
+        private void RaiseQuestionsFinished(QuestionsFinishedEventArgs e)
+        {
+            var handler = QuestionsFinished;
+            if (handler != null) handler(this, e);
+        }
+
+        public ICommand AnswerCommand
+        {
+            get { return _answerCommand ?? (_answerCommand = new RelayCommand(p => AnswerCurrentEntry())); }
+        }
 
         public bool IsInAnswerMode
         {
@@ -42,6 +67,12 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             set { _answer = value; RaisePropertyChanged(() => Answer); }
         }
 
+        public DictionaryEntry CurrentEntry
+        {
+            get { return _currentEntry; }
+            private set { _currentEntry = value; RaisePropertyChanged(() => CurrentEntry);}
+        }
+
         private void AnswerCurrentEntry()
         {
             if (CurrentEntry == null)
@@ -52,20 +83,27 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             if (IsInAnswerMode)
             {
                 LastAnswerWasCorrect = Answer == CurrentEntry.Pinyin;
+                
+                if (LastAnswerWasCorrect) _numberOfCorrectQuestions++;
+                else _numberOfIncorrectQuestions++;
             }
             else
             {
-                CurrentEntry = _dictionaryEntries.Count > 0 ? _dictionaryEntries.Dequeue() : null;
+                if (_dictionaryEntries.Count == 0)
+                {
+                    CurrentEntry = null;
+                    RaiseQuestionsFinished(
+                        new QuestionsFinishedEventArgs(
+                            new QuestionResult(
+                                _numberOfCorrectQuestions, _numberOfIncorrectQuestions, _dateTime.Now - _startTime)));
+                    return;
+                }
+
+                CurrentEntry = _dictionaryEntries.Dequeue();
                 Answer = string.Empty;
             }
             
             IsInAnswerMode = !IsInAnswerMode;
-        }
-
-        public DictionaryEntry CurrentEntry
-        {
-            get { return _currentEntry; }
-            private set { _currentEntry = value; RaisePropertyChanged(() => CurrentEntry);}
         }
     }
 }
