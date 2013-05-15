@@ -10,6 +10,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private ICommand _answerCommand;
         private DictionaryEntry _currentEntry;
         private Queue<DictionaryEntry> _dictionaryEntries;
+        private string _answer;
 
         public void Initialize(List<DictionaryEntry> dictionaryEntries)
         {
@@ -19,9 +20,16 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
         public ICommand AnswerCommand { get { return _answerCommand ?? (_answerCommand = new RelayCommand(p => AnswerCurrentEntry())); }}
 
+        public string Answer
+        {
+            get { return _answer; }
+            set { _answer = value; RaisePropertyChanged(() => Answer); }
+        }
+
         private void AnswerCurrentEntry()
         {
             CurrentEntry = _dictionaryEntries.Count > 0 ? _dictionaryEntries.Dequeue() : null;
+            Answer = string.Empty;
         }
 
         public DictionaryEntry CurrentEntry
