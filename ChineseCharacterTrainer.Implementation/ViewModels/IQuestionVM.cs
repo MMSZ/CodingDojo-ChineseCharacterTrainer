@@ -9,6 +9,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
     {
         ICommand AnswerCommand { get; } 
         DictionaryEntry CurrentEntry { get; }
+        string Answer { get; }
         void Initialize(List<DictionaryEntry> dictionaryEntries);
     }
 }

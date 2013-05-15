@@ -46,5 +46,15 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
             Assert.AreEqual(null, _objectUnderTest.CurrentEntry);
         }
+
+        [Test]
+        public void ShouldResetAnswerAfterAnswering()
+        {
+            _objectUnderTest.Answer = "SomeAnswer";
+
+            _objectUnderTest.AnswerCommand.Execute(null);
+
+            Assert.AreEqual(string.Empty, _objectUnderTest.Answer);
+        }
     }
 }
