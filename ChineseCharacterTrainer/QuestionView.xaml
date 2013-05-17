@@ -11,10 +11,12 @@
     <UserControl.Resources>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:BooleanToBrushConverter x:Key="BooleanToColorConverter" />
+        <converters:IntToAnswerConverter x:Key="IntToAnswerConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -24,7 +26,18 @@
                    Foreground="{Binding LastAnswerWasCorrect, Converter={StaticResource BooleanToColorConverter}}"
                    Visibility="{Binding IsInAnswerMode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=false}"/>
         
-        <TextBox x:Name="AnswerTextBox" Grid.Row="1" HorizontalContentAlignment="Center" FontSize="54" 
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding NumberOfCorrectAnswers, Converter={StaticResource IntToAnswerConverter}, ConverterParameter=true}" 
+                       Padding="5,0,0,0" Background="Chartreuse" FontSize="24" HorizontalAlignment="Stretch"/>
+            <TextBlock Grid.Column="1" Text="{Binding NumberOfIncorrectAnswers, Converter={StaticResource IntToAnswerConverter}, ConverterParameter=false}" 
+                       Padding="5,0,0,0" Background="OrangeRed" FontSize="24" HorizontalAlignment="Stretch"/>
+        </Grid>
+        
+        <TextBox x:Name="AnswerTextBox" Grid.Row="2" HorizontalContentAlignment="Center" FontSize="54" 
                  KeyUp="OnKeyUp" Text="{Binding Answer, UpdateSourceTrigger=PropertyChanged}"/>
         
     </Grid>

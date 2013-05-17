@@ -188,6 +188,26 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             Assert.AreEqual(TimeSpan.FromDays(1), eventArgs.QuestionResult.Duration);
         }
 
+        [Test]
+        public void ShouldIncreaseNumberOfCorrectAnswersAfterCorrectAnswer()
+        {
+            _objectUnderTest.Answer = "ni3";
+
+            _objectUnderTest.AnswerCommand.Execute(null);
+
+            Assert.AreEqual(1, _objectUnderTest.NumberOfCorrectAnswers);
+        }
+
+        [Test]
+        public void ShouldIncreaseNumberOfIncorrectAnswersAfterIncorrectAnswer()
+        {
+            _objectUnderTest.Answer = "wrong answer";
+
+            _objectUnderTest.AnswerCommand.Execute(null);
+
+            Assert.AreEqual(1, _objectUnderTest.NumberOfIncorrectAnswers);
+        }
+
         private void AnswerAllQuestions()
         {
             _objectUnderTest.AnswerCommand.Execute(null);

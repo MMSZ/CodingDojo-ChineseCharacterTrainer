@@ -13,6 +13,8 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         bool IsInAnswerMode { get; }
         bool LastAnswerWasCorrect { get; }
         string Answer { get; }
+        int NumberOfCorrectAnswers { get; }
+        int NumberOfIncorrectAnswers { get; }
         void Initialize(List<DictionaryEntry> dictionaryEntries);
         event EventHandler<QuestionsFinishedEventArgs> QuestionsFinished;
     }

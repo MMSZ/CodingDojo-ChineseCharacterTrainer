@@ -16,8 +16,8 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private string _answer;
         private bool _isInAnswerMode;
         private bool _lastAnswerWasCorrect;
-        private int _numberOfCorrectQuestions;
-        private int _numberOfIncorrectQuestions;
+        private int _numberOfCorrectAnswers;
+        private int _numberOfIncorrectAnswers;
         private DateTime _startTime;
 
         public QuestionVM(IDateTime dateTime)
@@ -31,8 +31,8 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             CurrentEntry = _dictionaryEntries.Dequeue();
             Answer = string.Empty;
             IsInAnswerMode = true;
-            _numberOfCorrectQuestions = 0;
-            _numberOfIncorrectQuestions = 0;
+            NumberOfCorrectAnswers = 0;
+            NumberOfIncorrectAnswers = 0;
             _startTime = _dateTime.Now;
         }
 
@@ -67,6 +67,18 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             set { _answer = value; RaisePropertyChanged(() => Answer); }
         }
 
+        public int NumberOfCorrectAnswers
+        {
+            get { return _numberOfCorrectAnswers; }
+            private set { _numberOfCorrectAnswers = value; RaisePropertyChanged(() => NumberOfCorrectAnswers); }
+        }
+
+        public int NumberOfIncorrectAnswers
+        {
+            get { return _numberOfIncorrectAnswers; }
+            private set { _numberOfIncorrectAnswers = value; RaisePropertyChanged(() => NumberOfIncorrectAnswers); }
+        }
+
         public DictionaryEntry CurrentEntry
         {
             get { return _currentEntry; }
@@ -84,8 +96,8 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             {
                 LastAnswerWasCorrect = Answer == CurrentEntry.Pinyin;
                 
-                if (LastAnswerWasCorrect) _numberOfCorrectQuestions++;
-                else _numberOfIncorrectQuestions++;
+                if (LastAnswerWasCorrect) NumberOfCorrectAnswers++;
+                else NumberOfIncorrectAnswers++;
             }
             else
             {
@@ -95,7 +107,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
                     RaiseQuestionsFinished(
                         new QuestionsFinishedEventArgs(
                             new QuestionResult(
-                                _numberOfCorrectQuestions, _numberOfIncorrectQuestions, _dateTime.Now - _startTime)));
+                                NumberOfCorrectAnswers, _numberOfIncorrectAnswers, _dateTime.Now - _startTime)));
                     return;
                 }
 
