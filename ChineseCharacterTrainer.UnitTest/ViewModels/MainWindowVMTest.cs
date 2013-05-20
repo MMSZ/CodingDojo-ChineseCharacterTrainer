@@ -1,48 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.Utilities;
+﻿using ChineseCharacterTrainer.Implementation.Model;
+using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.ViewModels;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace ChineseCharacterTrainer.UnitTest.ViewModels
 {
     public class MainWindowVMTest
     {
         private IMainWindowVM _objectUnderTest;
-        private Mock<IServiceLocator> _serviceLocatorMock;
         private Mock<IQuestionVM> _questionVMMock;
         private Mock<ISummaryVM> _summaryVMMock;
+        private Mock<IMenuVM> _menuVMMock;
+        private Mock<ITextFileReader> _textFileReaderMock;
+        private Mock<IWordlistParser> _wordlistParserMock;
+
 
         [SetUp]
         public void Initialize()
         {
-            _serviceLocatorMock = new Mock<IServiceLocator>();
+            _menuVMMock = new Mock<IMenuVM>();
             _questionVMMock = new Mock<IQuestionVM>();
             _summaryVMMock = new Mock<ISummaryVM>();
+            _textFileReaderMock = new Mock<ITextFileReader>();
+            _wordlistParserMock = new Mock<IWordlistParser>();
 
-            _serviceLocatorMock.Setup(p => p.Get<IQuestionVM>()).Returns(_questionVMMock.Object);
-            
-            _objectUnderTest = new MainWindowVM(_serviceLocatorMock.Object);
+            _objectUnderTest = new MainWindowVM(_menuVMMock.Object, _questionVMMock.Object, _summaryVMMock.Object,
+                                                _textFileReaderMock.Object, _wordlistParserMock.Object);
         }
 
         [Test]
-        public void ShouldSetContentToQuestionViewModelInConstructor()
+        public void ShouldSetContentToMenuViewModelInConstructor()
         {
-            Assert.AreEqual(_questionVMMock.Object, _objectUnderTest.Content);
-        }
-
-        [Test]
-        public void ShouldInitializeQuestionViewModelInConstructor()
-        {
-            _questionVMMock.Verify(p=>p.Initialize(It.IsAny<List<DictionaryEntry>>()));
+            Assert.AreEqual(_menuVMMock.Object, _objectUnderTest.Content);
         }
 
         [Test]
         public void ShouldSetContentToSummaryViewModelWhenQuestionsAreFinished()
         {
-            _serviceLocatorMock.Setup(p => p.Get<ISummaryVM>()).Returns(_summaryVMMock.Object);
             _questionVMMock.Raise(p => p.QuestionsFinished += null,
                                   new QuestionsFinishedEventArgs(new QuestionResult(1, 2, TimeSpan.FromSeconds(1))));
 
@@ -52,12 +49,37 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldInitializeSummaryViewModelWhenQuestionsAreFinished()
         {
-            _serviceLocatorMock.Setup(p => p.Get<ISummaryVM>()).Returns(_summaryVMMock.Object);
             var questionResult = new QuestionResult(1, 2, TimeSpan.FromSeconds(1));
             _questionVMMock.Raise(p => p.QuestionsFinished += null,
                                   new QuestionsFinishedEventArgs(questionResult));
 
             _summaryVMMock.Verify(p => p.Initialize(questionResult), Times.Once());
+        }
+
+        [Test]
+        public void ShouldReadFileWhenFileImportIsRequested()
+        {
+            _menuVMMock.Raise(p => p.FileImportRequested += null, new FileImportRequestedEventArgs("somefile.csv"));
+
+            _textFileReaderMock.Verify(p => p.Read("somefile.csv"), Times.Once());
+        }
+
+        [Test]
+        public void ShouldParseLinesWhenFileImportIsRequested()
+        {
+            var lines = new List<string>();
+            _textFileReaderMock.Setup(p => p.Read("somefile.csv")).Returns(lines);
+            _menuVMMock.Raise(p => p.FileImportRequested += null, new FileImportRequestedEventArgs("somefile.csv"));
+
+            _wordlistParserMock.Verify(p => p.Import(lines), Times.Once());
+        }
+
+        [Test]
+        public void ShouldSetContentToQuestionVMWhenFileImportIsRequested()
+        {
+            _menuVMMock.Raise(p => p.FileImportRequested += null, new FileImportRequestedEventArgs("somefile.csv"));
+
+            Assert.AreEqual(_objectUnderTest.Content, _questionVMMock.Object);
         }
     }
 }

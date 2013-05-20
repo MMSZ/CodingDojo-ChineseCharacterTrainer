@@ -19,8 +19,8 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
         private readonly List<DictionaryEntry> _dictionaryEntries = new List<DictionaryEntry>
             {
-                new DictionaryEntry("你", "ni3"),
-                new DictionaryEntry("车", "che1")
+                new DictionaryEntry("你", "ni3", new List<string>{"you"}),
+                new DictionaryEntry("车", "che1", new List<string>{"vehicle;car"})
             };
 
         [SetUp]
@@ -30,7 +30,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _dateTimeMock.Setup(p => p.Now).Returns(_startTime);
 
             _objectUnderTest = new QuestionVM(_dateTimeMock.Object);
-             
+
             _objectUnderTest.Initialize(_dictionaryEntries);
         }
 
@@ -43,7 +43,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldGetCurrentTimeWhenInitializing()
         {
-            _dateTimeMock.Verify(p=>p.Now, Times.Once());
+            _dateTimeMock.Verify(p => p.Now, Times.Once());
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
             Assert.AreEqual(_dictionaryEntries[1], _objectUnderTest.CurrentEntry);
         }
-        
+
         [Test]
         public void ShouldSetCurrentEntryToNullWhenAllEntriesAreAnswered()
         {
@@ -88,7 +88,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
             Assert.AreEqual("SomeAnswer", _objectUnderTest.Answer);
         }
-        
+
         [Test]
         public void ShouldInitializeAnswerToEmptyString()
         {

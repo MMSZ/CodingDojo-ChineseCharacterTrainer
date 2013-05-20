@@ -1,39 +1,48 @@
-﻿using System.Collections.Generic;
-using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.Utilities;
+﻿using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Library;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
 {
     public class MainWindowVM : ViewModel, IMainWindowVM
     {
-        private readonly IServiceLocator _serviceLocator;
+        private readonly IMenuVM _menuVM;
         private IViewModel _content;
+        private readonly IQuestionVM _questionVM;
+        private readonly ISummaryVM _summaryVM;
+        private readonly ITextFileReader _textFileReader;
+        private readonly IWordlistParser _wordlistParser;
 
-        public MainWindowVM(IServiceLocator serviceLocator)
+        public MainWindowVM(
+            IMenuVM menuVM,
+            IQuestionVM questionVM,
+            ISummaryVM summaryVM,
+            ITextFileReader textFileReader,
+            IWordlistParser wordlistParser)
         {
-            _serviceLocator = serviceLocator;
+            _questionVM = questionVM;
+            _summaryVM = summaryVM;
+            _textFileReader = textFileReader;
+            _wordlistParser = wordlistParser;
+            _menuVM = menuVM;
 
-            var dictionaryEntries = new List<DictionaryEntry>
-                {
-                    new DictionaryEntry("你", "ni3"),
-                    new DictionaryEntry("不", "bu4"),
-                    new DictionaryEntry("车", "che1")
-                };
+            _menuVM.FileImportRequested += MenuVMFileImportRequested;
+            _questionVM.QuestionsFinished += QuestionVMQuestionsFinished;
 
-            var questionVM = _serviceLocator.Get<IQuestionVM>();
-            questionVM.Initialize(dictionaryEntries);
-            questionVM.QuestionsFinished += QuestionVMQuestionsFinished;
+            Content = _menuVM;
+        }
 
-            Content = questionVM;
+        private void MenuVMFileImportRequested(object sender, FileImportRequestedEventArgs e)
+        {
+            var lines = _textFileReader.Read(e.FileName);
+            var entries = _wordlistParser.Import(lines);
+            _questionVM.Initialize(entries);
+            Content = _questionVM;
         }
 
         private void QuestionVMQuestionsFinished(object sender, QuestionsFinishedEventArgs e)
         {
-            (sender as IQuestionVM).QuestionsFinished -= QuestionVMQuestionsFinished;
-            var summaryVM = _serviceLocator.Get<ISummaryVM>();
-            summaryVM.Initialize(e.QuestionResult);
-            Content = summaryVM;
+            _summaryVM.Initialize(e.QuestionResult);
+            Content = _summaryVM;
         }
 
         public IViewModel Content

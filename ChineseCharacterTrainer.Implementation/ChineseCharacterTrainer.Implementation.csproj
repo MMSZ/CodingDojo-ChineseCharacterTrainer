@@ -55,13 +55,23 @@
     <Compile Include="Model\DictionaryEntry.cs" />
     <Compile Include="Model\QuestionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IOpenFileDialog.cs" />
+    <Compile Include="Services\ITextFileReader.cs" />
+    <Compile Include="Services\IWordlistParser.cs" />
+    <Compile Include="Services\OpenFileDialog.cs" />
+    <Compile Include="Services\TextFileReader.cs" />
+    <Compile Include="Services\WordlistParser.cs" />
     <Compile Include="Utilities\DateTimeWrapper.cs" />
+    <Compile Include="Utilities\IDateTime.cs" />
     <Compile Include="Utilities\IServiceLocator.cs" />
     <Compile Include="Utilities\ServiceLocator.cs" />
+    <Compile Include="ViewModels\FileImportRequestedEventArgs.cs" />
     <Compile Include="ViewModels\IMainWindowVM.cs" />
+    <Compile Include="ViewModels\IMenuVM.cs" />
     <Compile Include="ViewModels\IQuestionVM.cs" />
     <Compile Include="ViewModels\ISummaryVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="ViewModels\MenuVM.cs" />
     <Compile Include="ViewModels\QuestionsFinishedEventArgs.cs" />
     <Compile Include="ViewModels\QuestionVM.cs" />
     <Compile Include="ViewModels\SummaryVM.cs" />
@@ -72,6 +82,7 @@
       <Name>ChineseCharacterTrainer.Library</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

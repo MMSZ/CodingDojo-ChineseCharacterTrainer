@@ -11,4 +11,8 @@
         <views:SummaryView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type viewModels:MenuVM}">
+        <views:MenuView/>
+    </DataTemplate>
+    
 </ResourceDictionary>

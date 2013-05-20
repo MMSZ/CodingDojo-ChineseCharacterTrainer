@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChineseCharacterTrainer.Imp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChineseCharacterTrainer.IntegrationTest", "ChineseCharacterTrainer.IntegrationTest\ChineseCharacterTrainer.IntegrationTest.csproj", "{52B4ACFC-D5F7-43EE-A31B-EB5358D94660}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dictionaries", "Dictionaries", "{25E5F6D5-83BE-43F5-A5F9-5B2CE8F48D09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

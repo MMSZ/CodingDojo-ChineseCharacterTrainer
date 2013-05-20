@@ -17,10 +17,14 @@ namespace ChineseCharacterTrainer.Implementation.Converters
 
                 if (boolParameter)
                 {
-                    return intValue == 1 ? string.Format("1 correct answer") : string.Format("{0} correct answers", value);
+                    return intValue == 1
+                               ? string.Format("1 correct answer")
+                               : string.Format("{0} correct answers", value);
                 }
-                
-                return intValue == 1 ? string.Format("1 incorrect answer") : string.Format("{0} incorrect answers", value);
+
+                return intValue == 1
+                           ? string.Format("1 incorrect answer")
+                           : string.Format("{0} incorrect answers", value);
             }
 
             return null;
