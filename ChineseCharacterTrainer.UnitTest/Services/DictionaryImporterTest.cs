@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.Services;
 using Moq;
@@ -26,35 +27,35 @@ namespace ChineseCharacterTrainer.UnitTest.Services
 
 
         [Test]
-        public void ShouldReadFileWhenImportingFile()
+        public async void ShouldReadFileWhenImportingFile()
         {
-            ImportDictionary();
+            await ImportDictionary();
 
             _textFileReaderMock.Verify(p => p.Read("somefile.csv"), Times.Once());
         }
 
         [Test]
-        public void ShouldParseLinesWhenImportingFile()
+        public async void ShouldParseLinesWhenImportingFile()
         {
             var lines = new List<string>();
             _textFileReaderMock.Setup(p => p.Read("somefile.csv")).Returns(lines);
 
-            ImportDictionary();
+            await ImportDictionary();
 
             _wordlistParserMock.Verify(p => p.Import(lines), Times.Once());
         }
 
         [Test]
-        public void ShouldAddDictionaryToRepositoryWhenImportingFile()
+        public async void ShouldAddDictionaryToRepositoryWhenImportingFile()
         {
-            ImportDictionary();
+            await ImportDictionary();
 
             _dictionaryRepositoryMock.Verify(p => p.Add(It.IsAny<Dictionary>()));
         }
 
-        private void ImportDictionary()
+        private Task<Dictionary> ImportDictionary()
         {
-            _objectUnderTest.Import("somename", "somefile.csv");
+            return _objectUnderTest.ImportAsync("somename", "somefile.csv");
         }
     }
 }

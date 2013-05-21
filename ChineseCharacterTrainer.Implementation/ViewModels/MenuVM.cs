@@ -12,7 +12,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private readonly IOpenFileDialog _openFileDialog;
         private readonly IDictionaryImporter _dictionaryImporter;
         private readonly IDictionaryRepository _dictionaryRepository;
-        private ICommand _importCommand;
+        private IAsyncCommand _importCommand;
         private Dictionary _selectedDictionary;
         private ICommand _openCommand;
         private string _name;
@@ -40,16 +40,16 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
         public ObservableCollection<Dictionary> AvailableDictionaries { get; private set; }
 
-        public ICommand ImportCommand
+        public IAsyncCommand ImportCommand
         {
             get
             {
                 return _importCommand ??
                        (_importCommand =
                         new RelayCommand(
-                            p =>
+                            async p =>
                                 {
-                                    var dictionary = _dictionaryImporter.Import(Name, FileName);
+                                    var dictionary = await _dictionaryImporter.ImportAsync(Name, FileName);
                                     AvailableDictionaries.Add(dictionary);
                                 },
                             p => !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(FileName)));

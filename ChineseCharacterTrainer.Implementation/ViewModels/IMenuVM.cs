@@ -10,7 +10,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
     {
         Dictionary SelectedDictionary { get; set; }
         ObservableCollection<Dictionary> AvailableDictionaries { get; } 
-        ICommand ImportCommand { get; }
+        IAsyncCommand ImportCommand { get; }
         ICommand OpenCommand { get; }
         ICommand BrowseCommand { get; }
         event Action<Dictionary> OpenDictionaryRequested;

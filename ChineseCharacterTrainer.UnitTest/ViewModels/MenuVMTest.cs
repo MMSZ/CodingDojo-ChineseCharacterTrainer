@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.ViewModels;
+using ChineseCharacterTrainer.Library;
 using Moq;
 using NUnit.Framework;
 
@@ -47,7 +51,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
             _objectUnderTest.ImportCommand.Execute(null);
 
-            _dictionaryImporterMock.Verify(p => p.Import(_objectUnderTest.Name, _objectUnderTest.FileName));
+            _dictionaryImporterMock.Verify(p => p.ImportAsync(_objectUnderTest.Name, _objectUnderTest.FileName));
         }
 
         [Test]
@@ -82,13 +86,16 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         }
 
         [Test]
-        public void ShouldAddDictionaryToAvailableDictionariesWhenImportingFile()
+        public async void ShouldAddDictionaryToAvailableDictionariesWhenImportingFile()
         {
             _objectUnderTest.Name = "MyDict";
             _objectUnderTest.FileName = "somefile.csv";
-            _openFileDialogMock.Setup(p => p.ShowDialog()).Returns(true);
+            var task = new Task<Dictionary>(() => new Dictionary("MyDict", null));
+            _dictionaryImporterMock.Setup(p => p.ImportAsync(_objectUnderTest.Name, _objectUnderTest.FileName))
+                                   .Returns(task);
+            task.Start();
 
-            _objectUnderTest.ImportCommand.Execute(null);
+            await ((RelayCommand) _objectUnderTest.ImportCommand).ExecuteAsync(null);
 
             Assert.AreEqual(1, _objectUnderTest.AvailableDictionaries.Count);
         }
@@ -96,11 +103,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldInitializeAvailableDictionariesFromRepository()
         {
-            var dictionaries = new List<Dictionary>
-                {
-                    new Dictionary("1", null),
-                    new Dictionary("2", null)
-                };
+            var dictionaries = new List<Dictionary> {new Dictionary("1", null), new Dictionary("2", null)};
             _dictionaryRepositoryMock.Setup(p => p.GetAll()).Returns(dictionaries);
 
             _objectUnderTest = CreateObjectUnderTest();

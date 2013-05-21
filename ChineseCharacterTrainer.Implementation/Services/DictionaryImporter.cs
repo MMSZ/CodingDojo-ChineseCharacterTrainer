@@ -1,4 +1,5 @@
-﻿using ChineseCharacterTrainer.Implementation.Model;
+﻿using System.Threading.Tasks;
+using ChineseCharacterTrainer.Implementation.Model;
 
 namespace ChineseCharacterTrainer.Implementation.Services
 {
@@ -18,13 +19,18 @@ namespace ChineseCharacterTrainer.Implementation.Services
             _dictionaryRepository = dictionaryRepository;
         }
 
-        public Dictionary Import(string name, string fileName)
+        public async Task<Dictionary> ImportAsync(string name, string fileName)
         {
-            var lines = _textFileReader.Read(fileName);
-            var entries = _wordlistParser.Import(lines);
-            var dictionary = new Dictionary(name, entries);
-            _dictionaryRepository.Add(dictionary);
-            return dictionary;
+            var result = await Task.Run(() =>
+                {
+                    var lines = _textFileReader.Read(fileName);
+                    var entries = _wordlistParser.Import(lines);
+                    var dictionary = new Dictionary(name, entries);
+                    _dictionaryRepository.Add(dictionary);
+                    return dictionary;
+                });
+
+            return result;
         }
     }
 }
