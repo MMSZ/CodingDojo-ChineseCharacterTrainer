@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Windows.Data;
 
 namespace ChineseCharacterTrainer.UnitTest.Converters

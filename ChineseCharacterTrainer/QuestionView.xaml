@@ -12,6 +12,7 @@
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:BooleanToBrushConverter x:Key="BooleanToColorConverter" />
         <converters:IntToAnswerConverter x:Key="IntToAnswerConverter" />
+        <converters:PinyinConverter x:Key="PinyinConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -20,9 +21,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{Binding CurrentEntry.ChineseCharacters}" FontSize="72" HorizontalAlignment="Center"
+        <TextBlock Grid.Row="0" Text="{Binding CurrentEntry.ChineseCharacters}" 
+                   FontSize="72" HorizontalAlignment="Center"
                    Visibility="{Binding IsInAnswerMode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=true}"/>
-        <TextBlock Grid.Row="0" Text="{Binding CurrentEntry.Pinyin}" FontSize="72" HorizontalAlignment="Center"
+        <TextBlock Grid.Row="0" Text="{Binding CurrentEntry.Pinyin, Converter={StaticResource PinyinConverter}}" 
+                   FontSize="72" HorizontalAlignment="Center"
                    Foreground="{Binding LastAnswerWasCorrect, Converter={StaticResource BooleanToColorConverter}}"
                    Visibility="{Binding IsInAnswerMode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=false}"/>
         

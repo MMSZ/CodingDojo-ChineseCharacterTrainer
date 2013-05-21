@@ -17,6 +17,7 @@ namespace ChineseCharacterTrainer.IntegrationTest
         [TestCase(typeof(IWordlistParser), typeof(WordlistParser))]
         [TestCase(typeof(ITextFileReader), typeof(TextFileReader))]
         [TestCase(typeof(IOpenFileDialog), typeof(OpenFileDialog))]
+        [TestCase(typeof(IPinyinBeautifier), typeof(PinyinBeautifier))]
         public void ShouldResolveDependencies(Type service, Type implementation)
         {
             var objectUnderTest = new ServiceLocator();

@@ -22,6 +22,7 @@ namespace ChineseCharacterTrainer.Implementation.Utilities
 
             _standardKernel.Bind<IWordlistParser>().To<WordlistParser>().InSingletonScope();
             _standardKernel.Bind<ITextFileReader>().To<TextFileReader>().InSingletonScope();
+            _standardKernel.Bind<IPinyinBeautifier>().To<PinyinBeautifier>().InSingletonScope();
             
             _standardKernel.Bind<IDateTime>().To<DateTimeWrapper>();
             _standardKernel.Bind<IOpenFileDialog>().To<OpenFileDialog>();
