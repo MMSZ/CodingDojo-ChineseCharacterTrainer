@@ -36,12 +36,12 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             _startTime = _dateTime.Now;
         }
 
-        public event EventHandler<QuestionsFinishedEventArgs> QuestionsFinished;
+        public event Action<QuestionResult> QuestionsFinished;
 
-        private void RaiseQuestionsFinished(QuestionsFinishedEventArgs e)
+        private void RaiseQuestionsFinished(QuestionResult result)
         {
             var handler = QuestionsFinished;
-            if (handler != null) handler(this, e);
+            if (handler != null) handler(result);
         }
 
         public ICommand AnswerCommand
@@ -105,9 +105,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
                 {
                     CurrentEntry = null;
                     RaiseQuestionsFinished(
-                        new QuestionsFinishedEventArgs(
-                            new QuestionResult(
-                                NumberOfCorrectAnswers, _numberOfIncorrectAnswers, _dateTime.Now - _startTime)));
+                        new QuestionResult(NumberOfCorrectAnswers, _numberOfIncorrectAnswers, _dateTime.Now - _startTime));
                     return;
                 }
 

@@ -16,6 +16,6 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         int NumberOfCorrectAnswers { get; }
         int NumberOfIncorrectAnswers { get; }
         void Initialize(List<DictionaryEntry> dictionaryEntries);
-        event EventHandler<QuestionsFinishedEventArgs> QuestionsFinished;
+        event Action<QuestionResult> QuestionsFinished;
     }
 }

@@ -1,42 +1,107 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Library;
 using System.Windows.Input;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
 {
-    public class MenuVM :  ViewModel,IMenuVM
+    public class MenuVM : ViewModel, IMenuVM
     {
         private readonly IOpenFileDialog _openFileDialog;
+        private readonly IDictionaryImporter _dictionaryImporter;
+        private readonly IDictionaryRepository _dictionaryRepository;
+        private ICommand _importCommand;
+        private Dictionary _selectedDictionary;
+        private ICommand _openCommand;
+        private string _name;
+        private string _fileName;
         private ICommand _browseCommand;
 
-        public MenuVM(IOpenFileDialog openFileDialog)
+        public MenuVM(
+            IOpenFileDialog openFileDialog,
+            IDictionaryImporter dictionaryImporter,
+            IDictionaryRepository dictionaryRepository)
         {
             _openFileDialog = openFileDialog;
+            _dictionaryImporter = dictionaryImporter;
+            _dictionaryRepository = dictionaryRepository;
             _openFileDialog.Filter = "Comma separated files (*.csv)|*.csv|All files (*.*)|*.*";
+
+            AvailableDictionaries = new ObservableCollection<Dictionary>(_dictionaryRepository.GetAll());
         }
 
-        public ICommand BrowseCommand { get
+        public Dictionary SelectedDictionary
         {
-            return _browseCommand ??
-                   (_browseCommand =
-                    new RelayCommand(
-                        p =>
+            get { return _selectedDictionary; }
+            set { _selectedDictionary = value; RaisePropertyChanged(() => SelectedDictionary); }
+        }
+
+        public ObservableCollection<Dictionary> AvailableDictionaries { get; private set; }
+
+        public ICommand ImportCommand
+        {
+            get
+            {
+                return _importCommand ??
+                       (_importCommand =
+                        new RelayCommand(
+                            p =>
+                                {
+                                    var dictionary = _dictionaryImporter.Import(Name, FileName);
+                                    AvailableDictionaries.Add(dictionary);
+                                },
+                            p => !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(FileName)));
+            }
+        }
+
+        public ICommand OpenCommand
+        {
+            get
+            {
+                return _openCommand ??
+                       (_openCommand =
+                        new RelayCommand(p => RaiseOpenDictionaryRequested(SelectedDictionary),
+                                         p => SelectedDictionary != null));
+            }
+        }
+
+        public ICommand BrowseCommand
+        {
+            get
+            {
+                return _browseCommand ??
+                       (_browseCommand =
+                        new RelayCommand(p =>
                             {
                                 var result = _openFileDialog.ShowDialog();
                                 if (result == true)
                                 {
-                                    RaiseFileImportRequested(new FileImportRequestedEventArgs(_openFileDialog.FileName));
+                                    FileName = _openFileDialog.FileName;
                                 }
                             }));
-        }}
+            }
+        }
 
-        public event EventHandler<FileImportRequestedEventArgs> FileImportRequested;
+        public event Action<Dictionary> OpenDictionaryRequested;
 
-        public void RaiseFileImportRequested(FileImportRequestedEventArgs e)
+        public string Name
         {
-            var handler = FileImportRequested;
-            if (handler != null) handler(this, e);
+            get { return _name; }
+            set { _name = value; RaisePropertyChanged(() => Name); }
+        }
+
+        public string FileName
+        {
+            get { return _fileName; }
+            set { _fileName = value; RaisePropertyChanged(() => FileName); }
+        }
+
+        protected virtual void RaiseOpenDictionaryRequested(Dictionary dictionary)
+        {
+            var handler = OpenDictionaryRequested;
+            if (handler != null) handler(dictionary);
         }
     }
 }

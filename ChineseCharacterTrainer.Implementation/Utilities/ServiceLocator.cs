@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using ChineseCharacterTrainer.Implementation.Persistence;
 using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.ViewModels;
 using Ninject;
@@ -23,9 +24,13 @@ namespace ChineseCharacterTrainer.Implementation.Utilities
             _standardKernel.Bind<IWordlistParser>().To<WordlistParser>().InSingletonScope();
             _standardKernel.Bind<ITextFileReader>().To<TextFileReader>().InSingletonScope();
             _standardKernel.Bind<IPinyinBeautifier>().To<PinyinBeautifier>().InSingletonScope();
+            _standardKernel.Bind<IDictionaryRepository>().To<DictionaryRepository>().InSingletonScope();
+            _standardKernel.Bind<IDictionaryImporter>().To<DictionaryImporter>().InSingletonScope();
             
             _standardKernel.Bind<IDateTime>().To<DateTimeWrapper>();
             _standardKernel.Bind<IOpenFileDialog>().To<OpenFileDialog>();
+
+            _standardKernel.Bind<IChineseTrainerContext>().To<ChineseTrainerContext>().InSingletonScope();
 
             _standardKernel.Bind<IServiceLocator>().ToConstant(this);
         }

@@ -49,10 +49,10 @@ namespace ChineseCharacterTrainer.UnitTest.Services
             var wordList = wordlistImporter.Import(ValidLines);
 
             Assert.AreEqual(2, wordList[0].Translations.Count);
-            Assert.AreEqual("go", wordList[0].Translations[0]);
-            Assert.AreEqual("run", wordList[0].Translations[1]);
+            Assert.AreEqual("go", wordList[0].Translations[0].Value);
+            Assert.AreEqual("run", wordList[0].Translations[1].Value);
             Assert.AreEqual(1, wordList[1].Translations.Count);
-            Assert.AreEqual("you", wordList[1].Translations[0]);
+            Assert.AreEqual("you", wordList[1].Translations[0].Value);
         }
 
         [Test]
@@ -82,8 +82,8 @@ namespace ChineseCharacterTrainer.UnitTest.Services
 
             var wordList = wordlistImporter.Import(ValidLineWithWhitespaces);
 
-            Assert.AreEqual("go", wordList[0].Translations[0]);
-            Assert.AreEqual("run", wordList[0].Translations[1]);
+            Assert.AreEqual("go", wordList[0].Translations[0].Value);
+            Assert.AreEqual("run", wordList[0].Translations[1].Value);
         }
 
         [Test]

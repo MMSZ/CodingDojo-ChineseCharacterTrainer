@@ -34,5 +34,13 @@ namespace ChineseCharacterTrainer.UnitTest.Converters
 
             Assert.IsNull(convertedValue);
         }
+
+        [Test]
+        public void ShouldInitializeBeautifierToDefault()
+        {
+            _objectUnderTest = new PinyinConverter();
+
+            Assert.IsInstanceOf<PinyinBeautifier>(_objectUnderTest.Beautifier);
+        }
     }
 }

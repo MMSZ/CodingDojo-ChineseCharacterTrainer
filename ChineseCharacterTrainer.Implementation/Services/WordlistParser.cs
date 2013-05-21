@@ -29,8 +29,10 @@ namespace ChineseCharacterTrainer.Implementation.Services
 
                 var chineseCharacters = commaSeparatedWords[0].Trim();
                 var pinyin = commaSeparatedWords[1].Trim();
-                
-                list.Add(new DictionaryEntry(chineseCharacters, pinyin, translations));
+
+
+                list.Add(new DictionaryEntry(
+                             chineseCharacters, pinyin, translations.Select(p => new Translation(p)).ToList()));
             }
 
             return list;

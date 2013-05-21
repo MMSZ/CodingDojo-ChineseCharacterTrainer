@@ -1,4 +1,4 @@
-﻿using ChineseCharacterTrainer.Implementation.Services;
+﻿using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Library;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
@@ -9,39 +9,28 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private IViewModel _content;
         private readonly IQuestionVM _questionVM;
         private readonly ISummaryVM _summaryVM;
-        private readonly ITextFileReader _textFileReader;
-        private readonly IWordlistParser _wordlistParser;
 
-        public MainWindowVM(
-            IMenuVM menuVM,
-            IQuestionVM questionVM,
-            ISummaryVM summaryVM,
-            ITextFileReader textFileReader,
-            IWordlistParser wordlistParser)
+        public MainWindowVM(IMenuVM menuVM, IQuestionVM questionVM, ISummaryVM summaryVM)
         {
             _questionVM = questionVM;
             _summaryVM = summaryVM;
-            _textFileReader = textFileReader;
-            _wordlistParser = wordlistParser;
             _menuVM = menuVM;
 
-            _menuVM.FileImportRequested += MenuVMFileImportRequested;
             _questionVM.QuestionsFinished += QuestionVMQuestionsFinished;
+            _menuVM.OpenDictionaryRequested += MenuVMOpenDictionaryRequested;
 
             Content = _menuVM;
         }
 
-        private void MenuVMFileImportRequested(object sender, FileImportRequestedEventArgs e)
+        private void MenuVMOpenDictionaryRequested(Dictionary dictionary)
         {
-            var lines = _textFileReader.Read(e.FileName);
-            var entries = _wordlistParser.Import(lines);
-            _questionVM.Initialize(entries);
+            _questionVM.Initialize(dictionary.Entries);
             Content = _questionVM;
         }
 
-        private void QuestionVMQuestionsFinished(object sender, QuestionsFinishedEventArgs e)
+        private void QuestionVMQuestionsFinished(QuestionResult questionResult)
         {
-            _summaryVM.Initialize(e.QuestionResult);
+            _summaryVM.Initialize(questionResult);
             Content = _summaryVM;
         }
 

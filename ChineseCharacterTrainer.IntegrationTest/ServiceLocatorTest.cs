@@ -1,4 +1,5 @@
 ﻿using System;
+using ChineseCharacterTrainer.Implementation.Persistence;
 using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Implementation.ViewModels;
@@ -18,6 +19,9 @@ namespace ChineseCharacterTrainer.IntegrationTest
         [TestCase(typeof(ITextFileReader), typeof(TextFileReader))]
         [TestCase(typeof(IOpenFileDialog), typeof(OpenFileDialog))]
         [TestCase(typeof(IPinyinBeautifier), typeof(PinyinBeautifier))]
+        [TestCase(typeof(IChineseTrainerContext), typeof(ChineseTrainerContext))]
+        [TestCase(typeof(IDictionaryRepository), typeof(DictionaryRepository))]
+        [TestCase(typeof(IDictionaryImporter), typeof(DictionaryImporter))]
         public void ShouldResolveDependencies(Type service, Type implementation)
         {
             var objectUnderTest = new ServiceLocator();

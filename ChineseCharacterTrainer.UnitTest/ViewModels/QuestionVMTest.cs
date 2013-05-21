@@ -19,8 +19,8 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
         private readonly List<DictionaryEntry> _dictionaryEntries = new List<DictionaryEntry>
             {
-                new DictionaryEntry("你", "ni3", new List<string>{"you"}),
-                new DictionaryEntry("车", "che1", new List<string>{"vehicle;car"})
+                new DictionaryEntry("你", "ni3", new List<Translation>{ new Translation("you")}),
+                new DictionaryEntry("车", "che1", new List<Translation>{ new Translation("vehicle"), new Translation("car")})
             };
 
         [SetUp]
@@ -145,47 +145,46 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldRaiseEventWhenNoMoreCharactersAreLeft()
         {
-            QuestionsFinishedEventArgs eventArgs = null;
-            _objectUnderTest.QuestionsFinished += (sender, args) => { eventArgs = args; };
+            QuestionResult questionResult = null;
+            _objectUnderTest.QuestionsFinished += result => { questionResult = result; };
 
             AnswerAllQuestions();
 
-            Assert.IsNotNull(eventArgs);
+            Assert.IsNotNull(questionResult);
         }
 
         [Test]
         public void ShouldRaiseEventWithNumberOfCorrectQuestions()
         {
-            QuestionsFinishedEventArgs eventArgs = null;
-            _objectUnderTest.QuestionsFinished += (sender, args) => { eventArgs = args; };
+            QuestionResult questionResult = null;
+            _objectUnderTest.QuestionsFinished += result => { questionResult = result; };
 
             AnswerAllQuestionsCorrect();
 
-            Assert.AreEqual(2, eventArgs.QuestionResult.NumberOfCorrectAnswers);
+            Assert.AreEqual(2, questionResult.NumberOfCorrectAnswers);
         }
 
         [Test]
         public void ShouldRaiseEventWithNumberOfIncorrectQuestions()
         {
-            QuestionsFinishedEventArgs eventArgs = null;
-
-            _objectUnderTest.QuestionsFinished += (sender, args) => { eventArgs = args; };
+            QuestionResult questionResult = null;
+            _objectUnderTest.QuestionsFinished += result => { questionResult = result; };
 
             AnswerAllQuestions();
 
-            Assert.AreEqual(2, eventArgs.QuestionResult.NumberOfIncorrectAnswers);
+            Assert.AreEqual(2, questionResult.NumberOfIncorrectAnswers);
         }
 
         [Test]
         public void ShouldRaiseEventWithDuration()
         {
             _dateTimeMock.Setup(p => p.Now).Returns(_endTime);
-            QuestionsFinishedEventArgs eventArgs = null;
-            _objectUnderTest.QuestionsFinished += (sender, args) => { eventArgs = args; };
+            QuestionResult questionResult = null;
+            _objectUnderTest.QuestionsFinished += result => { questionResult = result; };
 
             AnswerAllQuestions();
 
-            Assert.AreEqual(TimeSpan.FromDays(1), eventArgs.QuestionResult.Duration);
+            Assert.AreEqual(TimeSpan.FromDays(1), questionResult.Duration);
         }
 
         [Test]
