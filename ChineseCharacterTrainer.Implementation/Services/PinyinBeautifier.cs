@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace ChineseCharacterTrainer.Implementation.Services
@@ -73,7 +72,7 @@ namespace ChineseCharacterTrainer.Implementation.Services
             {
                 var c = input[i];
                 currentWord += c;
-                if (Tones.Contains(c) || i == input.Length - 1)
+                if (Tones.Contains(c) || i == input.Length - 1 || c == ' ')
                 {
                     result.Add(currentWord);
                     currentWord = string.Empty;
@@ -168,7 +167,10 @@ namespace ChineseCharacterTrainer.Implementation.Services
 
         private static string ReplaceVowel(string input, char oldVowel, string newVowel)
         {
-            return input.Replace(oldVowel.ToString(CultureInfo.InvariantCulture), newVowel);
+            var indexOfFirstOccurrence = input.IndexOf(oldVowel);
+            var inputWithOldVowelRemoved = input.Remove(indexOfFirstOccurrence, 1);
+            var inputWithNewVowelAdded = inputWithOldVowelRemoved.Insert(indexOfFirstOccurrence, newVowel);
+            return inputWithNewVowelAdded;
         }
 
         private static string RemoveTrailingNumber(string input)
