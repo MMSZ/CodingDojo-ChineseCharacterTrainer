@@ -12,6 +12,7 @@ namespace ChineseCharacterTrainer.Implementation.Model
 
         protected Dictionary() { }
 
+
         public string Name { get; set; }
         public virtual List<DictionaryEntry> Entries { get; set; }
     }
