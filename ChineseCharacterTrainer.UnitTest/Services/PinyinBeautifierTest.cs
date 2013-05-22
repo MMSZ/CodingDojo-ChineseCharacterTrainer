@@ -57,7 +57,7 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         [TestCase("huo2", "huó")]
         [TestCase("xie4", "xiè")] 
         #endregion
-        public void ShouldConvertDoubleVocals(string input, string expected)
+        public void ShouldConvertDoubleVowels(string input, string expected)
         {
             AssertConversion(input, expected);
         }
@@ -88,7 +88,7 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         [TestCase("hu4", "hù")]
         [TestCase("nü4", "nǜ")] 
         #endregion
-        public void ShouldConvertSingleVocals(string input, string expected)
+        public void ShouldConvertSingleVowels(string input, string expected)
         {
             AssertConversion(input, expected);
         }
