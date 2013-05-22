@@ -28,7 +28,12 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         [TestCase("kuai4", "kuài")]
         [TestCase("ben1e", "bēne")]
         [TestCase("ben1e1", "bēnē")]
+        [TestCase("bene1", "bēne")]
         [TestCase("HUA1", "huā")]
+        [TestCase("hua hua", "hua hua")]
+        [TestCase("hua hua1", "hua huā")]
+        [TestCase("na'er3", "nǎ'er")]
+        [TestCase("na3'er", "nǎ'er")]
         #endregion
         public void ShouldConvertCornerCases(string input, string expected)
         {
@@ -38,6 +43,7 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         #region TestCases
         [TestCase("ba4ba", "bàba")]
         [TestCase("xie4xie", "xièxie")]
+        [TestCase("chu1zu1che1", "chūzūchē")]
         #endregion
         public void ShouldConvertMultipleWords(string input, string expected)
         {
@@ -51,7 +57,7 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         [TestCase("huo2", "huó")]
         [TestCase("xie4", "xiè")] 
         #endregion
-        public void ShouldConvertDoubleVocals(string input, string expected)
+        public void ShouldConvertDoubleVowels(string input, string expected)
         {
             AssertConversion(input, expected);
         }
@@ -82,7 +88,7 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         [TestCase("hu4", "hù")]
         [TestCase("nü4", "nǜ")] 
         #endregion
-        public void ShouldConvertSingleVocals(string input, string expected)
+        public void ShouldConvertSingleVowels(string input, string expected)
         {
             AssertConversion(input, expected);
         }
