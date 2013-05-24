@@ -90,6 +90,10 @@
       <Project>{DD65BAB5-F889-4EAD-9EEC-0E360FAD9E18}</Project>
       <Name>ChineseCharacterTrainer.Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ChineseCharacterTrainer.Model\ChineseCharacterTrainer.Model.csproj">
+      <Project>{911ec45a-3fbc-4133-a6c2-d1e0bba8c37c}</Project>
+      <Name>ChineseCharacterTrainer.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Choose>

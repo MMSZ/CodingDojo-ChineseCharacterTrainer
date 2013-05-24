@@ -1,7 +1,7 @@
+using ChineseCharacterTrainer.Library;
+using ChineseCharacterTrainer.Model;
 using System;
 using System.Collections.ObjectModel;
-using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Library;
 using System.Windows.Input;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels

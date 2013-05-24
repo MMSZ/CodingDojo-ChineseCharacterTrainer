@@ -1,5 +1,6 @@
 ﻿using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Library;
+using ChineseCharacterTrainer.Model;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
 {

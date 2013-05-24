@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.Services;
+using ChineseCharacterTrainer.Model;
 using Moq;
 using NUnit.Framework;
 

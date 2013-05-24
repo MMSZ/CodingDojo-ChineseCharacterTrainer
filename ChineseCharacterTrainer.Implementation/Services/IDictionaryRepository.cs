@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using ChineseCharacterTrainer.Implementation.Model;
+﻿using ChineseCharacterTrainer.Model;
+using System.Collections.Generic;
 
 namespace ChineseCharacterTrainer.Implementation.Services
 {

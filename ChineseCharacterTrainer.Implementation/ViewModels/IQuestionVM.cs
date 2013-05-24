@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Library;
+using ChineseCharacterTrainer.Model;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
 {

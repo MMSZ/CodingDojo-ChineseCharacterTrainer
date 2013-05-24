@@ -6,6 +6,7 @@ using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.ViewModels;
 using ChineseCharacterTrainer.Library;
+using ChineseCharacterTrainer.Model;
 using Moq;
 using NUnit.Framework;
 
