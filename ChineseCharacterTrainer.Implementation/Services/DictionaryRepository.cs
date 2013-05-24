@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.Persistence;
+using ChineseCharacterTrainer.Model;
 
 namespace ChineseCharacterTrainer.Implementation.Services
 {

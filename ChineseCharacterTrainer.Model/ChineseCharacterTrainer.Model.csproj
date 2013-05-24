@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{52B4ACFC-D5F7-43EE-A31B-EB5358D94660}</ProjectGuid>
+    <ProjectGuid>{911EC45A-3FBC-4133-A6C2-D1E0BBA8C37C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChineseCharacterTrainer.IntegrationTest</RootNamespace>
-    <AssemblyName>ChineseCharacterTrainer.IntegrationTest</AssemblyName>
+    <RootNamespace>ChineseCharacterTrainer.Model</RootNamespace>
+    <AssemblyName>ChineseCharacterTrainer.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,18 +28,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\Libraries\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,23 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChineseTrainerContextTest.cs" />
+    <Compile Include="Dictionary.cs" />
+    <Compile Include="DictionaryEntry.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceLocatorTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ChineseCharacterTrainer.Implementation\ChineseCharacterTrainer.Implementation.csproj">
-      <Project>{703AA16A-767C-4726-9253-F2417796B892}</Project>
-      <Name>ChineseCharacterTrainer.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ChineseCharacterTrainer.Library\ChineseCharacterTrainer.Library.csproj">
-      <Project>{DD65BAB5-F889-4EAD-9EEC-0E360FAD9E18}</Project>
-      <Name>ChineseCharacterTrainer.Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ChineseCharacterTrainer.Model\ChineseCharacterTrainer.Model.csproj">
-      <Project>{911ec45a-3fbc-4133-a6c2-d1e0bba8c37c}</Project>
-      <Name>ChineseCharacterTrainer.Model</Name>
-    </ProjectReference>
+    <Compile Include="Translation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

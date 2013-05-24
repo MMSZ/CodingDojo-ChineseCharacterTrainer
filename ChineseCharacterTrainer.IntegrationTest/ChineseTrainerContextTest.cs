@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.Persistence;
+﻿using ChineseCharacterTrainer.Implementation.Persistence;
+using ChineseCharacterTrainer.Model;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace ChineseCharacterTrainer.IntegrationTest

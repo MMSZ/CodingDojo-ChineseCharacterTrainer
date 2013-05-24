@@ -4,6 +4,7 @@ using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Library;
 using System.Windows.Input;
+using ChineseCharacterTrainer.Model;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
 {

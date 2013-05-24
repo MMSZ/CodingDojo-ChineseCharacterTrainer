@@ -1,5 +1,5 @@
+using ChineseCharacterTrainer.Model;
 using System.Data.Entity.ModelConfiguration;
-using ChineseCharacterTrainer.Implementation.Model;
 
 namespace ChineseCharacterTrainer.Implementation.Persistence
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Implementation.ViewModels;
+using ChineseCharacterTrainer.Model;
 using Moq;
 using NUnit.Framework;
 

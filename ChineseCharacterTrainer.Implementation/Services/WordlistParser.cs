@@ -1,6 +1,6 @@
+using ChineseCharacterTrainer.Model;
 using System.Collections.Generic;
 using System.Linq;
-using ChineseCharacterTrainer.Implementation.Model;
 
 namespace ChineseCharacterTrainer.Implementation.Services
 {

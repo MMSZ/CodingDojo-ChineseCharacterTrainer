@@ -57,11 +57,7 @@
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\IntToAnswerConverter.cs" />
     <Compile Include="Converters\PinyinConverter.cs" />
-    <Compile Include="Model\Dictionary.cs" />
-    <Compile Include="Model\DictionaryEntry.cs" />
-    <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\QuestionResult.cs" />
-    <Compile Include="Model\Translation.cs" />
     <Compile Include="Persistence\ChineseTrainerContext.cs" />
     <Compile Include="Persistence\DictionaryEntryMapping.cs" />
     <Compile Include="Persistence\DictionaryMapping.cs" />
@@ -97,6 +93,10 @@
     <ProjectReference Include="..\ChineseCharacterTrainer.Library\ChineseCharacterTrainer.Library.csproj">
       <Project>{dd65bab5-f889-4ead-9eec-0e360fad9e18}</Project>
       <Name>ChineseCharacterTrainer.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChineseCharacterTrainer.Model\ChineseCharacterTrainer.Model.csproj">
+      <Project>{911ec45a-3fbc-4133-a6c2-d1e0bba8c37c}</Project>
+      <Name>ChineseCharacterTrainer.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
