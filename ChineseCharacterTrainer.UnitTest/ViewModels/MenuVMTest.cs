@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.Services;
+﻿using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.ViewModels;
 using ChineseCharacterTrainer.Library;
 using ChineseCharacterTrainer.Model;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ChineseCharacterTrainer.UnitTest.ViewModels
 {
