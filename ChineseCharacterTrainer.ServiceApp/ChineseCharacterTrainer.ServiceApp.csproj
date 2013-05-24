@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Devtalk.EF.CodeFirst">
+      <HintPath>..\Libraries\Devtalk.EF.CodeFirst.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\Libraries\EntityFramework.dll</HintPath>
     </Reference>

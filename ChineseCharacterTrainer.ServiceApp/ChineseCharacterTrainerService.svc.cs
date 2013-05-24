@@ -7,6 +7,7 @@ using ChineseCharacterTrainer.Model;
 using ChineseCharacterTrainer.ServiceApp.Persistence;
 using System.Collections.Generic;
 using System.Data.Entity;
+using Devtalk.EF.CodeFirst;
 
 namespace ChineseCharacterTrainer.ServiceApp
 {
@@ -16,7 +17,7 @@ namespace ChineseCharacterTrainer.ServiceApp
 
         public ChineseCharacterTrainerService()
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ChineseTrainerContext>());
+            Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<ChineseTrainerContext>());
 
             _chineseTrainerContext = new ChineseTrainerContext("DictionaryDB");
         }
