@@ -19,13 +19,20 @@ namespace ChineseCharacterTrainer.ServiceApp
         {
             Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<ChineseTrainerContext>());
 
-            _chineseTrainerContext = new ChineseTrainerContext("DictionaryDB");
+            _chineseTrainerContext = new ChineseTrainerContext();
         }
 
         public void AddDictionary(Dictionary dictionary)
         {
-            _chineseTrainerContext.Add(dictionary);
-            _chineseTrainerContext.SaveChanges();
+            try
+            {
+                _chineseTrainerContext.Add(dictionary);
+                _chineseTrainerContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public List<Dictionary> GetDictionaries()

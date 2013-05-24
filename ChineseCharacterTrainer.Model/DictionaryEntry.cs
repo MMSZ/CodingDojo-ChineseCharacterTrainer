@@ -24,5 +24,8 @@ namespace ChineseCharacterTrainer.Model
 
         [DataMember]
         public List<Translation> Translations { get; set; }
+
+        [DataMember]
+        public Dictionary Dictionary { get; set; }
     }
 }

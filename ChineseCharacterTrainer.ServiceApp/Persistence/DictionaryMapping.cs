@@ -8,6 +8,7 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
         public DictionaryMapping()
         {
             HasKey(p => p.Id);
+            HasMany(p => p.Entries).WithRequired(p => p.Dictionary);
         }
     }
 }

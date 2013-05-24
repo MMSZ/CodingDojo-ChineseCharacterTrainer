@@ -14,5 +14,8 @@ namespace ChineseCharacterTrainer.Model
 
         [DataMember]
         public string Value { get; private set; }
+
+        [DataMember]
+        public DictionaryEntry DictionaryEntry { get; set; }
     }
 }
