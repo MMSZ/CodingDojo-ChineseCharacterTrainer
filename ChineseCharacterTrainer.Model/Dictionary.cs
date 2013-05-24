@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 namespace ChineseCharacterTrainer.Model
 {
     [DataContract]
+    [KnownType(typeof(DictionaryEntry))]
     public class Dictionary : Entity
     {
         public Dictionary(string name, List<DictionaryEntry> entries)

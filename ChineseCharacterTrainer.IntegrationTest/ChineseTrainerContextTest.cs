@@ -1,5 +1,5 @@
-﻿using ChineseCharacterTrainer.Implementation.Persistence;
-using ChineseCharacterTrainer.Model;
+﻿using ChineseCharacterTrainer.Model;
+using ChineseCharacterTrainer.ServiceApp.Persistence;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Data.Entity;

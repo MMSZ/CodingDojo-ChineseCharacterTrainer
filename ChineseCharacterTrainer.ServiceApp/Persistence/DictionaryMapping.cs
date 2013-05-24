@@ -1,7 +1,7 @@
 using ChineseCharacterTrainer.Model;
 using System.Data.Entity.ModelConfiguration;
 
-namespace ChineseCharacterTrainer.Implementation.Persistence
+namespace ChineseCharacterTrainer.ServiceApp.Persistence
 {
     public class DictionaryMapping : EntityTypeConfiguration<Dictionary>
     {

@@ -1,7 +1,6 @@
-﻿using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.Persistence;
-using ChineseCharacterTrainer.Implementation.Services;
+﻿using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Model;
+using ChineseCharacterTrainer.ServiceApp.Persistence;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;

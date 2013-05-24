@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 
-namespace ChineseCharacterTrainer.Implementation.Persistence
+namespace ChineseCharacterTrainer.ServiceApp.Persistence
 {
     public class ChineseTrainerContext : DbContext, IChineseTrainerContext
     {

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.Persistence;
-using ChineseCharacterTrainer.Model;
+﻿using ChineseCharacterTrainer.Model;
+using ChineseCharacterTrainer.ServiceApp.Persistence;
+using System.Collections.Generic;
 
 namespace ChineseCharacterTrainer.Implementation.Services
 {

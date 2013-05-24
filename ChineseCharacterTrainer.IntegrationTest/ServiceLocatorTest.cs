@@ -1,9 +1,9 @@
-﻿using System;
-using ChineseCharacterTrainer.Implementation.Persistence;
-using ChineseCharacterTrainer.Implementation.Services;
+﻿using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Implementation.ViewModels;
+using ChineseCharacterTrainer.ServiceApp.Persistence;
 using NUnit.Framework;
+using System;
 
 namespace ChineseCharacterTrainer.IntegrationTest
 {

@@ -15,13 +15,13 @@ namespace ChineseCharacterTrainer.UnitTest.Services
             _objectUnderTest = new TextFileReader();    
         }
 
-        //[Test]
-        //public void ShouldReadAllLinesFromFile()
-        //{
-        //    var lines = _objectUnderTest.Read(@"..\..\Testdata\testwordlist");
+        [Test]
+        public void ShouldReadAllLinesFromFile()
+        {
+            var lines = _objectUnderTest.Read(@"..\..\Testdata\testwordlist");
 
-        //    Assert.AreEqual(2, lines.Count);
-        //}
+            Assert.AreEqual(2, lines.Count);
+        }
 
         [Test]
         public void ShouldThrowExceptionWhenArgumentIsNull()

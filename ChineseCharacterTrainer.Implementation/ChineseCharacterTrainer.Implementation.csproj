@@ -58,11 +58,6 @@
     <Compile Include="Converters\IntToAnswerConverter.cs" />
     <Compile Include="Converters\PinyinConverter.cs" />
     <Compile Include="Model\QuestionResult.cs" />
-    <Compile Include="Persistence\ChineseTrainerContext.cs" />
-    <Compile Include="Persistence\DictionaryEntryMapping.cs" />
-    <Compile Include="Persistence\DictionaryMapping.cs" />
-    <Compile Include="Persistence\IChineseTrainerContext.cs" />
-    <Compile Include="Persistence\TranslationMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DictionaryImporter.cs" />
     <Compile Include="Services\DictionaryRepository.cs" />
@@ -97,6 +92,10 @@
     <ProjectReference Include="..\ChineseCharacterTrainer.Model\ChineseCharacterTrainer.Model.csproj">
       <Project>{911ec45a-3fbc-4133-a6c2-d1e0bba8c37c}</Project>
       <Name>ChineseCharacterTrainer.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChineseCharacterTrainer.ServiceApp\ChineseCharacterTrainer.ServiceApp.csproj">
+      <Project>{E9278ABB-94EC-4F8F-AB6F-543310039A28}</Project>
+      <Name>ChineseCharacterTrainer.ServiceApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

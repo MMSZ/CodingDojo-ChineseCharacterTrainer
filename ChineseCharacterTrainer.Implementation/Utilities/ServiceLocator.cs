@@ -1,9 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using ChineseCharacterTrainer.Implementation.Persistence;
-using ChineseCharacterTrainer.Implementation.Services;
+﻿using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.ViewModels;
+using ChineseCharacterTrainer.ServiceApp.Persistence;
 using Ninject;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ChineseCharacterTrainer.Implementation.Utilities
 {

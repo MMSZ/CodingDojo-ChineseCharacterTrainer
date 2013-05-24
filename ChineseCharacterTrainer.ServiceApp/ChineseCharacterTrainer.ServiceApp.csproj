@@ -39,7 +39,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\Libraries\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,6 +71,11 @@
       <DependentUpon>ChineseCharacterTrainerService.svc</DependentUpon>
     </Compile>
     <Compile Include="IChineseCharacterTrainerService.cs" />
+    <Compile Include="Persistence\ChineseTrainerContext.cs" />
+    <Compile Include="Persistence\DictionaryEntryMapping.cs" />
+    <Compile Include="Persistence\DictionaryMapping.cs" />
+    <Compile Include="Persistence\IChineseTrainerContext.cs" />
+    <Compile Include="Persistence\TranslationMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +88,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChineseCharacterTrainer.Model\ChineseCharacterTrainer.Model.csproj">
+      <Project>{911ec45a-3fbc-4133-a6c2-d1e0bba8c37c}</Project>
+      <Name>ChineseCharacterTrainer.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

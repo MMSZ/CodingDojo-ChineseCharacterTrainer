@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using ChineseCharacterTrainer.Implementation.Persistence;
 
 namespace ChineseCharacterTrainer
 {
@@ -8,9 +7,5 @@ namespace ChineseCharacterTrainer
     /// </summary>
     public partial class App
     {
-        public App()
-        {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ChineseTrainerContext>());
-        }
     }
 }

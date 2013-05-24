@@ -25,7 +25,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
         private void MenuVMOpenDictionaryRequested(Dictionary dictionary)
         {
-            _questionVM.Initialize(dictionary.Entries);
+            //_questionVM.Initialize(dictionary.Entries);
             Content = _questionVM;
         }
 
