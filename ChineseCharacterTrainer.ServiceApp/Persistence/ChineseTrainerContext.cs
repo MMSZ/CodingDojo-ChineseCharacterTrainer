@@ -7,7 +7,7 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
     public class ChineseTrainerContext : DbContext, IChineseTrainerContext
     {
         public ChineseTrainerContext(string databaseName)
-            : base("data source=(localdb)\\v11.0;initial catalog=" + databaseName + ";integrated security=True;multipleactiveresultsets=True;App=EntityFramework")
+            //: base("data source=localhost;initial catalog=" + databaseName + ";integrated security=True;multipleactiveresultsets=True;App=EntityFramework")
         {
         }
 
