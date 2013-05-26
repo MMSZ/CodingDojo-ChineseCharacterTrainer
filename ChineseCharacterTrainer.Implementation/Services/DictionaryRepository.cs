@@ -1,4 +1,5 @@
-﻿using ChineseCharacterTrainer.Model;
+﻿using ChineseCharacterTrainer.Implementation.ServiceReference;
+using ChineseCharacterTrainer.Model;
 using ChineseCharacterTrainer.ServiceApp.Persistence;
 using System.Collections.Generic;
 
@@ -6,22 +7,21 @@ namespace ChineseCharacterTrainer.Implementation.Services
 {
     public class DictionaryRepository : IDictionaryRepository
     {
-        private readonly IChineseTrainerContext _chineseTrainerContext;
+        private readonly IChineseCharacterTrainerService _chineseCharacterTrainerService;
 
-        public DictionaryRepository(IChineseTrainerContext chineseTrainerContext)
+        public DictionaryRepository(IChineseCharacterTrainerService chineseCharacterTrainerService)
         {
-            _chineseTrainerContext = chineseTrainerContext;
+            _chineseCharacterTrainerService = chineseCharacterTrainerService;
         }
 
         public void Add(Dictionary dictionary)
         {
-            _chineseTrainerContext.Add(dictionary);
-            _chineseTrainerContext.SaveChanges();
+            _chineseCharacterTrainerService.AddDictionary(dictionary);
         }
 
         public List<Dictionary> GetAll()
         {
-            return _chineseTrainerContext.GetAll<Dictionary>();
+            return _chineseCharacterTrainerService.GetDictionaries();
         }
     }
 }

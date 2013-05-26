@@ -26,7 +26,7 @@ namespace ChineseCharacterTrainer.Implementation.Services
                 {
                     var lines = _textFileReader.Read(fileName);
                     var entries = _wordlistParser.Import(lines);
-                    var dictionary = new Dictionary(name);//, entries);
+                    var dictionary = new Dictionary(name, entries);
                     _dictionaryRepository.Add(dictionary);
                     return dictionary;
                 });

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ChineseCharacterTrainer.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ChineseCharacterTrainer.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:11002/ChineseCharacterTrainerService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Dictionary">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Entity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Entries" nillable="true" type="tns:ArrayOfDictionaryEntry" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Dictionary" nillable="true" type="tns:Dictionary" />
+  <xs:complexType name="Entity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Entity" nillable="true" type="tns:Entity" />
+  <xs:complexType name="ArrayOfDictionaryEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DictionaryEntry" nillable="true" type="tns:DictionaryEntry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDictionaryEntry" nillable="true" type="tns:ArrayOfDictionaryEntry" />
+  <xs:complexType name="DictionaryEntry">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Entity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChineseCharacters" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Dictionary" nillable="true" type="tns:Dictionary" />
+          <xs:element minOccurs="0" name="Pinyin" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Translations" nillable="true" type="tns:ArrayOfTranslation" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DictionaryEntry" nillable="true" type="tns:DictionaryEntry" />
+  <xs:complexType name="ArrayOfTranslation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Translation" nillable="true" type="tns:Translation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTranslation" nillable="true" type="tns:ArrayOfTranslation" />
+  <xs:complexType name="Translation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Entity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DictionaryEntry" nillable="true" type="tns:DictionaryEntry" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Translation" nillable="true" type="tns:Translation" />
+  <xs:complexType name="ArrayOfDictionary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dictionary" nillable="true" type="tns:Dictionary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDictionary" nillable="true" type="tns:ArrayOfDictionary" />
+</xs:schema>

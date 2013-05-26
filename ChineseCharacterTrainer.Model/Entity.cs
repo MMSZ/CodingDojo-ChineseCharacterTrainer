@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace ChineseCharacterTrainer.Model
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     public abstract class Entity
     {
         [DataMember]

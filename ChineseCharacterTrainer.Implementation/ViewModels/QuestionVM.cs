@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using ChineseCharacterTrainer.Implementation.Model;
+using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Library;
 using ChineseCharacterTrainer.Model;
@@ -11,9 +12,9 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
     public class QuestionVM : ViewModel, IQuestionVM
     {
         private readonly IDateTime _dateTime;
+        private readonly IDictionaryEntryPicker _dictionaryEntryPicker;
         private ICommand _answerCommand;
         private DictionaryEntry _currentEntry;
-        private Queue<DictionaryEntry> _dictionaryEntries;
         private string _answer;
         private bool _isInAnswerMode;
         private bool _lastAnswerWasCorrect;
@@ -21,15 +22,16 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private int _numberOfIncorrectAnswers;
         private DateTime _startTime;
 
-        public QuestionVM(IDateTime dateTime)
+        public QuestionVM(IDateTime dateTime, IDictionaryEntryPicker dictionaryEntryPicker)
         {
             _dateTime = dateTime;
+            _dictionaryEntryPicker = dictionaryEntryPicker;
         }
 
         public void Initialize(List<DictionaryEntry> dictionaryEntries)
         {
-            _dictionaryEntries = new Queue<DictionaryEntry>(dictionaryEntries);
-            CurrentEntry = _dictionaryEntries.Dequeue();
+            _dictionaryEntryPicker.Initialize(dictionaryEntries);
+            GetNextEntry();
             Answer = string.Empty;
             IsInAnswerMode = true;
             NumberOfCorrectAnswers = 0;
@@ -98,23 +100,31 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
                 LastAnswerWasCorrect = Answer == CurrentEntry.Pinyin;
                 
                 if (LastAnswerWasCorrect) NumberOfCorrectAnswers++;
-                else NumberOfIncorrectAnswers++;
+                else
+                {
+                    _dictionaryEntryPicker.QueueEntry(CurrentEntry);
+                    NumberOfIncorrectAnswers++;
+                }
             }
             else
             {
-                if (_dictionaryEntries.Count == 0)
+                GetNextEntry();
+                if (CurrentEntry == null)
                 {
-                    CurrentEntry = null;
                     RaiseQuestionsFinished(
                         new QuestionResult(NumberOfCorrectAnswers, _numberOfIncorrectAnswers, _dateTime.Now - _startTime));
                     return;
                 }
 
-                CurrentEntry = _dictionaryEntries.Dequeue();
                 Answer = string.Empty;
             }
             
             IsInAnswerMode = !IsInAnswerMode;
+        }
+
+        private void GetNextEntry()
+        {
+            CurrentEntry = _dictionaryEntryPicker.GetNextEntry();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace ChineseCharacterTrainer.Model
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     [KnownType(typeof(Translation))]
     public class DictionaryEntry : Entity
     {
@@ -12,6 +12,7 @@ namespace ChineseCharacterTrainer.Model
             ChineseCharacters = chineseCharacters;
             Pinyin = pinyin;
             Translations = translations;
+            if(Translations != null) Translations.ForEach(p => p.DictionaryEntry = this);
         }
 
         protected DictionaryEntry() { }

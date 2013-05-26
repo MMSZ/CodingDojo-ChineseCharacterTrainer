@@ -1,13 +1,12 @@
-﻿using System;
+﻿using ChineseCharacterTrainer.Model;
+using ChineseCharacterTrainer.ServiceApp.Persistence;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Objects;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
-using ChineseCharacterTrainer.Model;
-using ChineseCharacterTrainer.ServiceApp.Persistence;
-using System.Collections.Generic;
-using System.Data.Entity;
-using Devtalk.EF.CodeFirst;
 
 namespace ChineseCharacterTrainer.ServiceApp
 {
@@ -28,6 +27,15 @@ namespace ChineseCharacterTrainer.ServiceApp
             try
             {
                 _chineseTrainerContext.Add(dictionary);
+                foreach (var dictionaryEntry in dictionary.Entries)
+                {
+                    _chineseTrainerContext.Add(dictionaryEntry);
+                    foreach (var translation in dictionaryEntry.Translations)
+                    {
+                        _chineseTrainerContext.Add(translation);
+                    }
+                }
+
                 _chineseTrainerContext.SaveChanges();
             }
             catch (Exception e)

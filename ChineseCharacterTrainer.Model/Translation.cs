@@ -2,7 +2,7 @@
 
 namespace ChineseCharacterTrainer.Model
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     public class Translation : Entity
     {
         public Translation(string value)

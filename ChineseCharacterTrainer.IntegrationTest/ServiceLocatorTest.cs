@@ -22,6 +22,7 @@ namespace ChineseCharacterTrainer.IntegrationTest
         [TestCase(typeof(IChineseTrainerContext), typeof(ChineseTrainerContext))]
         [TestCase(typeof(IDictionaryRepository), typeof(DictionaryRepository))]
         [TestCase(typeof(IDictionaryImporter), typeof(DictionaryImporter))]
+        [TestCase(typeof(IDictionaryEntryPicker), typeof(RandomDictionaryEntryPicker))]
         public void ShouldResolveDependencies(Type service, Type implementation)
         {
             var objectUnderTest = new ServiceLocator();

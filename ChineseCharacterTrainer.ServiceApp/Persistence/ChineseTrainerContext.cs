@@ -7,11 +7,11 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
     public class ChineseTrainerContext : DbContext, IChineseTrainerContext
     {
         public ChineseTrainerContext(string databaseName)
-            //: base("data source=localhost;initial catalog=" + databaseName + ";integrated security=True;multipleactiveresultsets=True;App=EntityFramework")
+           : base("data source=localhost;initial catalog=" + databaseName + ";integrated security=True;multipleactiveresultsets=True;App=EntityFramework")
         {
         }
 
-        public ChineseTrainerContext() : this("ChineseCharacterTrainer") { }
+        public ChineseTrainerContext() { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,7 +29,9 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
 
         public void Add<T>(T entity) where T : class
         {
-            Set<T>().Add(entity);
+            var set = Set<T>();
+            //var attachedEntity = set.Attach(entity);
+            set.Add(entity);
         }
     }
 }
