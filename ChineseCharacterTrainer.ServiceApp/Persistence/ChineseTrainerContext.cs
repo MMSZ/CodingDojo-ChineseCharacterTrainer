@@ -29,9 +29,7 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
 
         public void Add<T>(T entity) where T : class
         {
-            var set = Set<T>();
-            //var attachedEntity = set.Attach(entity);
-            set.Add(entity);
+            Set<T>().Add(entity);
         }
     }
 }

@@ -39,14 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Devtalk.EF.CodeFirst">
-      <HintPath>..\Libraries\Devtalk.EF.CodeFirst.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\Libraries\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -70,9 +68,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplyDataContractResolverAttribute.cs" />
     <Compile Include="ChineseCharacterTrainerService.svc.cs">
       <DependentUpon>ChineseCharacterTrainerService.svc</DependentUpon>
     </Compile>
+    <Compile Include="DontDropDbJustCreateTablesIfModelChanged.cs" />
     <Compile Include="IChineseCharacterTrainerService.cs" />
     <Compile Include="Persistence\ChineseTrainerContext.cs" />
     <Compile Include="Persistence\DictionaryEntryMapping.cs" />
