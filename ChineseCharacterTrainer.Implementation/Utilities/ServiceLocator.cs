@@ -48,5 +48,11 @@ namespace ChineseCharacterTrainer.Implementation.Utilities
         {
             return _standardKernel.Get(service);
         }
+
+        public void ReplaceBind(Type service, object implementation)
+        {
+            _standardKernel.Unbind(service);
+            _standardKernel.Bind(service).ToConstant(implementation);
+        }
     }
 }

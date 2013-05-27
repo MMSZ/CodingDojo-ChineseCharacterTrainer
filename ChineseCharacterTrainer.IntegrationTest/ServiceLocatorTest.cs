@@ -1,7 +1,9 @@
-﻿using ChineseCharacterTrainer.Implementation.Services;
+﻿using ChineseCharacterTrainer.Implementation.ServiceReference;
+using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Implementation.ViewModels;
 using ChineseCharacterTrainer.ServiceApp.Persistence;
+using Moq;
 using NUnit.Framework;
 using System;
 
@@ -27,6 +29,9 @@ namespace ChineseCharacterTrainer.IntegrationTest
         public void ShouldResolveDependencies(Type service, Type implementation)
         {
             var objectUnderTest = new ServiceLocator();
+
+            objectUnderTest.ReplaceBind(typeof (IChineseCharacterTrainerService),
+                                        new Mock<IChineseCharacterTrainerService>().Object);
 
             var instance = objectUnderTest.Get(service);
 
