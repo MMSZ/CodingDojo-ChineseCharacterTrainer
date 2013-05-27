@@ -66,6 +66,13 @@
       <Project>{911ec45a-3fbc-4133-a6c2-d1e0bba8c37c}</Project>
       <Name>ChineseCharacterTrainer.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ChineseCharacterTrainer.ServiceApp\ChineseCharacterTrainer.ServiceApp.csproj">
+      <Project>{E9278ABB-94EC-4F8F-AB6F-543310039A28}</Project>
+      <Name>ChineseCharacterTrainer.ServiceApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

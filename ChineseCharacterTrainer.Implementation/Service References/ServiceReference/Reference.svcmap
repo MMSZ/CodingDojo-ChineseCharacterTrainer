@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8e7ea262-5d36-4b6d-9438-371e5e72c3de" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="ChineseCharacterTrainer.Model" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:11002/ChineseCharacterTrainerService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ChineseCharacterTrainerService.xsd" MetadataType="Schema" ID="7cd45861-532d-43b2-8953-666d72dcb2b9" SourceId="1" SourceUrl="http://localhost:11002/ChineseCharacterTrainerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ChineseCharacterTrainerService1.xsd" MetadataType="Schema" ID="a3c934c0-dc22-4678-8e69-624e85c54cca" SourceId="1" SourceUrl="http://localhost:11002/ChineseCharacterTrainerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ChineseCharacterTrainerService.disco" MetadataType="Disco" ID="e4c3bf02-418a-4af4-8e7c-c1b7de32d84e" SourceId="1" SourceUrl="http://localhost:11002/ChineseCharacterTrainerService.svc?disco" />
+    <MetadataFile FileName="ChineseCharacterTrainerService2.xsd" MetadataType="Schema" ID="99dc858e-70fe-40e1-8c6e-793938a65127" SourceId="1" SourceUrl="http://localhost:11002/ChineseCharacterTrainerService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ChineseCharacterTrainerService.wsdl" MetadataType="Wsdl" ID="86fae509-a55d-4d32-9901-da23847c1224" SourceId="1" SourceUrl="http://localhost:11002/ChineseCharacterTrainerService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

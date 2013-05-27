@@ -1,5 +1,4 @@
-﻿using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.Persistence;
+﻿using ChineseCharacterTrainer.Implementation.ServiceReference;
 using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Model;
 using Moq;
@@ -11,14 +10,14 @@ namespace ChineseCharacterTrainer.UnitTest.Services
     public class DictionaryRepositoryTest
     {
         private IDictionaryRepository _objectUnderTest;
-        private Mock<IChineseTrainerContext> _contextMock;
+        private Mock<IChineseCharacterTrainerService> _serviceMock;
 
         [SetUp]
         public void Initialize()
         {
-            _contextMock = new Mock<IChineseTrainerContext>();
+            _serviceMock = new Mock<IChineseCharacterTrainerService>();
 
-            _objectUnderTest = new DictionaryRepository(_contextMock.Object);
+            _objectUnderTest = new DictionaryRepository(_serviceMock.Object);
         }
 
         [Test]
@@ -28,23 +27,13 @@ namespace ChineseCharacterTrainer.UnitTest.Services
 
             _objectUnderTest.Add(dictionary);
 
-            _contextMock.Verify(p => p.Add(dictionary));
-        }
-
-        [Test]
-        public void ShouldSaveChangesWhenAddingDictionary()
-        {
-            var dictionary = new Dictionary("MyDict", null);
-
-            _objectUnderTest.Add(dictionary);
-
-            _contextMock.Verify(p => p.SaveChanges());
+            _serviceMock.Verify(p => p.AddDictionary(dictionary));
         }
 
         [Test]
         public void ShouldGetDictionary()
         {
-            _contextMock.Setup(p => p.GetAll<Dictionary>()).Returns(new List<Dictionary>
+            _serviceMock.Setup(p => p.GetDictionaries()).Returns(new List<Dictionary>
                 {
                     new Dictionary("1", null),
                     new Dictionary("2", null)

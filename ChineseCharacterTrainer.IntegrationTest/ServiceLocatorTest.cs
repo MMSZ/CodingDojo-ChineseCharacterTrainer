@@ -1,9 +1,9 @@
-﻿using System;
-using ChineseCharacterTrainer.Implementation.Persistence;
-using ChineseCharacterTrainer.Implementation.Services;
+﻿using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Implementation.ViewModels;
+using ChineseCharacterTrainer.ServiceApp.Persistence;
 using NUnit.Framework;
+using System;
 
 namespace ChineseCharacterTrainer.IntegrationTest
 {
@@ -22,6 +22,8 @@ namespace ChineseCharacterTrainer.IntegrationTest
         [TestCase(typeof(IChineseTrainerContext), typeof(ChineseTrainerContext))]
         [TestCase(typeof(IDictionaryRepository), typeof(DictionaryRepository))]
         [TestCase(typeof(IDictionaryImporter), typeof(DictionaryImporter))]
+        [TestCase(typeof(IDictionaryEntryPicker), typeof(RandomDictionaryEntryPicker))]
+        [TestCase(typeof(IEnumerableShuffler), typeof(EnumerableShuffler))]
         public void ShouldResolveDependencies(Type service, Type implementation)
         {
             var objectUnderTest = new ServiceLocator();

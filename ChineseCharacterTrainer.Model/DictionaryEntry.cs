@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 
 namespace ChineseCharacterTrainer.Model
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
+    [KnownType(typeof(Translation))]
     public class DictionaryEntry : Entity
     {
         public DictionaryEntry(string chineseCharacters, string pinyin, List<Translation> translations)
@@ -11,6 +12,7 @@ namespace ChineseCharacterTrainer.Model
             ChineseCharacters = chineseCharacters;
             Pinyin = pinyin;
             Translations = translations;
+            if(Translations != null) Translations.ForEach(p => p.DictionaryEntry = this);
         }
 
         protected DictionaryEntry() { }
@@ -23,5 +25,8 @@ namespace ChineseCharacterTrainer.Model
 
         [DataMember]
         public List<Translation> Translations { get; set; }
+
+        [DataMember]
+        public Dictionary Dictionary { get; set; }
     }
 }

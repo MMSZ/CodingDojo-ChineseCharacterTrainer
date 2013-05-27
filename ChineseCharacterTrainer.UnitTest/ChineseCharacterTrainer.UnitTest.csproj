@@ -71,9 +71,12 @@
     <Compile Include="Converters\IntToAnswerConverterTest.cs" />
     <Compile Include="Converters\PinyinConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceApp\ChineseCharacterTrainerServiceTest.cs" />
     <Compile Include="Services\DictionaryImporterTest.cs" />
+    <Compile Include="Services\EnumerableShufflerTest.cs" />
     <Compile Include="Services\PinyinBeautifierTest.cs" />
     <Compile Include="Services\DictionaryRepositoryTest.cs" />
+    <Compile Include="Services\RandomDictionaryEntryPickerTest.cs" />
     <Compile Include="Services\TextFileReaderTest.cs" />
     <Compile Include="Services\WordlistParserTest.cs" />
     <Compile Include="ViewModels\MainWindowVMTest.cs" />
@@ -93,6 +96,10 @@
     <ProjectReference Include="..\ChineseCharacterTrainer.Model\ChineseCharacterTrainer.Model.csproj">
       <Project>{911ec45a-3fbc-4133-a6c2-d1e0bba8c37c}</Project>
       <Name>ChineseCharacterTrainer.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChineseCharacterTrainer.ServiceApp\ChineseCharacterTrainer.ServiceApp.csproj">
+      <Project>{E9278ABB-94EC-4F8F-AB6F-543310039A28}</Project>
+      <Name>ChineseCharacterTrainer.ServiceApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

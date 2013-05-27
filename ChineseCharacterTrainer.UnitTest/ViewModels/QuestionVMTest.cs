@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ChineseCharacterTrainer.Implementation.Model;
+using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.Utilities;
 using ChineseCharacterTrainer.Implementation.ViewModels;
 using ChineseCharacterTrainer.Model;
@@ -14,6 +15,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         private QuestionVM _objectUnderTest;
 
         private Mock<IDateTime> _dateTimeMock;
+        private Mock<IDictionaryEntryPicker> _dictionaryEntryPickerMock;
 
         private readonly DateTime _startTime = new DateTime(2010, 1, 1);
         private readonly DateTime _endTime = new DateTime(2010, 1, 2);
@@ -30,7 +32,12 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _dateTimeMock = new Mock<IDateTime>();
             _dateTimeMock.Setup(p => p.Now).Returns(_startTime);
 
-            _objectUnderTest = new QuestionVM(_dateTimeMock.Object);
+            var entryQueue = new Queue<DictionaryEntry>(_dictionaryEntries);
+            _dictionaryEntryPickerMock = new Mock<IDictionaryEntryPicker>();
+            _dictionaryEntryPickerMock.Setup(p => p.GetNextEntry()).Returns(
+                () => entryQueue.Count > 0 ? entryQueue.Dequeue() : null);
+
+            _objectUnderTest = new QuestionVM(_dateTimeMock.Object, _dictionaryEntryPickerMock.Object);
 
             _objectUnderTest.Initialize(_dictionaryEntries);
         }
@@ -206,6 +213,16 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _objectUnderTest.AnswerCommand.Execute(null);
 
             Assert.AreEqual(1, _objectUnderTest.NumberOfIncorrectAnswers);
+        }
+
+        [Test]
+        public void ShouldQueueCurrentEntryIfAnsweredWrong()
+        {
+            _objectUnderTest.Answer = "wrong answer";
+
+            _objectUnderTest.AnswerCommand.Execute(null);
+
+            _dictionaryEntryPickerMock.Verify(p => p.QueueEntry(_objectUnderTest.CurrentEntry));
         }
 
         private void AnswerAllQuestions()

@@ -1,31 +1,42 @@
-﻿using System;
+﻿using ChineseCharacterTrainer.Model;
+using ChineseCharacterTrainer.ServiceApp.Persistence;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
+using System.Data.Entity;
 
 namespace ChineseCharacterTrainer.ServiceApp
 {
     public class ChineseCharacterTrainerService : IChineseCharacterTrainerService
     {
-        public string GetData(int value)
+        private IChineseTrainerContext _chineseTrainerContext;
+
+        public IChineseTrainerContext ChineseTrainerContext
         {
-            return string.Format("You entered: {0}", value);
+            get
+            {
+                return _chineseTrainerContext ??
+                       (_chineseTrainerContext = new ChineseTrainerContext());
+            }
+
+            set { _chineseTrainerContext = value; }
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public ChineseCharacterTrainerService()
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<ChineseTrainerContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<ChineseTrainerContext>());
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<ChineseTrainerContext>());
+        }
+
+        public void AddDictionary(Dictionary dictionary)
+        {
+            ChineseTrainerContext.Add(dictionary);
+            ChineseTrainerContext.SaveChanges();
+        }
+
+        public List<Dictionary> GetDictionaries()
+        {
+            var dictionaries = ChineseTrainerContext.GetAll<Dictionary>();
+            return dictionaries;
         }
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ChineseCharacterTrainer.Implementation.Persistence
+namespace ChineseCharacterTrainer.ServiceApp.Persistence
 {
     public interface IChineseTrainerContext
     {
