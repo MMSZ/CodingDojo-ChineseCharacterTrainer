@@ -68,9 +68,11 @@
     </Compile>
     <Compile Include="Services\DictionaryImporter.cs" />
     <Compile Include="Services\DictionaryRepository.cs" />
+    <Compile Include="Services\EnumerableShuffler.cs" />
     <Compile Include="Services\IDictionaryEntryPicker.cs" />
     <Compile Include="Services\IDictionaryImporter.cs" />
     <Compile Include="Services\IDictionaryRepository.cs" />
+    <Compile Include="Services\IEnumerableShuffler.cs" />
     <Compile Include="Services\IOpenFileDialog.cs" />
     <Compile Include="Services\IPinyinBeautifier.cs" />
     <Compile Include="Services\ITextFileReader.cs" />

@@ -1,6 +1,5 @@
 ﻿using ChineseCharacterTrainer.Model;
 using ChineseCharacterTrainer.ServiceApp.Persistence;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 
@@ -8,32 +7,35 @@ namespace ChineseCharacterTrainer.ServiceApp
 {
     public class ChineseCharacterTrainerService : IChineseCharacterTrainerService
     {
-        private readonly IChineseTrainerContext _chineseTrainerContext;
+        private IChineseTrainerContext _chineseTrainerContext;
+
+        public IChineseTrainerContext ChineseTrainerContext
+        {
+            get
+            {
+                return _chineseTrainerContext ??
+                       (_chineseTrainerContext = new ChineseTrainerContext());
+            }
+
+            set { _chineseTrainerContext = value; }
+        }
 
         public ChineseCharacterTrainerService()
         {
             Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<ChineseTrainerContext>());
             //Database.SetInitializer(new DropCreateDatabaseAlways<ChineseTrainerContext>());
             //Database.SetInitializer(new CreateDatabaseIfNotExists<ChineseTrainerContext>());
-            _chineseTrainerContext = new ChineseTrainerContext();
         }
 
         public void AddDictionary(Dictionary dictionary)
         {
-            try
-            {
-                _chineseTrainerContext.Add(dictionary);
-                _chineseTrainerContext.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            ChineseTrainerContext.Add(dictionary);
+            ChineseTrainerContext.SaveChanges();
         }
 
         public List<Dictionary> GetDictionaries()
         {
-            var dictionaries = _chineseTrainerContext.GetAll<Dictionary>();
+            var dictionaries = ChineseTrainerContext.GetAll<Dictionary>();
             return dictionaries;
         }
     }

@@ -3,6 +3,7 @@ using System.Data.Entity.Design;
 using System.Data.Entity.Infrastructure;
 using System.Data.Metadata.Edm;
 using System.Data.Objects;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
@@ -11,6 +12,7 @@ using System.Xml;
 
 namespace ChineseCharacterTrainer.ServiceApp
 {
+    [ExcludeFromCodeCoverage]
     public class DontDropDbJustCreateTablesIfModelChanged<T>
         : IDatabaseInitializer<T> where T : DbContext
     {
@@ -51,7 +53,7 @@ namespace ChineseCharacterTrainer.ServiceApp
 
         private void DeleteExistingTables(ObjectContext objectContext)
         {
-            var i = objectContext.ExecuteStoreCommand(Dropallconstraintsscript);
+            objectContext.ExecuteStoreCommand(Dropallconstraintsscript);
             objectContext.ExecuteStoreCommand(Deletealltablesscript);
         }
 
