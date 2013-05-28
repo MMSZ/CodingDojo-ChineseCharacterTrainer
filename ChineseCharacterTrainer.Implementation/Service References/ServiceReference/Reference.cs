@@ -8,9 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace ChineseCharacterTrainer.Implementation.ServiceReference {
+    
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IChineseCharacterTrainerService")]
@@ -19,21 +18,17 @@ namespace ChineseCharacterTrainer.Implementation.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/AddDictionary", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/AddDictionaryResponse")]
         void AddDictionary(ChineseCharacterTrainer.Model.Dictionary dictionary);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/AddDictionary", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/AddDictionaryResponse")]
-        System.Threading.Tasks.Task AddDictionaryAsync(ChineseCharacterTrainer.Model.Dictionary dictionary);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/GetDictionaries", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/GetDictionariesResponse")]
         System.Collections.Generic.List<ChineseCharacterTrainer.Model.Dictionary> GetDictionaries();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/GetDictionaries", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/GetDictionariesResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<ChineseCharacterTrainer.Model.Dictionary>> GetDictionariesAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/UploadHighscore", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/UploadHighscoreResponse")]
+        void UploadHighscore(ChineseCharacterTrainer.Model.Highscore highscore);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IChineseCharacterTrainerServiceChannel : ChineseCharacterTrainer.Implementation.ServiceReference.IChineseCharacterTrainerService, System.ServiceModel.IClientChannel {
     }
-
-    [ExcludeFromCodeCoverage]
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ChineseCharacterTrainerServiceClient : System.ServiceModel.ClientBase<ChineseCharacterTrainer.Implementation.ServiceReference.IChineseCharacterTrainerService>, ChineseCharacterTrainer.Implementation.ServiceReference.IChineseCharacterTrainerService {
@@ -61,16 +56,12 @@ namespace ChineseCharacterTrainer.Implementation.ServiceReference {
             base.Channel.AddDictionary(dictionary);
         }
         
-        public System.Threading.Tasks.Task AddDictionaryAsync(ChineseCharacterTrainer.Model.Dictionary dictionary) {
-            return base.Channel.AddDictionaryAsync(dictionary);
-        }
-        
         public System.Collections.Generic.List<ChineseCharacterTrainer.Model.Dictionary> GetDictionaries() {
             return base.Channel.GetDictionaries();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<ChineseCharacterTrainer.Model.Dictionary>> GetDictionariesAsync() {
-            return base.Channel.GetDictionariesAsync();
+        public void UploadHighscore(ChineseCharacterTrainer.Model.Highscore highscore) {
+            base.Channel.UploadHighscore(highscore);
         }
     }
 }

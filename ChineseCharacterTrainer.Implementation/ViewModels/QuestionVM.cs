@@ -13,6 +13,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
     {
         private readonly IDateTime _dateTime;
         private readonly IDictionaryEntryPicker _dictionaryEntryPicker;
+        private readonly IScoreCalculator _scoreCalculator;
         private ICommand _answerCommand;
         private DictionaryEntry _currentEntry;
         private string _answer;
@@ -22,10 +23,14 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private int _numberOfIncorrectAnswers;
         private DateTime _startTime;
 
-        public QuestionVM(IDateTime dateTime, IDictionaryEntryPicker dictionaryEntryPicker)
+        public QuestionVM(
+            IDateTime dateTime, 
+            IDictionaryEntryPicker dictionaryEntryPicker,
+            IScoreCalculator scoreCalculator)
         {
             _dateTime = dateTime;
             _dictionaryEntryPicker = dictionaryEntryPicker;
+            _scoreCalculator = scoreCalculator;
         }
 
         public void Initialize(List<DictionaryEntry> dictionaryEntries)
@@ -111,8 +116,14 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
                 GetNextEntry();
                 if (CurrentEntry == null)
                 {
+                    var duration = _dateTime.Now - _startTime;
+                    var score = _scoreCalculator.CalculateScore(duration, NumberOfIncorrectAnswers);
                     RaiseQuestionsFinished(
-                        new QuestionResult(NumberOfCorrectAnswers, _numberOfIncorrectAnswers, _dateTime.Now - _startTime));
+                        new QuestionResult(
+                            NumberOfCorrectAnswers,
+                            NumberOfIncorrectAnswers,
+                            duration,
+                            score));
                     return;
                 }
 

@@ -77,6 +77,7 @@
     <Compile Include="Services\PinyinBeautifierTest.cs" />
     <Compile Include="Services\DictionaryRepositoryTest.cs" />
     <Compile Include="Services\RandomDictionaryEntryPickerTest.cs" />
+    <Compile Include="Services\ScoreCalculatorTest.cs" />
     <Compile Include="Services\TextFileReaderTest.cs" />
     <Compile Include="Services\WordlistParserTest.cs" />
     <Compile Include="ViewModels\MainWindowVMTest.cs" />

@@ -13,5 +13,8 @@ namespace ChineseCharacterTrainer.ServiceApp
         [OperationContract]
         [ApplyDataContractResolver]
         List<Dictionary> GetDictionaries();
+
+        [OperationContract]
+        void UploadHighscore(Highscore highscore);
     }
 }

@@ -19,6 +19,12 @@
   <wsdl:message name="IChineseCharacterTrainerService_GetDictionaries_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDictionariesResponse" />
   </wsdl:message>
+  <wsdl:message name="IChineseCharacterTrainerService_UploadHighscore_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadHighscore" />
+  </wsdl:message>
+  <wsdl:message name="IChineseCharacterTrainerService_UploadHighscore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadHighscoreResponse" />
+  </wsdl:message>
   <wsdl:portType name="IChineseCharacterTrainerService">
     <wsdl:operation name="AddDictionary">
       <wsdl:input wsaw:Action="http://tempuri.org/IChineseCharacterTrainerService/AddDictionary" message="tns:IChineseCharacterTrainerService_AddDictionary_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="GetDictionaries">
       <wsdl:input wsaw:Action="http://tempuri.org/IChineseCharacterTrainerService/GetDictionaries" message="tns:IChineseCharacterTrainerService_GetDictionaries_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChineseCharacterTrainerService/GetDictionariesResponse" message="tns:IChineseCharacterTrainerService_GetDictionaries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadHighscore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChineseCharacterTrainerService/UploadHighscore" message="tns:IChineseCharacterTrainerService_UploadHighscore_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChineseCharacterTrainerService/UploadHighscoreResponse" message="tns:IChineseCharacterTrainerService_UploadHighscore_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IChineseCharacterTrainerService" type="tns:IChineseCharacterTrainerService">
@@ -42,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDictionaries">
       <soap:operation soapAction="http://tempuri.org/IChineseCharacterTrainerService/GetDictionaries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadHighscore">
+      <soap:operation soapAction="http://tempuri.org/IChineseCharacterTrainerService/UploadHighscore" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

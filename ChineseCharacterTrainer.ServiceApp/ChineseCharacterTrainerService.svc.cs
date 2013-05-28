@@ -22,7 +22,8 @@ namespace ChineseCharacterTrainer.ServiceApp
 
         public ChineseCharacterTrainerService()
         {
-            Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<ChineseTrainerContext>());
+            //Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<ChineseTrainerContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ChineseTrainerContext>());
             //Database.SetInitializer(new DropCreateDatabaseAlways<ChineseTrainerContext>());
             //Database.SetInitializer(new CreateDatabaseIfNotExists<ChineseTrainerContext>());
         }
@@ -37,6 +38,12 @@ namespace ChineseCharacterTrainer.ServiceApp
         {
             var dictionaries = ChineseTrainerContext.GetAll<Dictionary>();
             return dictionaries;
+        }
+
+        public void UploadHighscore(Highscore highscore)
+        {
+            ChineseTrainerContext.Add(highscore);
+            ChineseTrainerContext.SaveChanges();
         }
     }
 }

@@ -37,7 +37,8 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldSetContentToSummaryViewModelWhenQuestionsAreFinished()
         {
-            _questionVMMock.Raise(p => p.QuestionsFinished += null, new QuestionResult(1, 2, TimeSpan.FromSeconds(1)));
+            _questionVMMock.Raise(p => p.QuestionsFinished += null,
+                                  new QuestionResult(1, 2, TimeSpan.FromSeconds(1), 100));
 
             Assert.AreEqual(_summaryVMMock.Object, _objectUnderTest.Content);
         }
@@ -45,7 +46,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldInitializeSummaryViewModelWhenQuestionsAreFinished()
         {
-            var questionResult = new QuestionResult(1, 2, TimeSpan.FromSeconds(1));
+            var questionResult = new QuestionResult(1, 2, TimeSpan.FromSeconds(1), 100);
             _questionVMMock.Raise(p => p.QuestionsFinished += null, questionResult);
 
             _summaryVMMock.Verify(p => p.Initialize(questionResult), Times.Once());
@@ -68,6 +69,17 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _menuVMMock.Raise(p => p.OpenDictionaryRequested += null, dictionary);
 
             Assert.AreEqual(_questionVMMock.Object, _objectUnderTest.Content);
+        }
+
+        [Test]
+        public void ShouldShowMenuWhenUploadFinishedIsRaised()
+        {
+            var dictionary = new Dictionary("1", null);
+            _menuVMMock.Raise(p => p.OpenDictionaryRequested += null, dictionary);
+
+            _summaryVMMock.Raise(p => p.UploadFinished += null, new Highscore());
+
+            Assert.AreEqual(_objectUnderTest.Content, _menuVMMock.Object);
         }
     }
 }

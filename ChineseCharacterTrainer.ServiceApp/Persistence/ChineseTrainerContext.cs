@@ -20,6 +20,8 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
             modelBuilder.Configurations.Add(new DictionaryEntryMapping());
             modelBuilder.Configurations.Add(new DictionaryMapping());
             modelBuilder.Configurations.Add(new TranslationMapping());
+            modelBuilder.Configurations.Add(new UserMapping());
+            modelBuilder.Configurations.Add(new HighscoreMapping());
         }
 
         public List<T> GetAll<T>() where T : class

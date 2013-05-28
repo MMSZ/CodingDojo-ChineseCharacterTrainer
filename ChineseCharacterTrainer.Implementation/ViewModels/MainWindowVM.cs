@@ -19,7 +19,13 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
             _questionVM.QuestionsFinished += QuestionVMQuestionsFinished;
             _menuVM.OpenDictionaryRequested += MenuVMOpenDictionaryRequested;
+            _summaryVM.UploadFinished += SummaryVMUploadFinished;
 
+            Content = _menuVM;
+        }
+
+        private void SummaryVMUploadFinished(Highscore obj)
+        {
             Content = _menuVM;
         }
 

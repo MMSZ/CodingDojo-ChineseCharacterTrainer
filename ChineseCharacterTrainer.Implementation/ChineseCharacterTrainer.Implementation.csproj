@@ -75,11 +75,13 @@
     <Compile Include="Services\IEnumerableShuffler.cs" />
     <Compile Include="Services\IOpenFileDialog.cs" />
     <Compile Include="Services\IPinyinBeautifier.cs" />
+    <Compile Include="Services\IScoreCalculator.cs" />
     <Compile Include="Services\ITextFileReader.cs" />
     <Compile Include="Services\IWordlistParser.cs" />
     <Compile Include="Services\OpenFileDialog.cs" />
     <Compile Include="Services\PinyinBeautifier.cs" />
     <Compile Include="Services\RandomDictionaryEntryPicker.cs" />
+    <Compile Include="Services\ScoreCalculator.cs" />
     <Compile Include="Services\TextFileReader.cs" />
     <Compile Include="Services\WordlistParser.cs" />
     <Compile Include="Utilities\DateTimeWrapper.cs" />
