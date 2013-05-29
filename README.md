@@ -56,12 +56,8 @@ Modify the program to connect to a WCF service to store and retrieve dictionarie
 
 ### Iteration 9:
 Allow the user to upload her highscore after all questions are answered. The user has to provide a name that is between 3 and 12 characters long.
-The highscore is based on the time it took to answer all questions and a penalty of 10 seconds for every wrong answer that is shown seperately.
+The highscore is based on the time it took to answer all questions and a penalty of 5 seconds for every wrong answer.
 
 ### Iteration 10:
 After the user has uploaded her highscore she is shown a list of top 10 highscores and the position of her current attempt and her best attempt.
 Also show this list of highscores next to the dictionary selection.
-
-### Iteration 11:
-Add an additional training mode that ignores highscores but instead contains a smart algorithm to detect which of the characters in a dictionary still need to be learned. The algorithm itself is up to your imagination.
-
