@@ -13,6 +13,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         private ISummaryVM _objectUnderTest;
 
         private readonly QuestionResult _questionResult = new QuestionResult(1, 2, TimeSpan.FromSeconds(1), 100);
+        private readonly Dictionary _dictionary = new Dictionary("Test", null);
 
         private Mock<IChineseCharacterTrainerService> _chineseCharacterTrainerServiceMock;
 
@@ -22,7 +23,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _chineseCharacterTrainerServiceMock = new Mock<IChineseCharacterTrainerService>();
 
             _objectUnderTest = new SummaryVM(_chineseCharacterTrainerServiceMock.Object);
-            _objectUnderTest.Initialize(_questionResult);
+            _objectUnderTest.Initialize(_dictionary, _questionResult);
         }
 
         [Test]

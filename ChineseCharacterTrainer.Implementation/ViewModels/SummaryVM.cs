@@ -14,6 +14,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private ICommand _uploadScoreCommand;
 
         private QuestionResult _questionResult;
+        private Dictionary _dictionary;
 
         public SummaryVM(IChineseCharacterTrainerService chineseCharacterTrainerService)
         {
@@ -55,12 +56,8 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
                        new RelayCommand(
                            p =>
                                {
-                                   var user = new User();
-                                   user.Name = Username;
-
-                                   var highscore = new Highscore();
-                                   highscore.Score = Score;
-                                   highscore.User = user;
+                                   var user = new User(Username);
+                                   var highscore = new Highscore(user, _dictionary, Score);
 
                                    _chineseCharacterTrainerService.UploadHighscore(highscore);
                                    RaiseUploadFinished(highscore);
@@ -68,8 +65,9 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             }
         }
 
-        public void Initialize(QuestionResult questionResult)
+        public void Initialize(Dictionary dictionary, QuestionResult questionResult)
         {
+            _dictionary = dictionary;
             _questionResult = questionResult;
         }
 

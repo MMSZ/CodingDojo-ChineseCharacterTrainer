@@ -16,7 +16,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
         ICommand UploadScoreCommand { get; }
 
-        void Initialize(QuestionResult questionResult);
+        void Initialize(Dictionary dictionary, QuestionResult questionResult);
 
         event Action<Highscore> UploadFinished;
     }

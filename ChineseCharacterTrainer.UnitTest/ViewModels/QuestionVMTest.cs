@@ -23,7 +23,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
         private readonly List<DictionaryEntry> _dictionaryEntries = new List<DictionaryEntry>
             {
-                new DictionaryEntry("你", "ni3", new List<Translation>{ new Translation("you")}),
+                new DictionaryEntry("自己", "zi4 ji3", new List<Translation>{ new Translation("alone")}),
                 new DictionaryEntry("车", "che1", new List<Translation>{ new Translation("vehicle"), new Translation("car")})
             };
 
@@ -129,7 +129,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldSetLastAnswerCorrectIfItWasCorrect()
         {
-            _objectUnderTest.Answer = "ni3";
+            _objectUnderTest.Answer = "zi4 ji3";
 
             _objectUnderTest.AnswerCommand.Execute(null);
 
@@ -203,7 +203,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldIncreaseNumberOfCorrectAnswersAfterCorrectAnswer()
         {
-            _objectUnderTest.Answer = "ni3";
+            _objectUnderTest.Answer = "zi4 ji3";
 
             _objectUnderTest.AnswerCommand.Execute(null);
 
@@ -230,6 +230,16 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _dictionaryEntryPickerMock.Verify(p => p.QueueEntry(_objectUnderTest.CurrentEntry));
         }
 
+        [Test]
+        public void ShouldIgnoreWhitespacesForCorrectAnswer()
+        {
+            _objectUnderTest.Answer = " zi4     ji3 ";
+
+            _objectUnderTest.AnswerCommand.Execute(null);
+
+            Assert.IsTrue(_objectUnderTest.LastAnswerWasCorrect);
+        }
+
         private void AnswerAllQuestions()
         {
             _objectUnderTest.AnswerCommand.Execute(null);
@@ -240,7 +250,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
         private void AnswerAllQuestionsCorrect()
         {
-            _objectUnderTest.Answer = "ni3";
+            _objectUnderTest.Answer = "zi4 ji3";
             _objectUnderTest.AnswerCommand.Execute(null);
             _objectUnderTest.AnswerCommand.Execute(null);
             _objectUnderTest.Answer = "che1";

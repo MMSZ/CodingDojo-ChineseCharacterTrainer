@@ -1,6 +1,5 @@
 ﻿using ChineseCharacterTrainer.Implementation.ServiceReference;
 using ChineseCharacterTrainer.Model;
-using ChineseCharacterTrainer.ServiceApp.Persistence;
 using System.Collections.Generic;
 
 namespace ChineseCharacterTrainer.Implementation.Services

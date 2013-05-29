@@ -1,4 +1,5 @@
-﻿using ChineseCharacterTrainer.Model;
+﻿using System;
+using ChineseCharacterTrainer.Model;
 using ChineseCharacterTrainer.ServiceApp.Persistence;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,27 +24,51 @@ namespace ChineseCharacterTrainer.ServiceApp
         public ChineseCharacterTrainerService()
         {
             //Database.SetInitializer(new DontDropDbJustCreateTablesIfModelChanged<ChineseTrainerContext>());
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ChineseTrainerContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ChineseTrainerContext>());
+            Database.SetInitializer(new DontDropExistingDbCreateTablesIfModelChanged<ChineseTrainerContext>());
             //Database.SetInitializer(new DropCreateDatabaseAlways<ChineseTrainerContext>());
             //Database.SetInitializer(new CreateDatabaseIfNotExists<ChineseTrainerContext>());
         }
 
         public void AddDictionary(Dictionary dictionary)
         {
-            ChineseTrainerContext.Add(dictionary);
-            ChineseTrainerContext.SaveChanges();
+            try
+            {
+                ChineseTrainerContext.Add(dictionary);
+                ChineseTrainerContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public List<Dictionary> GetDictionaries()
         {
-            var dictionaries = ChineseTrainerContext.GetAll<Dictionary>();
-            return dictionaries;
+            try
+            {
+                var dictionaries = ChineseTrainerContext.GetAll<Dictionary>();
+                return dictionaries;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return null;
         }
 
         public void UploadHighscore(Highscore highscore)
         {
-            ChineseTrainerContext.Add(highscore);
-            ChineseTrainerContext.SaveChanges();
+            try
+            {
+                ChineseTrainerContext.Add(highscore);
+                ChineseTrainerContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

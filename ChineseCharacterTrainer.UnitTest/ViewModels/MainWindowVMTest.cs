@@ -46,10 +46,12 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         [Test]
         public void ShouldInitializeSummaryViewModelWhenQuestionsAreFinished()
         {
+            _menuVMMock.Setup(p => p.SelectedDictionary).Returns(new Dictionary("Test", null));
             var questionResult = new QuestionResult(1, 2, TimeSpan.FromSeconds(1), 100);
+
             _questionVMMock.Raise(p => p.QuestionsFinished += null, questionResult);
 
-            _summaryVMMock.Verify(p => p.Initialize(questionResult), Times.Once());
+            _summaryVMMock.Verify(p => p.Initialize(_menuVMMock.Object.SelectedDictionary, questionResult), Times.Once());
         }
 
         [Test]
@@ -57,6 +59,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         {
             var entries = new List<DictionaryEntry>();
             var dictionary = new Dictionary("1", entries);
+
             _menuVMMock.Raise(p => p.OpenDictionaryRequested += null, dictionary);
 
             _questionVMMock.Verify(p => p.Initialize(dictionary.Entries));
@@ -66,6 +69,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         public void ShouldStartTrainingWhenDictionaryOpenIsRequested()
         {
             var dictionary = new Dictionary("1", null);
+
             _menuVMMock.Raise(p => p.OpenDictionaryRequested += null, dictionary);
 
             Assert.AreEqual(_questionVMMock.Object, _objectUnderTest.Content);
@@ -77,9 +81,17 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             var dictionary = new Dictionary("1", null);
             _menuVMMock.Raise(p => p.OpenDictionaryRequested += null, dictionary);
 
-            _summaryVMMock.Raise(p => p.UploadFinished += null, new Highscore());
+            _summaryVMMock.Raise(p => p.UploadFinished += null, new Highscore(null, null, 0));
 
             Assert.AreEqual(_objectUnderTest.Content, _menuVMMock.Object);
+        }
+
+        [Test]
+        public void ShouldInitializeMenuWhenInitializing()
+        {
+            _objectUnderTest.Initialize();
+
+            _menuVMMock.Verify(p => p.Initialize());
         }
     }
 }

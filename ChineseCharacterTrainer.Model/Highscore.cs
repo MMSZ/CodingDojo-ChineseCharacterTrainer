@@ -2,14 +2,25 @@
 
 namespace ChineseCharacterTrainer.Model
 {
-    [DataContract]
-    [KnownType(typeof(User))]
+    [DataContract(IsReference = true)]
     public class Highscore : Entity
     {
-        [DataMember]
-        public virtual User User { get; set; }
+        public Highscore(User user, Dictionary dictionary, int score)
+        {
+            User = user;
+            Dictionary = dictionary;
+            Score = score;
+        }
+
+        protected Highscore() { }
 
         [DataMember]
-        public int Score { get; set; }
+        public virtual User User { get; private set; }
+
+        [DataMember]
+        public virtual Dictionary Dictionary { get; private set; }
+
+        [DataMember]
+        public int Score { get; private set; }
     }
 }

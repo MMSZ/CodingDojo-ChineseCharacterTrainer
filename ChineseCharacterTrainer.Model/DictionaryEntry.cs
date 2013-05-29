@@ -4,7 +4,6 @@ using System.Runtime.Serialization;
 namespace ChineseCharacterTrainer.Model
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(Translation))]
     public class DictionaryEntry : Entity
     {
         public DictionaryEntry(string chineseCharacters, string pinyin, List<Translation> translations)
@@ -24,9 +23,9 @@ namespace ChineseCharacterTrainer.Model
         public string Pinyin { get; private set; }
 
         [DataMember]
-        public List<Translation> Translations { get; set; }
+        public virtual List<Translation> Translations { get; private set; }
 
         [DataMember]
-        public Dictionary Dictionary { get; set; }
+        public virtual Dictionary Dictionary { get; internal set; }
     }
 }

@@ -16,6 +16,6 @@ namespace ChineseCharacterTrainer.Model
         public string Value { get; private set; }
 
         [DataMember]
-        public DictionaryEntry DictionaryEntry { get; set; }
+        public virtual DictionaryEntry DictionaryEntry { get; internal set; }
     }
 }

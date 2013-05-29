@@ -24,6 +24,11 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             Content = _menuVM;
         }
 
+        public void Initialize()
+        {
+            _menuVM.Initialize();
+        }
+
         private void SummaryVMUploadFinished(Highscore obj)
         {
             Content = _menuVM;
@@ -37,7 +42,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
         private void QuestionVMQuestionsFinished(QuestionResult questionResult)
         {
-            _summaryVM.Initialize(questionResult);
+            _summaryVM.Initialize(_menuVM.SelectedDictionary, questionResult);
             Content = _summaryVM;
         }
 

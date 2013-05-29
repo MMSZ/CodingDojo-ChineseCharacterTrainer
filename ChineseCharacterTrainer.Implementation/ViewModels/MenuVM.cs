@@ -3,6 +3,7 @@ using ChineseCharacterTrainer.Library;
 using ChineseCharacterTrainer.Model;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ChineseCharacterTrainer.Implementation.ViewModels
@@ -18,6 +19,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private string _name;
         private string _fileName;
         private ICommand _browseCommand;
+        private ObservableCollection<Dictionary> _availableDictionaries;
 
         public MenuVM(
             IOpenFileDialog openFileDialog,
@@ -29,7 +31,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             _dictionaryRepository = dictionaryRepository;
             _openFileDialog.Filter = "Comma separated files (*.csv)|*.csv|All files (*.*)|*.*";
 
-            AvailableDictionaries = new ObservableCollection<Dictionary>(_dictionaryRepository.GetAll());
+            AvailableDictionaries = new ObservableCollection<Dictionary>();
         }
 
         public Dictionary SelectedDictionary
@@ -38,7 +40,11 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             set { _selectedDictionary = value; RaisePropertyChanged(() => SelectedDictionary); }
         }
 
-        public ObservableCollection<Dictionary> AvailableDictionaries { get; private set; }
+        public ObservableCollection<Dictionary> AvailableDictionaries
+        {
+            get { return _availableDictionaries; }
+            private set { _availableDictionaries = value; RaisePropertyChanged(() => AvailableDictionaries); }
+        }
 
         public IAsyncCommand ImportCommand
         {
@@ -96,6 +102,12 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         {
             get { return _fileName; }
             set { _fileName = value; RaisePropertyChanged(() => FileName); }
+        }
+
+        public async Task Initialize()
+        {
+            var dictionaries = await Task.Run(() =>_dictionaryRepository.GetAll());
+            AvailableDictionaries = new ObservableCollection<Dictionary>(dictionaries);
         }
 
         protected virtual void RaiseOpenDictionaryRequested(Dictionary dictionary)

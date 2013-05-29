@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Model;
+﻿using ChineseCharacterTrainer.Model;
+using System.Threading.Tasks;
 
 namespace ChineseCharacterTrainer.Implementation.Services
 {

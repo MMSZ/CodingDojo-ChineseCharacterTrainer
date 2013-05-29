@@ -7,11 +7,21 @@ namespace ChineseCharacterTrainer
     /// </summary>
     public partial class MainWindow
     {
+        private readonly IMainWindowVM _mainWindowVM;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            DataContext = ServiceLocatorSingleton.Instance.Get<IMainWindowVM>();
+            _mainWindowVM = ServiceLocatorSingleton.Instance.Get<IMainWindowVM>();
+            DataContext = _mainWindowVM;
+        }
+
+        protected override void OnActivated(System.EventArgs e)
+        {
+            _mainWindowVM.Initialize();
+
+            base.OnActivated(e);
         }
     }
 }

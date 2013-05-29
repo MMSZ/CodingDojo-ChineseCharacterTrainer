@@ -27,6 +27,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _dictionaryRepositoryMock.Setup(p => p.GetAll()).Returns(new List<Dictionary>());
 
             _objectUnderTest = CreateObjectUnderTest();
+            _objectUnderTest.Initialize();
         }
 
         private IMenuVM CreateObjectUnderTest()
@@ -99,12 +100,13 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         }
 
         [Test]
-        public void ShouldInitializeAvailableDictionariesFromRepository()
+        public async void ShouldInitializeAvailableDictionariesFromRepository()
         {
             var dictionaries = new List<Dictionary> {new Dictionary("1", null), new Dictionary("2", null)};
             _dictionaryRepositoryMock.Setup(p => p.GetAll()).Returns(dictionaries);
 
             _objectUnderTest = CreateObjectUnderTest();
+            await _objectUnderTest.Initialize();
 
             Assert.AreEqual(2, _objectUnderTest.AvailableDictionaries.Count);
         }

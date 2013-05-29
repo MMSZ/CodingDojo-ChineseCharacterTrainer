@@ -102,7 +102,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
             if (IsInAnswerMode)
             {
-                LastAnswerWasCorrect = Answer == CurrentEntry.Pinyin;
+                LastAnswerWasCorrect = RemoveWhitespaces(Answer) == RemoveWhitespaces(CurrentEntry.Pinyin);
                 
                 if (LastAnswerWasCorrect) NumberOfCorrectAnswers++;
                 else
@@ -131,6 +131,12 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             }
             
             IsInAnswerMode = !IsInAnswerMode;
+        }
+
+        private string RemoveWhitespaces(string value)
+        {
+            var result = value.Replace(" ", "");
+            return result;
         }
 
         private void GetNextEntry()

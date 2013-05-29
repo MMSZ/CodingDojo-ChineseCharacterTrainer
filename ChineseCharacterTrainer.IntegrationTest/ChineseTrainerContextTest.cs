@@ -20,14 +20,24 @@ namespace ChineseCharacterTrainer.IntegrationTest
             Guard<Dictionary>(objectUnderTest);
             Guard<DictionaryEntry>(objectUnderTest);
             Guard<Translation>(objectUnderTest);
+            Guard<Highscore>(objectUnderTest);
+            Guard<User>(objectUnderTest);
 
             var dictionary1 = CreateDictionary("1");
             objectUnderTest.Add(dictionary1);
-            objectUnderTest.SaveChanges();
 
             var dictionary2 = CreateDictionary("2");
             objectUnderTest.Add(dictionary2);
+
+            var highscore = CreateHighscore(dictionary1);
+            objectUnderTest.Add(highscore);
+
             objectUnderTest.SaveChanges();
+        }
+
+        private static Highscore CreateHighscore(Dictionary dictionary1)
+        {
+            return new Highscore(new User("Frank"), dictionary1, 10);
         }
 
         private static void Guard<T>(ChineseTrainerContext objectUnderTest) where T : class
@@ -73,6 +83,16 @@ namespace ChineseCharacterTrainer.IntegrationTest
             var translations = objectUnderTest.GetAll<Translation>();
 
             Assert.AreEqual(4, translations.Count);
+        }
+
+        [Test]
+        public void ShouldGetHighscoreFromDatabase()
+        {
+            var objectUnderTest = new ChineseTrainerContext(TestDatabaseName);
+
+            var highscores = objectUnderTest.GetAll<Highscore>();
+
+            Assert.AreEqual(1, highscores.Count);
         }
     }
 }

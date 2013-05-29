@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using ChineseCharacterTrainer.Library;
 using ChineseCharacterTrainer.Model;
 using System;
@@ -16,5 +17,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         event Action<Dictionary> OpenDictionaryRequested;
         string Name { get; set; }
         string FileName { get; set; }
+
+        Task Initialize();
     }
 }

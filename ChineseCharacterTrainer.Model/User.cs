@@ -3,14 +3,20 @@ using System.Runtime.Serialization;
 
 namespace ChineseCharacterTrainer.Model
 {
-    [DataContract]
-    [KnownType(typeof(Highscore))]
+    [DataContract(IsReference = true)]
     public class User : Entity
     {
-        [DataMember]
-        public string Name { get; set; }
+        public User(string name)
+        {
+            Name = name;
+        }
+
+        protected User() { }
 
         [DataMember]
-        public virtual List<Highscore> Highscores { get; set; } 
+        public string Name { get; private set; }
+
+        [DataMember]
+        public virtual List<Highscore> Highscores { get; private set; } 
     }
 }
