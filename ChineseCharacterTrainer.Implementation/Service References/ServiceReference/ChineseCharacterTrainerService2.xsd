@@ -6,6 +6,7 @@
       <xs:extension base="tns:Entity">
         <xs:sequence>
           <xs:element minOccurs="0" name="Entries" nillable="true" type="tns:ArrayOfDictionaryEntry" />
+          <xs:element minOccurs="0" name="Highscores" nillable="true" type="tns:ArrayOfHighscore" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
@@ -56,16 +57,17 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Translation" nillable="true" type="tns:Translation" />
-  <xs:complexType name="ArrayOfDictionary">
+  <xs:complexType name="ArrayOfHighscore">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dictionary" nillable="true" type="tns:Dictionary" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Highscore" nillable="true" type="tns:Highscore" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfDictionary" nillable="true" type="tns:ArrayOfDictionary" />
+  <xs:element name="ArrayOfHighscore" nillable="true" type="tns:ArrayOfHighscore" />
   <xs:complexType name="Highscore">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Entity">
         <xs:sequence>
+          <xs:element minOccurs="0" name="Dictionary" nillable="true" type="tns:Dictionary" />
           <xs:element minOccurs="0" name="Score" type="xs:int" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
         </xs:sequence>
@@ -84,10 +86,10 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
-  <xs:complexType name="ArrayOfHighscore">
+  <xs:complexType name="ArrayOfDictionary">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Highscore" nillable="true" type="tns:Highscore" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dictionary" nillable="true" type="tns:Dictionary" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfHighscore" nillable="true" type="tns:ArrayOfHighscore" />
+  <xs:element name="ArrayOfDictionary" nillable="true" type="tns:ArrayOfDictionary" />
 </xs:schema>

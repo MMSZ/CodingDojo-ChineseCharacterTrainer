@@ -14,7 +14,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         private IMenuVM _objectUnderTest;
         private Mock<IOpenFileDialog> _openFileDialogMock;
         private Mock<IDictionaryImporter> _dictionaryImporterMock;
-        private Mock<IDictionaryRepository> _dictionaryRepositoryMock;
+        private Mock<IRepository> _dictionaryRepositoryMock;
 
         [SetUp]
         public void Initialize()
@@ -23,8 +23,8 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _openFileDialogMock.SetupAllProperties();
 
             _dictionaryImporterMock = new Mock<IDictionaryImporter>();
-            _dictionaryRepositoryMock = new Mock<IDictionaryRepository>();
-            _dictionaryRepositoryMock.Setup(p => p.GetAll()).Returns(new List<Dictionary>());
+            _dictionaryRepositoryMock = new Mock<IRepository>();
+            _dictionaryRepositoryMock.Setup(p => p.GetDictionaries()).Returns(new List<Dictionary>());
 
             _objectUnderTest = CreateObjectUnderTest();
             _objectUnderTest.Initialize();
@@ -103,7 +103,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         public async void ShouldInitializeAvailableDictionariesFromRepository()
         {
             var dictionaries = new List<Dictionary> {new Dictionary("1", null), new Dictionary("2", null)};
-            _dictionaryRepositoryMock.Setup(p => p.GetAll()).Returns(dictionaries);
+            _dictionaryRepositoryMock.Setup(p => p.GetDictionaries()).Returns(dictionaries);
 
             _objectUnderTest = CreateObjectUnderTest();
             await _objectUnderTest.Initialize();

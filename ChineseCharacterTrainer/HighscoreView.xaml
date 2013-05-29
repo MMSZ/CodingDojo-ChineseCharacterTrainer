@@ -1,0 +1,53 @@
+﻿<UserControl 
+    x:Class="ChineseCharacterTrainer.HighscoreView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding ContinueCommand}"/>
+    </UserControl.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Highscores" HorizontalAlignment="Center" FontSize="36"/>
+        
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Highscores}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Ranking}" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding Username}" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding Score}" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Current:" HorizontalAlignment="Right"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CurrentHighscore.Score}"/>
+            
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Best:" HorizontalAlignment="Right"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding BestHighscore.Score}"/>
+        </Grid>
+        
+        <Button Grid.Row="3" Margin="10" Content="Back to menu" Command="{Binding ContinueCommand}"/>
+
+    </Grid>
+</UserControl>

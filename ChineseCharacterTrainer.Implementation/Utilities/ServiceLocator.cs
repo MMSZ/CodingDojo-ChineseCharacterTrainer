@@ -21,11 +21,12 @@ namespace ChineseCharacterTrainer.Implementation.Utilities
             _standardKernel.Bind<IMenuVM>().To<MenuVM>().InSingletonScope();
             _standardKernel.Bind<IQuestionVM>().To<QuestionVM>().InSingletonScope();
             _standardKernel.Bind<ISummaryVM>().To<SummaryVM>().InSingletonScope();
+            _standardKernel.Bind<IHighscoreVM>().To<HighscoreVM>().InSingletonScope();
 
             _standardKernel.Bind<IWordlistParser>().To<WordlistParser>().InSingletonScope();
             _standardKernel.Bind<ITextFileReader>().To<TextFileReader>().InSingletonScope();
             _standardKernel.Bind<IPinyinBeautifier>().To<PinyinBeautifier>().InSingletonScope();
-            _standardKernel.Bind<IDictionaryRepository>().To<DictionaryRepository>().InSingletonScope();
+            _standardKernel.Bind<IRepository>().To<Repository>().InSingletonScope();
             _standardKernel.Bind<IDictionaryImporter>().To<DictionaryImporter>().InSingletonScope();
             _standardKernel.Bind<IDictionaryEntryPicker>().To<RandomDictionaryEntryPicker>().InSingletonScope();
             _standardKernel.Bind<IEnumerableShuffler>().To<EnumerableShuffler>().InSingletonScope();

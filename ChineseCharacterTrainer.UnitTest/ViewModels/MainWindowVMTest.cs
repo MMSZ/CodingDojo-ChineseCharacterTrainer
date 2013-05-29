@@ -14,8 +14,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         private Mock<IQuestionVM> _questionVMMock;
         private Mock<ISummaryVM> _summaryVMMock;
         private Mock<IMenuVM> _menuVMMock;
-
-
+        private Mock<IHighscoreVM> _highscoreVMMock;
 
         [SetUp]
         public void Initialize()
@@ -23,9 +22,13 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
             _menuVMMock = new Mock<IMenuVM>();
             _questionVMMock = new Mock<IQuestionVM>();
             _summaryVMMock = new Mock<ISummaryVM>();
+            _highscoreVMMock = new Mock<IHighscoreVM>();
 
-
-            _objectUnderTest = new MainWindowVM(_menuVMMock.Object, _questionVMMock.Object, _summaryVMMock.Object);
+            _objectUnderTest = new MainWindowVM(
+                _menuVMMock.Object,
+                _questionVMMock.Object,
+                _summaryVMMock.Object,
+                _highscoreVMMock.Object);
         }
 
         [Test]
@@ -76,12 +79,21 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         }
 
         [Test]
-        public void ShouldShowMenuWhenUploadFinishedIsRaised()
+        public void ShouldShowHighscoreWhenUploadFinishedIsRaised()
         {
-            var dictionary = new Dictionary("1", null);
-            _menuVMMock.Raise(p => p.OpenDictionaryRequested += null, dictionary);
+            _objectUnderTest.Content = null;
 
             _summaryVMMock.Raise(p => p.UploadFinished += null, new Highscore(null, null, 0));
+
+            Assert.AreEqual(_objectUnderTest.Content, _highscoreVMMock.Object);
+        }
+
+        [Test]
+        public void ShouldShowMenuWhenHighscoreIsFinished()
+        {
+            _objectUnderTest.Content = null;
+
+            _highscoreVMMock.Raise(p => p.ReturnToMenuRequested += null);
 
             Assert.AreEqual(_objectUnderTest.Content, _menuVMMock.Object);
         }

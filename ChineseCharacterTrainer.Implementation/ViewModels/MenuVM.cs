@@ -12,7 +12,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
     {
         private readonly IOpenFileDialog _openFileDialog;
         private readonly IDictionaryImporter _dictionaryImporter;
-        private readonly IDictionaryRepository _dictionaryRepository;
+        private readonly IRepository _dictionaryRepository;
         private IAsyncCommand _importCommand;
         private Dictionary _selectedDictionary;
         private ICommand _openCommand;
@@ -24,7 +24,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         public MenuVM(
             IOpenFileDialog openFileDialog,
             IDictionaryImporter dictionaryImporter,
-            IDictionaryRepository dictionaryRepository)
+            IRepository dictionaryRepository)
         {
             _openFileDialog = openFileDialog;
             _dictionaryImporter = dictionaryImporter;
@@ -106,7 +106,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 
         public async Task Initialize()
         {
-            var dictionaries = await Task.Run(() =>_dictionaryRepository.GetAll());
+            var dictionaries = await Task.Run(() =>_dictionaryRepository.GetDictionaries());
             AvailableDictionaries = new ObservableCollection<Dictionary>(dictionaries);
         }
 

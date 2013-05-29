@@ -1,5 +1,6 @@
 ﻿using ChineseCharacterTrainer.Implementation.Model;
 using ChineseCharacterTrainer.Implementation.ServiceReference;
+using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Library;
 using System;
 using System.Windows.Input;
@@ -9,16 +10,16 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
 {
     public class SummaryVM : ViewModel, ISummaryVM
     {
-        private readonly IChineseCharacterTrainerService _chineseCharacterTrainerService;
+        private readonly IRepository _repository;
         private string _username;
         private ICommand _uploadScoreCommand;
 
         private QuestionResult _questionResult;
         private Dictionary _dictionary;
 
-        public SummaryVM(IChineseCharacterTrainerService chineseCharacterTrainerService)
+        public SummaryVM(IRepository repository)
         {
-            _chineseCharacterTrainerService = chineseCharacterTrainerService;
+            _repository = repository;
         }
 
         public int NumberOfCorrectAnswers
@@ -59,7 +60,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
                                    var user = new User(Username);
                                    var highscore = new Highscore(user, _dictionary, Score);
 
-                                   _chineseCharacterTrainerService.UploadHighscore(highscore);
+                                   _repository.AddHighscore(highscore);
                                    RaiseUploadFinished(highscore);
                                }, p => !string.IsNullOrWhiteSpace(Username)));
             }

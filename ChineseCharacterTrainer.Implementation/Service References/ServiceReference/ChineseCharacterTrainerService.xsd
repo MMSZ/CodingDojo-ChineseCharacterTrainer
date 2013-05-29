@@ -25,14 +25,26 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UploadHighscore">
+  <xs:element name="GetHighscores">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHighscoresResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ChineseCharacterTrainer.Model" minOccurs="0" name="highscore" nillable="true" type="q3:Highscore" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ChineseCharacterTrainer.Model" minOccurs="0" name="GetHighscoresResult" nillable="true" type="q3:ArrayOfHighscore" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UploadHighscoreResponse">
+  <xs:element name="AddHighscore">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ChineseCharacterTrainer.Model" minOccurs="0" name="highscore" nillable="true" type="q4:Highscore" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddHighscoreResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

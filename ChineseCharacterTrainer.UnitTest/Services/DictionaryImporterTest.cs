@@ -13,14 +13,14 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         private IDictionaryImporter _objectUnderTest;
         private Mock<ITextFileReader> _textFileReaderMock;
         private Mock<IWordlistParser> _wordlistParserMock;
-        private Mock<IDictionaryRepository> _dictionaryRepositoryMock;
+        private Mock<IRepository> _dictionaryRepositoryMock;
 
         [SetUp]
         public void Initialize()
         {
             _textFileReaderMock = new Mock<ITextFileReader>();
             _wordlistParserMock = new Mock<IWordlistParser>();
-            _dictionaryRepositoryMock = new Mock<IDictionaryRepository>();
+            _dictionaryRepositoryMock = new Mock<IRepository>();
 
             _objectUnderTest = new DictionaryImporter(
                 _textFileReaderMock.Object, _wordlistParserMock.Object, _dictionaryRepositoryMock.Object);
@@ -51,7 +51,7 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         {
             await ImportDictionary();
 
-            _dictionaryRepositoryMock.Verify(p => p.Add(It.IsAny<Dictionary>()));
+            _dictionaryRepositoryMock.Verify(p => p.AddDictionary(It.IsAny<Dictionary>()));
         }
 
         private Task<Dictionary> ImportDictionary()

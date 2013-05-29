@@ -10,16 +10,19 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private IViewModel _content;
         private readonly IQuestionVM _questionVM;
         private readonly ISummaryVM _summaryVM;
+        private readonly IHighscoreVM _highscoreVM;
 
-        public MainWindowVM(IMenuVM menuVM, IQuestionVM questionVM, ISummaryVM summaryVM)
+        public MainWindowVM(IMenuVM menuVM, IQuestionVM questionVM, ISummaryVM summaryVM, IHighscoreVM highscoreVM)
         {
             _questionVM = questionVM;
             _summaryVM = summaryVM;
+            _highscoreVM = highscoreVM;
             _menuVM = menuVM;
 
             _questionVM.QuestionsFinished += QuestionVMQuestionsFinished;
             _menuVM.OpenDictionaryRequested += MenuVMOpenDictionaryRequested;
             _summaryVM.UploadFinished += SummaryVMUploadFinished;
+            _highscoreVM.ReturnToMenuRequested += HighscoreVMReturnToMenuRequested;
 
             Content = _menuVM;
         }
@@ -29,9 +32,15 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             _menuVM.Initialize();
         }
 
-        private void SummaryVMUploadFinished(Highscore obj)
+        private void HighscoreVMReturnToMenuRequested()
         {
             Content = _menuVM;
+        }
+
+        private void SummaryVMUploadFinished(Highscore highscore)
+        {
+            _highscoreVM.Initialize(highscore);
+            Content = _highscoreVM;
         }
 
         private void MenuVMOpenDictionaryRequested(Dictionary dictionary)

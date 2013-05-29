@@ -1,5 +1,5 @@
 ﻿using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.ServiceReference;
+using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Implementation.ViewModels;
 using ChineseCharacterTrainer.Model;
 using Moq;
@@ -15,14 +15,14 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         private readonly QuestionResult _questionResult = new QuestionResult(1, 2, TimeSpan.FromSeconds(1), 100);
         private readonly Dictionary _dictionary = new Dictionary("Test", null);
 
-        private Mock<IChineseCharacterTrainerService> _chineseCharacterTrainerServiceMock;
+        private Mock<IRepository> _repositoryMock;
 
         [SetUp]
         public void Initialize()
         {
-            _chineseCharacterTrainerServiceMock = new Mock<IChineseCharacterTrainerService>();
+            _repositoryMock = new Mock<IRepository>();
 
-            _objectUnderTest = new SummaryVM(_chineseCharacterTrainerServiceMock.Object);
+            _objectUnderTest = new SummaryVM(_repositoryMock.Object);
             _objectUnderTest.Initialize(_dictionary, _questionResult);
         }
 
@@ -77,7 +77,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
             _objectUnderTest.UploadScoreCommand.Execute(null);
 
-            _chineseCharacterTrainerServiceMock.Verify(p=>p.UploadHighscore(It.IsAny<Highscore>()));
+            _repositoryMock.Verify(p=>p.AddHighscore(It.IsAny<Highscore>()));
         }
 
         [Test]

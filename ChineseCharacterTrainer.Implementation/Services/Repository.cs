@@ -4,23 +4,33 @@ using System.Collections.Generic;
 
 namespace ChineseCharacterTrainer.Implementation.Services
 {
-    public class DictionaryRepository : IDictionaryRepository
+    public class Repository : IRepository
     {
         private readonly IChineseCharacterTrainerService _chineseCharacterTrainerService;
 
-        public DictionaryRepository(IChineseCharacterTrainerService chineseCharacterTrainerService)
+        public Repository(IChineseCharacterTrainerService chineseCharacterTrainerService)
         {
             _chineseCharacterTrainerService = chineseCharacterTrainerService;
         }
 
-        public void Add(Dictionary dictionary)
+        public void AddDictionary(Dictionary dictionary)
         {
             _chineseCharacterTrainerService.AddDictionary(dictionary);
         }
 
-        public List<Dictionary> GetAll()
+        public List<Dictionary> GetDictionaries()
         {
             return _chineseCharacterTrainerService.GetDictionaries();
+        }
+
+        public void AddHighscore(Highscore highscore)
+        {
+            _chineseCharacterTrainerService.AddHighscore(highscore);
+        }
+
+        public List<Highscore> GetHighscores()
+        {
+            return _chineseCharacterTrainerService.GetHighscores();
         }
     }
 }

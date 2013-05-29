@@ -58,7 +58,13 @@ namespace ChineseCharacterTrainer.ServiceApp
             return null;
         }
 
-        public void UploadHighscore(Highscore highscore)
+        public List<Highscore> GetHighscores()
+        {
+            var highscores = ChineseTrainerContext.GetAll<Highscore>();
+            return highscores;
+        }
+
+        public void AddHighscore(Highscore highscore)
         {
             try
             {

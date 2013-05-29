@@ -75,11 +75,12 @@
     <Compile Include="Services\DictionaryImporterTest.cs" />
     <Compile Include="Services\EnumerableShufflerTest.cs" />
     <Compile Include="Services\PinyinBeautifierTest.cs" />
-    <Compile Include="Services\DictionaryRepositoryTest.cs" />
+    <Compile Include="Services\RepositoryTest.cs" />
     <Compile Include="Services\RandomDictionaryEntryPickerTest.cs" />
     <Compile Include="Services\ScoreCalculatorTest.cs" />
     <Compile Include="Services\TextFileReaderTest.cs" />
     <Compile Include="Services\WordlistParserTest.cs" />
+    <Compile Include="ViewModels\HighscoreVMTest.cs" />
     <Compile Include="ViewModels\MainWindowVMTest.cs" />
     <Compile Include="ViewModels\MenuVMTest.cs" />
     <Compile Include="ViewModels\QuestionVMTest.cs" />
