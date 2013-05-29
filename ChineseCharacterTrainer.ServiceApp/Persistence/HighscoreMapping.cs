@@ -8,6 +8,8 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
         public HighscoreMapping()
         {
             HasKey(p => p.Id);
+            HasRequired(p => p.User).WithMany(p => p.Highscores).HasForeignKey(p => p.UserId);
+            HasRequired(p => p.Dictionary).WithMany(p => p.Highscores).HasForeignKey(p => p.DictionaryId);
         }
     }
 }

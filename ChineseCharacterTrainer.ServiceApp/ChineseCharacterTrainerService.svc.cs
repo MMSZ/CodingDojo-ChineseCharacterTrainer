@@ -39,7 +39,7 @@ namespace ChineseCharacterTrainer.ServiceApp
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                throw;
             }
         }
 
@@ -52,10 +52,8 @@ namespace ChineseCharacterTrainer.ServiceApp
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                throw;
             }
-
-            return null;
         }
 
         public List<Highscore> GetHighscores()
@@ -68,12 +66,14 @@ namespace ChineseCharacterTrainer.ServiceApp
         {
             try
             {
-                ChineseTrainerContext.Add(highscore);
+                ChineseTrainerContext.Dictionaries.Attach(highscore.Dictionary);
+                ChineseTrainerContext.Users.Add(highscore.User);
+                ChineseTrainerContext.Highscores.Add(highscore);
                 ChineseTrainerContext.SaveChanges();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                throw;
             }
         }
     }

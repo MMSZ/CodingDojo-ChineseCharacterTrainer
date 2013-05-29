@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using ChineseCharacterTrainer.Model;
 
 namespace ChineseCharacterTrainer.ServiceApp.Persistence
 {
@@ -31,7 +32,14 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
 
         public void Add<T>(T entity) where T : class
         {
+            //Set<T>().Attach(entity);
             Set<T>().Add(entity);
         }
+
+        public DbSet<Dictionary> Dictionaries { get; set; }
+        public DbSet<Highscore> Highscores { get; set; }
+        public DbSet<DictionaryEntry> DictionaryEntries { get; set; }
+        public DbSet<Translation> Translations { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

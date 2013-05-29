@@ -10,7 +10,11 @@ namespace ChineseCharacterTrainer.Model
         {
             Name = name;
             Entries = entries;
-            if (Entries != null) Entries.ForEach(p => p.Dictionary = this);
+            if (Entries != null) Entries.ForEach(p =>
+                                                     {
+                                                         p.Dictionary = this;
+                                                         p.DictionaryId = Id;
+                                                     });
             Highscores = new List<Highscore>();
         }
 

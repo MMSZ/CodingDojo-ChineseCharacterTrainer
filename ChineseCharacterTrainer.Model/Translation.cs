@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace ChineseCharacterTrainer.Model
 {
@@ -14,6 +15,9 @@ namespace ChineseCharacterTrainer.Model
 
         [DataMember]
         public string Value { get; private set; }
+
+        [DataMember]
+        public Guid DictionaryEntryId { get; internal set; }
 
         [DataMember]
         public virtual DictionaryEntry DictionaryEntry { get; internal set; }

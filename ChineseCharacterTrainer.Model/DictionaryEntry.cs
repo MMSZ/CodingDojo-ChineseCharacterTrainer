@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace ChineseCharacterTrainer.Model
@@ -11,7 +12,11 @@ namespace ChineseCharacterTrainer.Model
             ChineseCharacters = chineseCharacters;
             Pinyin = pinyin;
             Translations = translations;
-            if(Translations != null) Translations.ForEach(p => p.DictionaryEntry = this);
+            if(Translations != null) Translations.ForEach(p =>
+                                                              {
+                                                                  p.DictionaryEntry = this;
+                                                                  p.DictionaryEntryId = Id;
+                                                              });
         }
 
         protected DictionaryEntry() { }
@@ -24,6 +29,9 @@ namespace ChineseCharacterTrainer.Model
 
         [DataMember]
         public virtual List<Translation> Translations { get; private set; }
+
+        [DataMember]
+        public Guid DictionaryId { get; internal set; }
 
         [DataMember]
         public virtual Dictionary Dictionary { get; internal set; }
