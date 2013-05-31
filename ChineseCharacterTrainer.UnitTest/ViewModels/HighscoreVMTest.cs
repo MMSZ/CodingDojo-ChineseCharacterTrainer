@@ -39,7 +39,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
                 };
 
             _repositoryMock = new Mock<IRepository>();
-            _repositoryMock.Setup(p => p.GetHighscores()).Returns(highscores);
+            _repositoryMock.Setup(p => p.GetAll<Highscore>()).Returns(highscores);
 
             _objectUnderTest = new HighscoreVM(_repositoryMock.Object);
         }

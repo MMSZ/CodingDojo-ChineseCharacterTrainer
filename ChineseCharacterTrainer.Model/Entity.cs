@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Data;
-using System.Data.Objects.DataClasses;
 using System.Runtime.Serialization;
 
 namespace ChineseCharacterTrainer.Model
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(Dictionary))]
+    [KnownType(typeof(Highscore))]
     public abstract class Entity// : IEquatable<Entity>
     {
         protected Entity()

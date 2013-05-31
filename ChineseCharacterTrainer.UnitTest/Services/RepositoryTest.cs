@@ -26,21 +26,21 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         [Test]
         public void ShouldAddItemToServiceWhenAddingDictionary()
         {
-            _objectUnderTest.AddDictionary(_dictionary);
+            _objectUnderTest.Add(_dictionary);
 
-            _serviceMock.Verify(p => p.AddDictionary(_dictionary));
+            _serviceMock.Verify(p => p.Add(typeof(Dictionary).AssemblyQualifiedName, _dictionary));
         }
 
         [Test]
         public void ShouldGetDictionary()
         {
-            _serviceMock.Setup(p => p.GetDictionaries()).Returns(new List<Dictionary>
+            _serviceMock.Setup(p => p.GetAll(typeof(Dictionary).AssemblyQualifiedName)).Returns(new List<Entity>
                 {
                     new Dictionary("1", null),
                     new Dictionary("2", null)
                 });
 
-            var dictionaries = _objectUnderTest.GetDictionaries();
+            var dictionaries = _objectUnderTest.GetAll<Dictionary>();
 
             Assert.AreEqual(2, dictionaries.Count);
         }
@@ -50,21 +50,21 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         {
             var highscore = new Highscore(_user, _dictionary, 0);
 
-            _objectUnderTest.AddHighscore(highscore);
+            _objectUnderTest.Add(highscore);
 
-            _serviceMock.Verify(p => p.AddHighscore(highscore));
+            _serviceMock.Verify(p => p.Add(typeof(Highscore).AssemblyQualifiedName, highscore));
         }
 
         [Test]
         public void ShouldGetHighscore()
         {
-            _serviceMock.Setup(p => p.GetHighscores()).Returns(new List<Highscore>
+            _serviceMock.Setup(p => p.GetAll(typeof(Highscore).AssemblyQualifiedName)).Returns(new List<Entity>
                 {
                     new Highscore(_user, _dictionary, 0),
                     new Highscore(_user, _dictionary, 0)
                 });
 
-            var highscores = _objectUnderTest.GetHighscores();
+            var highscores = _objectUnderTest.GetAll<Highscore>();
 
             Assert.AreEqual(2, highscores.Count);
         }

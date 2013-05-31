@@ -12,6 +12,7 @@ using System.Xml;
 
 namespace ChineseCharacterTrainer.ServiceApp
 {
+    [ExcludeFromCodeCoverage]
     public class DontDropExistingDbCreateTablesIfModelChanged<T> : IDatabaseInitializer<T> where T : DbContext
     {
         private EdmMetadata edmMetaData;

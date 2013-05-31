@@ -14,16 +14,6 @@ namespace ChineseCharacterTrainer.Implementation.Services
             _chineseCharacterTrainerService = chineseCharacterTrainerService;
         }
 
-        public void AddDictionary(Dictionary dictionary)
-        {
-            _chineseCharacterTrainerService.AddDictionary(dictionary);
-        }
-
-        public List<Dictionary> GetDictionaries()
-        {
-            return _chineseCharacterTrainerService.GetDictionaries();
-        }
-
         public List<T> GetAll<T>() where T : Entity
         {
             var result = _chineseCharacterTrainerService.GetAll(typeof (T).AssemblyQualifiedName);
@@ -33,16 +23,6 @@ namespace ChineseCharacterTrainer.Implementation.Services
         public void Add<T>(T entity) where T : Entity
         {
             _chineseCharacterTrainerService.Add(typeof(T).AssemblyQualifiedName, entity);
-        }
-
-        public void AddHighscore(Highscore highscore)
-        {
-            _chineseCharacterTrainerService.AddHighscore(highscore);
-        }
-
-        public List<Highscore> GetHighscores()
-        {
-            return _chineseCharacterTrainerService.GetHighscores();
         }
     }
 }

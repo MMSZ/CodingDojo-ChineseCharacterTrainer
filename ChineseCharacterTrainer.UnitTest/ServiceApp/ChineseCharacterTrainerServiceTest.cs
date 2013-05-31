@@ -24,16 +24,18 @@ namespace ChineseCharacterTrainer.UnitTest.ServiceApp
         public void ShouldAddDictionaryToContextWhenAdding()
         {
             var dictionary = CreateTestDictionaryWithEntries();
-            _objectUnderTest.AddDictionary(dictionary);
 
-            _chineseTrainerContextMock.Verify(p => p.Add(dictionary));
+            _objectUnderTest.Add(typeof(Dictionary).AssemblyQualifiedName, dictionary);
+
+            _chineseTrainerContextMock.Verify(p => p.Add(typeof (Dictionary), dictionary));
         }
 
         [Test]
         public void ShouldSaveChangesWhenAdding()
         {
             var dictionary = CreateTestDictionaryWithEntries();
-            _objectUnderTest.AddDictionary(dictionary);
+
+            _objectUnderTest.Add(typeof(Dictionary).AssemblyQualifiedName, dictionary);
 
             _chineseTrainerContextMock.Verify(p => p.SaveChanges());
         }
@@ -41,10 +43,10 @@ namespace ChineseCharacterTrainer.UnitTest.ServiceApp
         [Test]
         public void ShouldReturnDictionariesFromContext()
         {
-            _chineseTrainerContextMock.Setup(p => p.GetAll<Dictionary>()).Returns(
-                new List<Dictionary> {CreateTestDictionaryWithEntries()});
+            _chineseTrainerContextMock.Setup(p => p.GetAll(typeof(Dictionary))).Returns(
+                new List<Entity> {CreateTestDictionaryWithEntries()});
 
-            var dictionaries = _objectUnderTest.GetDictionaries();
+            var dictionaries = _objectUnderTest.GetAll(typeof (Dictionary).AssemblyQualifiedName);
 
             Assert.AreEqual(1, dictionaries.Count);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Windows.Input;
 using ChineseCharacterTrainer.Implementation.Services;
@@ -13,7 +14,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         private readonly IRepository _repository;
         private ICommand _continueCommand;
 
-        public List<Highscore> Highscores { get; private set; }
+        public List<dynamic> Highscores { get; private set; }
 
         public Highscore CurrentHighscore { get; private set; }
 
@@ -33,22 +34,34 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         {
             CurrentHighscore = currentHighscore;
 
-            var highscores = _repository.GetHighscores();
+            var highscores = _repository.GetAll<Highscore>();
             Highscores = GetBestAllTimeHighscores(highscores);
             BestHighscore = GetBestUserHighscores(highscores);
         }
 
         private Highscore GetBestUserHighscores(IEnumerable<Highscore> highscores)
         {
-            return highscores.OrderBy(p => p.Score).First(p => p.User.Id == CurrentHighscore.User.Id);
+            // Note: Currently the user's name is used to identify the user. This is because every time a new user
+            //       is created before the highscore is uploaded. To avoid this a user should have a login and
+            //       always the same ID.
+            return highscores.OrderBy(p => p.Score).First(p => p.User.Name == CurrentHighscore.User.Name);
         }
 
-        private List<Highscore> GetBestAllTimeHighscores(IEnumerable<Highscore> highscores)
+        private List<dynamic> GetBestAllTimeHighscores(IEnumerable<Highscore> highscores)
         {
+            var i = 1;
             return highscores.OrderBy(p => p.Score)
-                             .Where(p => p.Dictionary.Id == CurrentHighscore.Dictionary.Id)
-                             .Take(5)
-                             .ToList();
+                .Where(p => p.Dictionary.Id == CurrentHighscore.Dictionary.Id)
+                .Take(5)
+                .Select<Highscore, object>(
+                    p =>
+                        {
+                            dynamic expandoObject = new ExpandoObject();
+                            expandoObject.Ranking = i++;
+                            expandoObject.Username = p.User.Name;
+                            expandoObject.Score = p.Score;
+                            return expandoObject;
+                        }).ToList();
         }
 
         public event Action ReturnToMenuRequested;

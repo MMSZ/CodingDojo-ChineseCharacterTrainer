@@ -24,7 +24,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
 
             _dictionaryImporterMock = new Mock<IDictionaryImporter>();
             _dictionaryRepositoryMock = new Mock<IRepository>();
-            _dictionaryRepositoryMock.Setup(p => p.GetDictionaries()).Returns(new List<Dictionary>());
+            _dictionaryRepositoryMock.Setup(p => p.GetAll<Dictionary>()).Returns(new List<Dictionary>());
 
             _objectUnderTest = CreateObjectUnderTest();
             _objectUnderTest.Initialize();
@@ -103,7 +103,7 @@ namespace ChineseCharacterTrainer.UnitTest.ViewModels
         public async void ShouldInitializeAvailableDictionariesFromRepository()
         {
             var dictionaries = new List<Dictionary> {new Dictionary("1", null), new Dictionary("2", null)};
-            _dictionaryRepositoryMock.Setup(p => p.GetDictionaries()).Returns(dictionaries);
+            _dictionaryRepositoryMock.Setup(p => p.GetAll<Dictionary>()).Returns(dictionaries);
 
             _objectUnderTest = CreateObjectUnderTest();
             await _objectUnderTest.Initialize();

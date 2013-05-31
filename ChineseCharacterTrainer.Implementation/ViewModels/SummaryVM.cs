@@ -60,7 +60,7 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
                                    var user = new User(Username);
                                    var highscore = new Highscore(user, _dictionary, Score);
 
-                                   _repository.AddHighscore(highscore);
+                                   _repository.Add(highscore);
                                    RaiseUploadFinished(highscore);
                                }, p => !string.IsNullOrWhiteSpace(Username)));
             }

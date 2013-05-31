@@ -51,7 +51,7 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         {
             await ImportDictionary();
 
-            _dictionaryRepositoryMock.Verify(p => p.AddDictionary(It.IsAny<Dictionary>()));
+            _dictionaryRepositoryMock.Verify(p => p.Add(It.IsAny<Dictionary>()));
         }
 
         private Task<Dictionary> ImportDictionary()
