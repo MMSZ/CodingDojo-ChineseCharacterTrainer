@@ -33,6 +33,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="ChineseCharacters" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Dictionary" nillable="true" type="tns:Dictionary" />
+          <xs:element minOccurs="0" name="DictionaryId" type="ser:guid" />
           <xs:element minOccurs="0" name="Pinyin" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Translations" nillable="true" type="tns:ArrayOfTranslation" />
         </xs:sequence>
@@ -51,6 +52,7 @@
       <xs:extension base="tns:Entity">
         <xs:sequence>
           <xs:element minOccurs="0" name="DictionaryEntry" nillable="true" type="tns:DictionaryEntry" />
+          <xs:element minOccurs="0" name="DictionaryEntryId" type="ser:guid" />
           <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
@@ -68,8 +70,10 @@
       <xs:extension base="tns:Entity">
         <xs:sequence>
           <xs:element minOccurs="0" name="Dictionary" nillable="true" type="tns:Dictionary" />
+          <xs:element minOccurs="0" name="DictionaryId" type="ser:guid" />
           <xs:element minOccurs="0" name="Score" type="xs:int" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserId" type="ser:guid" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -92,4 +96,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfDictionary" nillable="true" type="tns:ArrayOfDictionary" />
+  <xs:complexType name="ArrayOfEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Entity" nillable="true" type="tns:Entity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEntity" nillable="true" type="tns:ArrayOfEntity" />
 </xs:schema>

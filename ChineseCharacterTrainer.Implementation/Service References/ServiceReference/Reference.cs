@@ -21,11 +21,22 @@ namespace ChineseCharacterTrainer.Implementation.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/GetDictionaries", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/GetDictionariesResponse")]
         System.Collections.Generic.List<ChineseCharacterTrainer.Model.Dictionary> GetDictionaries();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/AddHighscore", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/AddHighscoreResponse")]
+        void AddHighscore(ChineseCharacterTrainer.Model.Highscore highscore);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/GetHighscores", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/GetHighscoresResponse")]
         System.Collections.Generic.List<ChineseCharacterTrainer.Model.Highscore> GetHighscores();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/AddHighscore", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/AddHighscoreResponse")]
-        void AddHighscore(ChineseCharacterTrainer.Model.Highscore highscore);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/GetAll", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/GetAllResponse")]
+        System.Collections.Generic.List<ChineseCharacterTrainer.Model.Entity> GetAll(string typeName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChineseCharacterTrainerService/Add", ReplyAction="http://tempuri.org/IChineseCharacterTrainerService/AddResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ChineseCharacterTrainer.Model.DictionaryEntry))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ChineseCharacterTrainer.Model.Translation))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ChineseCharacterTrainer.Model.Highscore))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ChineseCharacterTrainer.Model.User))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ChineseCharacterTrainer.Model.Dictionary))]
+        void Add(string typeName, ChineseCharacterTrainer.Model.Entity entity);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -63,12 +74,20 @@ namespace ChineseCharacterTrainer.Implementation.ServiceReference {
             return base.Channel.GetDictionaries();
         }
         
+        public void AddHighscore(ChineseCharacterTrainer.Model.Highscore highscore) {
+            base.Channel.AddHighscore(highscore);
+        }
+        
         public System.Collections.Generic.List<ChineseCharacterTrainer.Model.Highscore> GetHighscores() {
             return base.Channel.GetHighscores();
         }
         
-        public void AddHighscore(ChineseCharacterTrainer.Model.Highscore highscore) {
-            base.Channel.AddHighscore(highscore);
+        public System.Collections.Generic.List<ChineseCharacterTrainer.Model.Entity> GetAll(string typeName) {
+            return base.Channel.GetAll(typeName);
+        }
+        
+        public void Add(string typeName, ChineseCharacterTrainer.Model.Entity entity) {
+            base.Channel.Add(typeName, entity);
         }
     }
 }

@@ -10,5 +10,7 @@ namespace ChineseCharacterTrainer.Implementation.Services
 
         void AddHighscore(Highscore highscore);
         List<Highscore> GetHighscores();
+        List<T> GetAll<T>() where T : Entity;
+        void Add<T>(T entity) where T : Entity;
     }
 }

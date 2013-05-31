@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using ChineseCharacterTrainer.Model;
 using ChineseCharacterTrainer.ServiceApp.Persistence;
 using System.Collections.Generic;
@@ -62,13 +63,25 @@ namespace ChineseCharacterTrainer.ServiceApp
             return highscores;
         }
 
+        public List<Entity> GetAll(string typeName)
+        {
+            var result = ChineseTrainerContext.GetAll(Type.GetType(typeName));
+            return result;
+        }
+
+        public void Add(string typeName, Entity entity)
+        {
+            ChineseTrainerContext.Add(Type.GetType(typeName), entity);
+            ChineseTrainerContext.SaveChanges();
+        }
+
         public void AddHighscore(Highscore highscore)
         {
             try
             {
-                ChineseTrainerContext.Dictionaries.Attach(highscore.Dictionary);
-                ChineseTrainerContext.Users.Add(highscore.User);
-                ChineseTrainerContext.Highscores.Add(highscore);
+                ChineseTrainerContext.Attach(highscore.Dictionary);
+                ChineseTrainerContext.Add(highscore.User);
+                ChineseTrainerContext.Add(highscore);
                 ChineseTrainerContext.SaveChanges();
             }
             catch (Exception e)

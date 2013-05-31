@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace ChineseCharacterTrainer.Model
@@ -27,6 +28,6 @@ namespace ChineseCharacterTrainer.Model
         public virtual List<DictionaryEntry> Entries { get; private set; }
 
         [DataMember]
-        public virtual List<Highscore> Highscores { get; private set; } 
+        public virtual List<Highscore> Highscores { get; private set; }
     }
 }

@@ -119,6 +119,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\DataSources\ChineseCharacterTrainer.Model.Dictionary.datasource" />
+    <None Include="Properties\DataSources\ChineseCharacterTrainer.Model.Entity.datasource" />
     <None Include="Properties\DataSources\ChineseCharacterTrainer.Model.Highscore.datasource" />
     <None Include="Service References\ServiceReference\ChineseCharacterTrainerService.wsdl" />
     <None Include="Service References\ServiceReference\ChineseCharacterTrainerService.xsd">

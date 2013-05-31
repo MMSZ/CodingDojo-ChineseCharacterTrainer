@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Objects.DataClasses;
 using System.Linq;
 using ChineseCharacterTrainer.Model;
 
@@ -32,14 +36,43 @@ namespace ChineseCharacterTrainer.ServiceApp.Persistence
 
         public void Add<T>(T entity) where T : class
         {
-            //Set<T>().Attach(entity);
             Set<T>().Add(entity);
         }
 
-        public DbSet<Dictionary> Dictionaries { get; set; }
-        public DbSet<Highscore> Highscores { get; set; }
-        public DbSet<DictionaryEntry> DictionaryEntries { get; set; }
-        public DbSet<Translation> Translations { get; set; }
-        public DbSet<User> Users { get; set; }
+        public void Attach<T>(T entity) where T : class
+        {
+            Set<T>().Attach(entity);
+        }
+
+        public List<Entity> GetAll(Type type)
+        {
+            var dbSet = Set(type);
+            dbSet.Load();
+
+            Type listType = typeof(List<>);
+            Type[] typeArgs = { type };
+            Type listTypeGenericRuntime = listType.MakeGenericType(typeArgs);
+            var enumerable = Activator.CreateInstance(listTypeGenericRuntime, dbSet.Local) as IEnumerable;
+
+
+            var result = new List<Entity>();
+            foreach (var item in enumerable)
+            {
+                result.Add(item as Entity);
+            }
+
+            return result;
+        }
+
+        public void Add(Type type, Entity entity)
+        {
+            Set(type).Add(entity);
+        }
+
+        //public DbSet<Dictionary> Dictionaries { get; set; }
+        //public DbSet<Highscore> Highscores { get; set; }
+        //public DbSet<DictionaryEntry> DictionaryEntries { get; set; }
+        //public DbSet<Translation> Translations { get; set; }
+        //public DbSet<User> Users { get; set; }
     }
 }
