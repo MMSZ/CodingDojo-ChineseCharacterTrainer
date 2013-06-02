@@ -35,7 +35,8 @@
                    Foreground="{Binding LastAnswerWasCorrect, Converter={StaticResource BooleanToColorConverter}}"
                    Visibility="{Binding IsInAnswerMode, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=false}"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding CurrentEntry.ChineseCharacters}" 
-                   FontSize="128" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                       FontSize="128" FontFamily="SimSun"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
                 <ItemsControl 
                 ItemsSource="{Binding CurrentEntry.Translations}" VerticalAlignment="Stretch"  HorizontalAlignment="Center"

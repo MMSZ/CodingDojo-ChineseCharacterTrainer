@@ -54,10 +54,10 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" FontSize="24" Text="Current:" HorizontalAlignment="Right"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" FontSize="24" Text="Current score: " HorizontalAlignment="Right"/>
             <TextBlock Grid.Column="1" Grid.Row="0" FontSize="24" Text="{Binding CurrentHighscore.Score}"/>
 
-            <TextBlock Grid.Column="0" Grid.Row="1" FontSize="24" Text="Best:" HorizontalAlignment="Right"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" FontSize="24" Text="Personal best: " HorizontalAlignment="Right"/>
             <TextBlock Grid.Column="1" Grid.Row="1" FontSize="24" Text="{Binding BestHighscore.Score}"/>
         </Grid>
         
