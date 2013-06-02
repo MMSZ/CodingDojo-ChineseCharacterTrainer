@@ -6,6 +6,7 @@ namespace ChineseCharacterTrainer.Model
     [DataContract(IsReference = true)]
     [KnownType(typeof(Dictionary))]
     [KnownType(typeof(Highscore))]
+    [KnownType(typeof(DictionaryEntry))]
     public abstract class Entity// : IEquatable<Entity>
     {
         protected Entity()

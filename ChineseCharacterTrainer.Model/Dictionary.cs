@@ -25,7 +25,7 @@ namespace ChineseCharacterTrainer.Model
         public string Name { get; private set; }
 
         [DataMember]
-        public virtual List<DictionaryEntry> Entries { get; private set; }
+        public virtual List<DictionaryEntry> Entries { get; set; }
 
         [DataMember]
         public virtual List<Highscore> Highscores { get; private set; }

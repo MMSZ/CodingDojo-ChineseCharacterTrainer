@@ -1,4 +1,5 @@
-﻿using ChineseCharacterTrainer.Model;
+﻿using System.Linq;
+using ChineseCharacterTrainer.Model;
 using System.Threading.Tasks;
 
 namespace ChineseCharacterTrainer.Implementation.Services
@@ -35,7 +36,18 @@ namespace ChineseCharacterTrainer.Implementation.Services
 
         private void AddDictionary(Dictionary dictionary)
         {
+            //// Note: This is a workaround to avoid exceeding the maximum message size in WCF.
+            var entries = dictionary.Entries;
+            dictionary.Entries = null;
+
             _repository.Add(dictionary);
+
+            foreach (var dictionaryEntry in entries)
+            {
+                _repository.Add(dictionaryEntry);
+            }
+
+            dictionary.Entries = entries;
         }
     }
 }
