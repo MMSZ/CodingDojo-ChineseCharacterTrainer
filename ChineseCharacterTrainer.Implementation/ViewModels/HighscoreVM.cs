@@ -34,9 +34,10 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
         {
             CurrentHighscore = currentHighscore;
 
-            var highscores = _repository.GetAll<Highscore>();
-            Highscores = GetBestAllTimeHighscores(highscores);
-            BestHighscore = GetBestUserHighscores(highscores);
+            var allHighscores = _repository.GetAll<Highscore>();
+            var highscoresForDictionary = GetOrderedHighscoresForDictionary(allHighscores);
+            Highscores = GetBestAllTimeHighscores(highscoresForDictionary);
+            BestHighscore = GetBestUserHighscores(highscoresForDictionary);
         }
 
         private Highscore GetBestUserHighscores(IEnumerable<Highscore> highscores)
@@ -44,24 +45,28 @@ namespace ChineseCharacterTrainer.Implementation.ViewModels
             // Note: Currently the user's name is used to identify the user. This is because every time a new user
             //       is created before the highscore is uploaded. To avoid this a user should have a login and
             //       always the same ID.
-            return highscores.OrderBy(p => p.Score).First(p => p.User.Name == CurrentHighscore.User.Name);
+            return highscores.First(p => p.User.Name == CurrentHighscore.User.Name);
+        }
+
+        private List<Highscore> GetOrderedHighscoresForDictionary(IEnumerable<Highscore> allHighscores)
+        {
+            return allHighscores
+                .Where(p => p.DictionaryId == CurrentHighscore.DictionaryId)
+                .OrderBy(p => p.Score).ToList();
         }
 
         private List<dynamic> GetBestAllTimeHighscores(IEnumerable<Highscore> highscores)
         {
             var i = 1;
-            return highscores.OrderBy(p => p.Score)
-                .Where(p => p.Dictionary.Id == CurrentHighscore.Dictionary.Id)
-                .Take(5)
-                .Select<Highscore, object>(
-                    p =>
-                        {
-                            dynamic expandoObject = new ExpandoObject();
-                            expandoObject.Ranking = i++;
-                            expandoObject.Username = p.User.Name;
-                            expandoObject.Score = p.Score;
-                            return expandoObject;
-                        }).ToList();
+            return highscores.Take(5).Select(
+                p =>
+                    {
+                        dynamic expandoObject = new ExpandoObject();
+                        expandoObject.Ranking = i++;
+                        expandoObject.Username = p.User.Name;
+                        expandoObject.Score = p.Score;
+                        return expandoObject;
+                    }).ToList();
         }
 
         public event Action ReturnToMenuRequested;
