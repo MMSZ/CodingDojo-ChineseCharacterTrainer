@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using ChineseCharacterTrainer.Implementation.Model;
-using ChineseCharacterTrainer.Implementation.Services;
+﻿using ChineseCharacterTrainer.Implementation.Services;
 using ChineseCharacterTrainer.Model;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ChineseCharacterTrainer.UnitTest.Services
 {
@@ -19,7 +18,11 @@ namespace ChineseCharacterTrainer.UnitTest.Services
         public void Initialize()
         {
             _textFileReaderMock = new Mock<ITextFileReader>();
+
             _wordlistParserMock = new Mock<IWordlistParser>();
+            _wordlistParserMock.Setup(p => p.Import(It.IsAny<IEnumerable<string>>()))
+                               .Returns(new List<DictionaryEntry>());
+
             _dictionaryRepositoryMock = new Mock<IRepository>();
 
             _objectUnderTest = new DictionaryImporter(
