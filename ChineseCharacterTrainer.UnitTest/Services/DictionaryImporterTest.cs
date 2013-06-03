@@ -21,7 +21,10 @@ namespace ChineseCharacterTrainer.UnitTest.Services
 
             _wordlistParserMock = new Mock<IWordlistParser>();
             _wordlistParserMock.Setup(p => p.Import(It.IsAny<IEnumerable<string>>()))
-                               .Returns(new List<DictionaryEntry>());
+                               .Returns(new List<DictionaryEntry>
+                                   {
+                                       new DictionaryEntry("你", "ni3", new List<Translation> {new Translation("you")})
+                                   });
 
             _dictionaryRepositoryMock = new Mock<IRepository>();
 

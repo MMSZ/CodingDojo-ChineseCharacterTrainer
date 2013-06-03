@@ -94,5 +94,15 @@ namespace ChineseCharacterTrainer.IntegrationTest
 
             Assert.AreEqual(1, highscores.Count);
         }
+
+        [Test]
+        public void ShouldGetUserFromDatabase()
+        {
+            var objectUnderTest = new ChineseTrainerContext(TestDatabaseName);
+
+            var users = objectUnderTest.GetAll(typeof (User));
+
+            Assert.AreEqual(1, users.Count);
+        }
     }
 }
