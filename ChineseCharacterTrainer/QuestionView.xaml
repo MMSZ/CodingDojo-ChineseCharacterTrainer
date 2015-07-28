@@ -16,6 +16,7 @@
         <TextBlock Grid.Row="0" Text="{Binding CurrentEntry.ChineseCharacters}" FontSize="72"
                    HorizontalAlignment="Center"/>
         <TextBox x:Name="AnswerTextBox" Grid.Row="1" HorizontalContentAlignment="Center" FontSize="54"
+                 Text="{Binding Answer}"
                  KeyUp="OnKeyUp"/>
         
     </Grid>
